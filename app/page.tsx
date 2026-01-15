@@ -56,8 +56,10 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex justify-center">
-
+      <div className="grid grid-cols-3">
+        <div className="bg-white py-16">Hello</div>
+        <div className="bg-white py-16">Hello</div>
+        <div className="bg-white py-16">Hello</div>
       </div>
     </>
   );
