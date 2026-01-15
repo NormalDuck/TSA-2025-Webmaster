@@ -55,6 +55,10 @@ export default function Home() {
           </calendar-date>
         </div>
       </div>
+
+      <div className="flex justify-center">
+
+      </div>
     </>
   );
 }
