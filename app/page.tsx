@@ -1,7 +1,8 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import "cally"
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
           <span className="lg:text-left">Subheading that sets up context, shares more info about the website, or generally gets people psyched to keep scrolling.</span>
         </div>
         <div className="flex justify-center">
-          <Image src="/vercel.svg" alt="placeholder" width={200} height={200}></Image>
+          <Image src="/about_page_hero_image.jpg" alt="placeholder" width={400} height={400} className="rounded-lg"></Image>
         </div>
       </div>
 
@@ -42,25 +43,70 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 p-8">
-        <div className="font-bold text-2xl">
-          Upcoming Events
+      <Carousel
+        responsive={{ desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 3 }, tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 2 }, mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 } }}
+        keyBoardControl={true}
+        transitionDuration={500}
+        containerClass="py-10"
+        itemClass="px-2"
+      >
+        <div className="bg-gray-500 rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+          <div className="overflow-hidden rounded-lg">
+            <Image
+              src="/landing_page_news_1.jpg"
+              width={1000}
+              height={1000}
+              alt="test"
+              className="aspect-video object-cover w-full h-full"
+            />
+          </div>
+          <h3 className="text-lg font-bold text-slate-800">Item 1</h3>
+          <p className="text-black mt-2">Description goes here</p>
         </div>
 
-        <div className="flex">
-          <calendar-date className="cally bg-base-100 border border-base-300 shadow-lg rounded-box">
-            <svg aria-label="Previous" className="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg>
-            <svg aria-label="Next" className="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.25 4.5 7.5 7.5-7.5 7.5"></path></svg>
-            <calendar-month></calendar-month>
-          </calendar-date>
+        <div className="bg-gray-500 rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+          <div className="overflow-hidden rounded-lg">
+            <Image
+              src="/landing_page_news_2.jpg"
+              width={1000}
+              height={1000}
+              alt="test"
+              className="aspect-video object-cover w-full h-full"
+            />
+          </div>
+          <h3 className="text-lg font-bold text-slate-800">Item 1</h3>
+          <p className="text-black mt-2">Description goes here</p>
         </div>
+
+        <div className="bg-gray-500 rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+          <div className="overflow-hidden rounded-lg">
+            <Image
+              src="/landing_page_news_3.jpg"
+              width={1000}
+              height={1000}
+              alt="test"
+              className="aspect-video object-cover w-full h-full"
+            />
+          </div>
+          <h3 className="text-lg font-bold text-slate-800">Item 1</h3>
+          <p className="text-black mt-2">Description goes here</p>
+        </div>
+
+      </Carousel >
+
+
+      <div className="text-center grid items-center place-content-center gap-2">
+        <label className="bold text-4xl">Join Our Newsletter</label>
+        <label className="2xl bold">Get monthly updates on new resources, news, events, and more!</label>
       </div>
 
-      <div className="grid grid-cols-3">
-        <div className="bg-white py-16">Hello</div>
-        <div className="bg-white py-16">Hello</div>
-        <div className="bg-white py-16">Hello</div>
+
+      <div className="flex items-center justify-center p-4">
+        <div className="flex w-full max-w-sm items-center gap-2">
+          <input type="email" placeholder="Email" className="input" />
+          <button type="submit" className="btn">Subscribe</button>
+        </div>
       </div>
     </>
-  );
+  )
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import "react-multi-carousel/lib/styles.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,15 +29,27 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="sticky top-0 navbar bg-base-100 shadow-sm">
           <div className="flex-1">
             <Link href={"/"} className="btn btn-ghost text-xl">WAsHub</Link>
           </div>
-          <div className="flex-none">
+
+          <div className="hidden lg:flex flex-none">
             <ul className="menu menu-horizontal px-1">
               <li><Link href={"/resources"}>Resources</Link></li>
               <li><Link href={"/about"}>About</Link></li>
-              <li><Link href={"/donate"}>Donate</Link></li>
+              <li><Link href={"/references"}>References</Link></li>
+            </ul>
+          </div>
+
+          <div className="lg:hidden dropdown dropdown-end">
+            <button className="btn btn-square btn-ghost">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
+            </button>
+            <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+              <li><Link href={"/resources"}>Resources</Link></li>
+              <li><Link href={"/about"}>About</Link></li>
+              <li><Link href={"/references"}>References</Link></li>
             </ul>
           </div>
         </div>
