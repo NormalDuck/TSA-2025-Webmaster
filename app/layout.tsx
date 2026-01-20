@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="sticky top-0 navbar bg-base-100 shadow-sm">
+        <div className="dark:text-white w-full grain h-20 flex justify-between items-center p-4 lg:px-16 xl:px-32 bg-text bg-opacity-80 backdrop-blur-md text-background backdrop-blur-md sticky top-0 z-50 transition-all duration-700 shadow-lg">
           <div className="flex-1">
             <Link href={"/"} className="btn btn-ghost text-xl">WAsHub</Link>
           </div>
