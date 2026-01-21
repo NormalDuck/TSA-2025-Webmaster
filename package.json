@@ -11,20 +11,24 @@
     "postinstall": "license-checker --json > licenses.json"
   },
   "dependencies": {
-    "lucide-react": "^0.561.0",
-    "next": "16.0.10",
+    "cally": "^0.9.0",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-multi-carousel": "^2.8.6"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "25.0.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "baseline-browser-mapping": "^2.9.14",
+    "daisyui": "^5.5.14",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "license-checker": "^25.0.1",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5"
   }
 }
