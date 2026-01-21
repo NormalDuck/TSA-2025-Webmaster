@@ -14,7 +14,7 @@ export default function Home() {
           <span className="lg:text-left">Subheading that sets up context, shares more info about the website, or generally gets people psyched to keep scrolling.</span>
         </div>
         <div className="flex justify-center">
-          <Image src="/about_page_hero_image.jpg" alt="placeholder" width={400} height={400} className="rounded-lg"></Image>
+          <Image src="/about_page_hero.jpg" alt="placeholder" width={400} height={400} className="rounded-lg"></Image>
         </div>
       </div>
 
