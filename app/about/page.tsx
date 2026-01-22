@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return <div>
-    <div className="bg-[#024A70] p-40 flex justify-center">
-      <label className="text-5xl font-extrabold text-black">About us</label>
+    <div className="bg-[#024A70] py-30 px-20 flex justify-center">
+      <label className="text-5xl font-extrabold text-white">About us</label>
     </div>
 
     {/*Mission Section*/}

@@ -59,7 +59,7 @@ export default function ReferencesPage() {
     {/* PDF files section */}
     <div className="flex flex-col lg:flex-row gap-6 h-200 py-9">
       {/* Work Log pdf file*/}
-      <div className="w-full lg:w-1/2 h-full bg-white rounded-xl shadow-lg p-4">
+      <div className="w-full lg:w-1/3 h-full bg-white rounded-xl shadow-lg p-4">
         <h2 className="text-lime-700 text-2xl font-semibold text-center mb-4">Work Log</h2>
         <iframe
           src="/worklog.pdf"
@@ -68,7 +68,7 @@ export default function ReferencesPage() {
         />
       </div>
       {/* Copyright pdf file*/}
-      <div className="w-full lg:w-1/2 h-full bg-white rounded-xl shadow-lg p-4">
+      <div className="w-full lg:w-1/3 h-full bg-white rounded-xl shadow-lg p-4">
         <h2 className="text-lime-700 text-2xl font-semibold text-center mb-4">Copyright</h2>
         <iframe
           src="/copyright.pdf"
@@ -76,7 +76,19 @@ export default function ReferencesPage() {
           title="Copyright"
         />
       </div>
+      {/* Sources pdf file*/}
+      <div className="w-full lg:w-1/3 h-full bg-white rounded-xl shadow-lg p-4">
+        <h2 className="text-lime-700 text-2xl font-semibold text-center mb-4">Sources</h2>
+        <iframe
+          src="/sources.pdf"
+          className="w-full h-[calc(100%-3rem)] rounded-lg border border-gray-300"
+          title="Sources"
+        />
+      </div>
     </div>
+      
+      
+
     <div className='grid'>
       <label className='font-black text-2xl'>Packages</label>
       <label className='text-gray-500'>(this includes indirect packages used by other libraries/dependencies)</label>
