@@ -132,7 +132,7 @@ export default function RootLayout({
 
             {/* Bottom Bar */}
             <div className="border-t border-white/5 py-6 text-center text-sm text-slate-500">
-              © 2024 WAsHub. All rights reserved.
+              © 2026 WAsHub. All rights reserved.
             </div>
           </footer>
 

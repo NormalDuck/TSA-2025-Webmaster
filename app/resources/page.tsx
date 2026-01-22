@@ -1,8 +1,10 @@
 "use client";
 
-import { Apple, GraduationCap, House, Plus, UsersRound } from "lucide-react";
+import { SiFacebook, SiInstagram, SiLinkerd, SiX } from "@icons-pack/react-simple-icons";
+import { Apple, GraduationCap, House, Linkedin, Mail, Phone, Plus, UsersRound } from "lucide-react";
 
 import Image from "next/image";
+import { useMemo, useState } from "react";
 
 export interface Opportunity {
   name: string;
@@ -154,9 +156,19 @@ const opportunities: Opportunity[] = [
 ];
 
 export default function ResourcesPage() {
+  const [category, setCategory] = useState<Category | null>(null);
+  const [opportunity, setOpportunity] = useState<Opportunity>()
+
+  const visibleOpportunities = useMemo(() => {
+    if (category !== null) {
+      return [...opportunities].filter((opportunity) => opportunity.category === category)
+    } else {
+      return opportunities;
+    }
+  }, [category])
+
   return (<div className="grid grid-cols-12 gap-6 p-4 md:p-8">
 
-    {/* Sidebar: Responsive visibility and column management */}
     <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">
       <h2 className="text-sm uppercase tracking-wider text-gray-500 font-extrabold">Categories</h2>
 
@@ -170,7 +182,14 @@ export default function ResourcesPage() {
         ].map((cat) => (
           <button
             key={cat.label}
-            className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors text-left"
+            className={`flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors text-left ${(cat.label === category) && "bg-gray-200"}`}
+            onClick={() => {
+              if (cat.label !== category) {
+                setCategory(cat.label as Category)
+              } else {
+                setCategory(null)
+              }
+            }}
           >
             <span>{cat.icon}</span>
             <span className="font-bold text-gray-700">{cat.label}</span>
@@ -179,7 +198,6 @@ export default function ResourcesPage() {
       </nav>
     </aside>
 
-    {/* Main Content: Adjusts column span based on sidebar presence */}
     <main className="col-span-12 md:col-span-8 lg:col-span-9">
       <div className="flex justify-between items-end mb-8">
         <h2 className="text-3xl font-extrabold">Resources</h2>
@@ -187,9 +205,13 @@ export default function ResourcesPage() {
 
       {/* Responsive Grid: Changes column count based on available space */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
-        {opportunities.map((item) => (
+        {visibleOpportunities.map((item) => (
           <div
             key={item.name + item.description}
+            onClick={() => {
+              setOpportunity(item);
+              (document.getElementById('opportunity_description')! as HTMLDialogElement).showModal()
+            }}
             className="flex flex-col group cursor-pointer"
           >
             <div className="relative aspect-16/10 overflow-hidden rounded-2xl mb-4 bg-gray-100">
@@ -213,6 +235,58 @@ export default function ResourcesPage() {
         ))}
       </div>
     </main>
-  </div>)
 
+    <dialog id="opportunity_description" className="modal ">
+      <div className="modal-box">
+        <form method="dialog">
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <h3 className="font-bold text-lg">{opportunity?.name}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <p className="py-4">{opportunity?.description}</p>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.4290113569655!2d116.39763165764991!3d39.90548952626052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36637698dc4374d9%3A0x2aea2ec9ad545913!2sTiananmen%20Square!5e1!3m2!1sen!2sus!4v1769064074794!5m2!1sen!2sus"
+            className="w-full h-64 rounded-lg"
+            allowFullScreen={false}
+            loading="lazy"
+          ></iframe>
+        </div>
+        <label className="font-bold text-lg">Contact</label>
+        <div className="flex flex-wrap gap-3">
+
+          {opportunity?.contact.phone && <div className="gap-2 flex">
+            <Phone />
+            {opportunity.contact.phone}
+          </div>}
+
+          {opportunity?.contact.email && <div className="gap-2 flex">
+            <Mail />
+            {opportunity.contact.email}
+          </div>}
+
+          {opportunity?.contact.socials?.facebook && <div className="gap-2 flex">
+            <SiFacebook />
+            {opportunity.contact.socials.facebook}
+          </div>}
+
+          {opportunity?.contact.socials?.instagram && <div className="gap-2 flex">
+            <SiInstagram />
+            {opportunity.contact.socials.instagram}
+          </div>}
+
+          {opportunity?.contact.socials?.linkedin && <div className="gap-2 flex">
+            {/* this is deprecated but we still use it */}
+            <Linkedin />
+            {opportunity.contact.socials.linkedin}
+          </div>}
+
+          {opportunity?.contact.socials?.x && <div className="gap-2 flex">
+            <SiX />
+            {opportunity.contact.socials.x}
+          </div>}
+
+        </div>
+      </div>
+    </dialog>
+  </div>)
 }
