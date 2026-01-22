@@ -1,12 +1,18 @@
 import Image from "next/image";
 
 export default function AboutPage() {
-  return (<div className="bg-linear-to-b from-white to gray-50">
-    {/*Heading Section*/}
-    <div className="relative bg-[#AECF72] overflow-hidden">
-      <div className="absolute inset-0 bg-linear-to-br from-[#AECF72] to-[#8FB84e] opacity-90"></div>
-      <div className="relative max-w-7xl mx-auto px-8 py-24 text-center">
-      <h1 className="font-chivo text-7xl font-extrabold text-black mb-6 tracking-tight">About us</h1>
+  return <div>
+    <div className="bg-[#024A70] p-40 flex justify-center">
+      <label className="text-5xl font-extrabold text-black">About us</label>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 p-8 gap-4 items-center">
+      <span className="lg:text-left">
+        WAsHub is committed to creating a safe space for Washington residents to share resources within the community. Founded in 2012, WAsHub continues to follow their philosophy of community, compassion, and equity as they expand this resource hub and host events within local communities.
+      </span>
+
+      <div className="flex justify-center">
+        <Image className="rounded-lg shadow-xl" src="/about_page_hero.jpg" alt="about page hero" width={400} height={400} ></Image>
       </div>
     </div>
 
