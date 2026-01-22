@@ -156,7 +156,7 @@ const opportunities: Opportunity[] = [
 ];
 
 export default function ResourcesPage() {
-  const [category, setCategory] = useState<Category | null>("All");
+  const [category, setCategory] = useState<Category>("All");
   const [opportunity, setOpportunity] = useState<Opportunity>();
 
   const visibleOpportunities = useMemo(() => {
@@ -187,8 +187,6 @@ export default function ResourcesPage() {
             onClick={() => {
               if (cat.label !== category) {
                 setCategory(cat.label as Category)
-              } else {
-                setCategory(null)
               }
             }}
           >
