@@ -1,7 +1,7 @@
 "use client";
 
 import { SiFacebook, SiInstagram, SiLinkerd, SiX } from "@icons-pack/react-simple-icons";
-import { Apple, GraduationCap, House, Linkedin, Mail, Phone, Plus, SquareChartGantt, UsersRound } from "lucide-react";
+import { Apple, GraduationCap, House, Linkedin, Mail, Map, Phone, Plus, SquareChartGantt, UsersRound } from "lucide-react";
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -256,7 +256,7 @@ export default function ResourcesPage() {
               <h3 className="text-lg font-bold leading-tight group-hover:text-blue-600 transition-colors">
                 {item.name}
               </h3>
-              <p className="text-gray-500 text-sm line-clamp-2">
+              <p className="text-gray-500 text-sm line-clamp-3">
                 {item.description}
               </p>
             </div>
@@ -271,17 +271,10 @@ export default function ResourcesPage() {
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 className="font-bold text-lg">{opportunity?.name}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <p className="py-4">{opportunity?.description}</p>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.4290113569655!2d116.39763165764991!3d39.90548952626052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36637698dc4374d9%3A0x2aea2ec9ad545913!2sTiananmen%20Square!5e1!3m2!1sen!2sus!4v1769064074794!5m2!1sen!2sus"
-            className="w-full h-64 rounded-lg"
-            allowFullScreen={false}
-            loading="lazy"
-          ></iframe>
-        </div>
+        <p className="py-4">{opportunity?.description}</p>
         <label className="font-bold text-lg">Contact</label>
         <div className="flex flex-wrap gap-3 mt-2">
+
           {opportunity?.contact.phone && <div className="gap-2 flex">
             <Phone />
             {opportunity.contact.phone}
@@ -313,6 +306,10 @@ export default function ResourcesPage() {
             {opportunity.contact.socials.x}
           </div>}
 
+          {opportunity?.contact.address && <div className="gap-2 flex">
+            <Map />
+            {opportunity.contact.address}
+          </div>}
         </div>
       </div>
     </dialog>
