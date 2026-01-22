@@ -40,14 +40,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid place-content-center p-4 gap-4">
-        <h1 className="text-center text-2xl font-bold ">Our Top Resources</h1>
-
-        <Link href={"/resources"} className="flex justify-center" >
-          <button className="btn">Explore</button>
-        </Link>
-      </div>
-
+      <h1 className="text-center text-4xl font-bold m-8">Our Top Resources</h1>
       <Carousel
         responsive={{ desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 3 }, tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 2 }, mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 } }}
         keyBoardControl={true}
@@ -58,46 +51,52 @@ export default function Home() {
         <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <Image
-              src="/landing_page_news_1.jpg"
+              src="/resources/rainier_valley_foodbank.png"
               width={1000}
               height={1000}
               alt="test"
               className="aspect-video object-cover w-full h-full"
             />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">Local Non-Profit Hosts Winter Clothes Drive for Families</h3>
-          <p className="text-gray-500 mt-2">Posted by Kamala Aresnio</p>
+          <h3 className="text-lg font-bold text-slate-800">Rainier Valley Food Bank</h3>
+          <p className="text-gray-500 mt-2">Emergency food resource for the local community</p>
         </div>
 
         <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <Image
-              src="/landing_page_news_2.jpg"
+              src="/resources/neighborhood_house.png"
               width={1000}
               height={1000}
               alt="test"
               className="aspect-video object-cover w-full h-full"
             />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">Books & School Supplies Drive</h3>
-          <p className="text-gray-500 mt-2">Posted by Yoshimi Jeong</p>
+          <h3 className="text-lg font-bold text-slate-800">Neighborhood House</h3>
+          <p className="text-gray-500 mt-2">Provides safe access for youth through after-school mentoring, etc</p>
         </div>
 
         <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <Image
-              src="/landing_page_news_3.jpg"
+              src="/resources/marys_place.png"
               width={1000}
               height={1000}
               alt="test"
               className="aspect-video object-cover w-full h-full"
             />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">Online healthcare: What is it?</h3>
-          <p className="text-gray-500 mt-2">Posted by Ronaldo Parzival</p>
+          <h3 className="text-lg font-bold text-slate-800">Mary's Place</h3>
+          <p className="text-gray-500 mt-2">Mary's place helps women and families move out of homelessness</p>
         </div>
 
       </Carousel >
+
+      <div className="grid place-content-center p-8 mb-4 gap-4">
+        <Link href={"/resources"} className="flex justify-center" >
+          <button className="btn rounded-full bg-orange-300">Explore more resources!</button>
+        </Link>
+      </div>
     </>
   )
 }
