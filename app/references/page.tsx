@@ -9,18 +9,8 @@ interface LicenseInfo {
   "email": string
   "url": string
 }
-
-interface WorkLogItem {
-  names: string
-  hours: number
-  description: string
-}
-
 export default function ReferencesPage() {
-
-  const workLogs = [{ names: "JunJie Huang", description: "locking in", hours: 3 }] satisfies Array<WorkLogItem>
-
-  // const licenseMap = new Map(Object.entries(licenseData));
+  const licenseMap = new Map(Object.entries(licenseData));
 
   return <div className="p-8 space-y-5">
     <h1 className="text-4xl font-extrabold">References</h1>
@@ -42,27 +32,61 @@ export default function ReferencesPage() {
 
     </div>
 
-    <label className='mt-10'>Work log:</label>
+    {/* PDF files section */}
+    <div className="flex flex-col lg:flex-row gap-6 h-200 py-9">
+      {/* Work Log pdf file*/}
+      <div className="w-full lg:w-1/2 h-full bg-white rounded-xl shadow-lg p-4">
+        <h2 className="text-lime-700 text-2xl font-semibold text-center mb-4">Work Log</h2>
+        <iframe
+          src="/worklog.pdf"
+          className="w-full h-[calc(100%-3rem)] rounded-lg border border-gray-300"
+          title="Work Log"
+        />
+      </div>
+      {/* Copyright pdf file*/}
+      <div className="w-full lg:w-1/2 h-full bg-white rounded-xl shadow-lg p-4">
+        <h2 className="text-lime-700 text-2xl font-semibold text-center mb-4">Copyright</h2>
+        <iframe
+          src="/copyright.pdf"
+          className="w-full h-[calc(100%-3rem)] rounded-lg border border-gray-300"
+          title="Copyright"
+        />
+      </div>
+    </div>
+    <div className='grid'>
+      <label className='font-black text-2xl'>Packages</label>
+      <label className='text-gray-500'>(this includes indirect packages used by other libraries/dependencies)</label>
+    </div>
 
-    <div className="overflow-x-auto">
+    <div className='mb-4'></div>
+
+    <div className="overflow-x-auto shadow-2xl">
       <table className="table">
         <thead>
           <tr>
-            <th>Names</th>
-            <th>Hours</th>
-            <th>Description</th>
+            <th>Package</th>
+            <th>Email</th>
+            <th>Licenses</th>
+            <th>Publisher</th>
+            <th>Repository</th>
           </tr>
         </thead>
         <tbody>
-          {workLogs.map((items) =>
-          (
-            <tr key={items.description + items.hours + items.names}>
-              <td>{items.names}</td>
-              <td>{items.hours}</td>
-              <td>{items.description}</td>
+          {Array.from(licenseMap.entries()).map(([packageName, items]: [string, any]) => (
+            <tr key={packageName}>
+              <td>{packageName}</td>
+              <td>{items.email || "N/A"}</td>
+              <td>{items.licenses}</td>
+              <td>{items.publisher}</td>
+              <td>
+                {items.repository &&
+                  <Link href={items.repository} className="link link-primary" target="_blank">
+                    Repo
+                  </Link>
+                }
+              </td>
             </tr>
-          )
-          )}
+          ))}
         </tbody>
       </table>
     </div>
