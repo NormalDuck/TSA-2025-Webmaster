@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter , Chivo} from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import "react-multi-carousel/lib/styles.css";
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import { Mail, Phone } from "lucide-react";
 
-const geistSans = Geist({
+/*const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
@@ -14,6 +14,15 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+*/
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+const chivo = Chivo({
+  subsets: ['latin'],
+  variable: '--font-chivo',
 });
 
 export const metadata: Metadata = {
@@ -29,7 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        //className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${chivo.variable} ${inter.className} antialiased`}
       >
         <div className="bg-white text-black">
           <div className="bg-white border-b-2 border-slate-500 w-full grain h-20 flex justify-between items-center p-4 lg:px-16 xl:px-32 bg-text bg-opacity-80 backdrop-blur-md sticky top-0 z-50 transition-all duration-700 shadow-lg">

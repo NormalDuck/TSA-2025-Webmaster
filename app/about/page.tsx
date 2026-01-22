@@ -1,20 +1,60 @@
 import Image from "next/image";
 
 export default function AboutPage() {
-  return <div>
-    <div className="bg-lime-400 p-20 flex justify-center">
-      <label className="text-5xl font-extrabold">About us</label>
-    </div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 p-8 gap-4 items-center">
-      <span className="lg:text-left">
-        WAsHub is committed to creating a safe space for Washington residents to share resources within the community. Founded in 2012, WAsHub continues to follow their philosophy of community, compassion, and equity as they expand this resource hub and host events within local communities.
-      </span>
-
-      <div className="flex justify-center">
-        <Image className="rounded-lg shadow-xl" src="/about_page_hero.jpg" alt="about page hero" width={400} height={400} ></Image>
+  return (<div className="bg-linear-to-b from-white to gray-50">
+    {/*Heading Section*/}
+    <div className="relative bg-[#AECF72] overflow-hidden">
+      <div className="absolute inset-0 bg-linear-to-br from-[#AECF72] to-[#8FB84e] opacity-90"></div>
+      <div className="relative max-w-7xl mx-auto px-8 py-24 text-center">
+      <h1 className="font-chivo text-7xl font-extrabold text-black mb-6 tracking-tight">About us</h1>
       </div>
     </div>
+
+    {/*Mission Section*/}
+    <div className="max-w-6xl mx-auto px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="inline-block px-4 py-2 bg-[#AECF72]/20 rounded-full">
+              <span className="text-[#8fb84e] font-semibold text-sm uppercase tracking-wider">Our Mission</span>
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+              Creating a Safe Space for Washington Residents
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              <strong className="text-[#2F598D]">WAsHub</strong> is committed to creating a safe space for Washington residents to share resources within the community. Founded in 2012, <strong className="text-[#2F598D]">WAsHub</strong> continues to follow their philosophy of <strong className="text-[#8fb84e]">community</strong>, <strong className="text-[#8fb84e]">compassion</strong>, and <strong className="text-[#8fb84e]">equity</strong> as they expand this resource hub and host events within local communities.
+            </p>
+            <div className="flex gap-4 pt-4">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[#8fb84e]">13+</div>
+                <div className="text-sm text-gray-600">Years Serving</div>
+              </div>
+
+              <div className="w-px bg-gray-300"></div>
+
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[#8fb84e]">10K+</div>
+                <div className="text-sm text-gray-600">People Helped</div>
+              </div>
+
+              <div className="w-px bg-gray-300"></div>
+
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[#8fb84e]">99%</div>
+                <div className="text-sm text-gray-600">Satisfied</div>
+              </div>
+            </div>
+          </div>
+          
+          {/*Mission Image*/}
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-[#7a9b5b] rounded-2xl transform rotate-9"></div>
+              <div className="absolute -inset-4 bg-[#AECF72] rounded-2xl transform rotate-1"></div>
+              <Image className="relative rounded-2xl shadow-2xl rotate-1" src="/about_page_hero.jpg" alt="about page hero" width={500} height={500}/>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <div className="divider"></div>
 
@@ -110,11 +150,12 @@ export default function AboutPage() {
           <div className="timeline-end md:mb-10">
             <time className="font-mono italic">2025</time>
             <div className="font-black text-3xl mb-4">New Horizons</div>
-            After 23 amazing years, we have still continued providing people in the Seattle, Washington area a safe place to share and find resources. We look forward to the many more years to come!
+            After 13 amazing years, we have still continued providing people in the Seattle, Washington area a safe place to share and find resources. We look forward to the many more years to come!
           </div>
           <hr />
         </li>
       </ul>
     </div>
   </div>
+  );
 }
