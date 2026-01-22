@@ -8,17 +8,25 @@ export default function Home() {
   return (
     <>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 p-8 gap-4">
-        <div className="grid gap-4 sm:text-center text-center">
-          <span className="text-5xl font-bold lg:text-left">Resources for everyone</span>
-          <span className="lg:text-left">Subheading that sets up context, shares more info about the website, or generally gets people psyched to keep scrolling.</span>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 items-center">
+        {/* Left Column: Content */}
+        <div className="flex flex-col text-center md:text-left">
+          <h2 className="text-5xl font-bold mb-4">
+            Resources for everyone
+          </h2>
+          <p className="text-lg text-gray-600">
+            Subheading that sets up context, shares more info about the website,
+            or generally gets people psyched to keep scrolling.
+          </p>
         </div>
-        <div className="flex justify-center">
-          <Image src="/about_page_hero.jpg" alt="placeholder" width={400} height={400} className="rounded-lg"></Image>
+
+        {/* Right Column: Placeholder for Image/Content */}
+        <div className="bg-gray-100 h-64 rounded-xl flex items-center justify-center">
+          <span>(Visual Content Goes Here)</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 bg-lime-400 border-y border-black text-center">
+      <div className="grid grid-cols-3 bg-[#E0A959] border-y border-black text-center">
         <div className="py-16 border-r border-black">
           <div className="text-4xl font-bold text-black">1,000+</div>
           <div className="mt-2 text-lg text-black">Resources</div>
@@ -50,7 +58,7 @@ export default function Home() {
         containerClass="py-10"
         itemClass="px-2"
       >
-        <div className="bg-gray-500 rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+        <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <Image
               src="/landing_page_news_1.jpg"
@@ -60,11 +68,11 @@ export default function Home() {
               className="aspect-video object-cover w-full h-full"
             />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">Item 1</h3>
-          <p className="text-black mt-2">Description goes here</p>
+          <h3 className="text-lg font-bold text-slate-800">Local Non-Profit Hosts Winter Clothes Drive for Families</h3>
+          <p className="text-gray-500 mt-2">Posted by Kamala Aresnio</p>
         </div>
 
-        <div className="bg-gray-500 rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+        <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <Image
               src="/landing_page_news_2.jpg"
@@ -74,11 +82,11 @@ export default function Home() {
               className="aspect-video object-cover w-full h-full"
             />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">Item 1</h3>
-          <p className="text-black mt-2">Description goes here</p>
+          <h3 className="text-lg font-bold text-slate-800">Books & School Supplies Drive</h3>
+          <p className="text-gray-500 mt-2">Posted by Yoshimi Jeong</p>
         </div>
 
-        <div className="bg-gray-500 rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+        <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
           <div className="overflow-hidden rounded-lg">
             <Image
               src="/landing_page_news_3.jpg"
@@ -88,25 +96,11 @@ export default function Home() {
               className="aspect-video object-cover w-full h-full"
             />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">Item 1</h3>
-          <p className="text-black mt-2">Description goes here</p>
+          <h3 className="text-lg font-bold text-slate-800">Online healthcare: What is it?</h3>
+          <p className="text-gray-500 mt-2">Posted by Ronaldo Parzival</p>
         </div>
 
       </Carousel >
-
-
-      <div className="text-center grid items-center place-content-center gap-2">
-        <label className="bold text-4xl">Join Our Newsletter</label>
-        <label className="2xl bold">Get monthly updates on new resources, news, events, and more!</label>
-      </div>
-
-
-      <div className="flex items-center justify-center p-4">
-        <div className="flex w-full max-w-sm items-center gap-2">
-          <input type="email" placeholder="Email" className="input" />
-          <button type="submit" className="btn">Subscribe</button>
-        </div>
-      </div>
     </>
   )
 }

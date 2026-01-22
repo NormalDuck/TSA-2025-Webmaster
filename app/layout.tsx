@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import "react-multi-carousel/lib/styles.css";
+import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
+import { Mail, Phone } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,35 +27,116 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="dark:text-white w-full grain h-20 flex justify-between items-center p-4 lg:px-16 xl:px-32 bg-text bg-opacity-80 backdrop-blur-md text-background backdrop-blur-md sticky top-0 z-50 transition-all duration-700 shadow-lg">
-          <div className="flex-1">
-            <Link href={"/"} className="btn btn-ghost text-xl">WAsHub</Link>
+        <div className="bg-white text-black">
+          <div className="bg-white border-b-2 border-slate-500 w-full grain h-20 flex justify-between items-center p-4 lg:px-16 xl:px-32 bg-text bg-opacity-80 backdrop-blur-md sticky top-0 z-50 transition-all duration-700 shadow-lg">
+            <div className="flex-1">
+              <Link href={"/"} className="btn btn-ghost text-xl">WAsHub</Link>
+            </div>
+
+            <div className="hidden lg:flex flex-none">
+              <ul className="menu menu-horizontal px-1">
+                <li><Link href={"/resources"}>Resources</Link></li>
+                <li><Link href={"/about"}>About</Link></li>
+                <li><Link href={"/references"}>References</Link></li>
+              </ul>
+            </div>
+
+            <div className="lg:hidden dropdown dropdown-end">
+              <button className="btn btn-square btn-ghost">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
+              </button>
+              <ul className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><Link href={"/resources"}>Resources</Link></li>
+                <li><Link href={"/about"}>About</Link></li>
+                <li><Link href={"/references"}>References</Link></li>
+              </ul>
+            </div>
           </div>
 
-          <div className="hidden lg:flex flex-none">
-            <ul className="menu menu-horizontal px-1">
-              <li><Link href={"/resources"}>Resources</Link></li>
-              <li><Link href={"/about"}>About</Link></li>
-              <li><Link href={"/references"}>References</Link></li>
-            </ul>
-          </div>
+          {children}
 
-          <div className="lg:hidden dropdown dropdown-end">
-            <button className="btn btn-square btn-ghost">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
-            </button>
-            <ul className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-              <li><Link href={"/resources"}>Resources</Link></li>
-              <li><Link href={"/about"}>About</Link></li>
-              <li><Link href={"/references"}>References</Link></li>
-            </ul>
-          </div>
+          <footer className="w-full bg-[#024A70] text-slate-100">
+            <div className="mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+
+              <div className="flex flex-col gap-6">
+                <div>
+                  <h2 className="text-4xl font-bold tracking-tight text-white mb-2">WAsHub</h2>
+                  <p className="text-slate-300 leading-relaxed max-w-sm">
+                    Get the best resources, first. Subscribe to receive updates and helpful tips from our community.
+                  </p>
+                </div>
+
+                <div className="flex w-full max-w-sm items-stretch">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    className="bg-white/10 border border-white/20 px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full transition-all placeholder:text-slate-400"
+                  />
+                  <button className="bg-blue-500 hover:bg-blue-400 transition-colors px-6 py-2 rounded-r-lg font-semibold">
+                    Join
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-8">
+                <div>
+                  <h3 className="text-lg font-bold uppercase tracking-widest text-blue-300 mb-4">Follow us</h3>
+                  <div className="flex gap-5 text-2xl">
+                    <a href="#" className="hover:text-blue-400 transition-transform hover:-translate-y-1"><SiFacebook /></a>
+                    <a href="#" className="hover:text-pink-400 transition-transform hover:-translate-y-1"><SiInstagram /></a>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
+                      <Phone size={18} />
+                    </div>
+                    <span className="text-slate-200">983.222.6211</span>
+                  </div>
+                  <div className="flex items-center gap-3 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
+                      <Mail size={18} />
+                    </div>
+                    <span className="text-slate-200">contact@washub.org</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="flex flex-col gap-3">
+                  <h3 className="font-bold text-white border-b border-white/10 pb-2 mb-2">Links</h3>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Resources</a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">About</a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Reference</a>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <h3 className="font-bold text-white border-b border-white/10 pb-2 mb-2">Explore</h3>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Library</a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Archive</a>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <h3 className="font-bold text-white border-b border-white/10 pb-2 mb-2">Company</h3>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Our Story</a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Mission</a>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="border-t border-white/5 py-6 text-center text-sm text-slate-500">
+              © 2024 WAsHub. All rights reserved.
+            </div>
+          </footer>
+
         </div>
-        {children}
       </body>
     </html>
   );

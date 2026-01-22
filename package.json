@@ -11,6 +11,7 @@
     "postinstall": "license-checker --json > licenses.json"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.8.0",
     "cally": "^0.9.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",

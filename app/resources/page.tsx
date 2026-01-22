@@ -172,7 +172,7 @@ export default function ResourcesPage() {
             key={cat.label}
             className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors text-left"
           >
-            <span className="text-blue-600">{cat.icon}</span>
+            <span>{cat.icon}</span>
             <span className="font-bold text-gray-700">{cat.label}</span>
           </button>
         ))}
@@ -183,7 +183,6 @@ export default function ResourcesPage() {
     <main className="col-span-12 md:col-span-8 lg:col-span-9">
       <div className="flex justify-between items-end mb-8">
         <h2 className="text-3xl font-extrabold">Resources</h2>
-        <span className="text-sm text-gray-500 font-medium">{opportunities.length} results found</span>
       </div>
 
       {/* Responsive Grid: Changes column count based on available space */}
