@@ -9,20 +9,17 @@ export default function Home() {
     <>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 items-center">
-        {/* Left Column: Content */}
         <div className="flex flex-col text-center md:text-left">
           <h2 className="text-5xl font-bold mb-4">
             Resources for everyone
           </h2>
           <p className="text-lg text-gray-600">
-            Subheading that sets up context, shares more info about the website,
-            or generally gets people psyched to keep scrolling.
+            We are dedicated to provide the most accessible opportunities within the local community.
           </p>
         </div>
 
-        {/* Right Column: Placeholder for Image/Content */}
-        <div className="bg-gray-100 h-64 rounded-xl flex items-center justify-center">
-          <span>(Visual Content Goes Here)</span>
+        <div className="m-4 h-64 rounded-xl flex items-center justify-center">
+          <Image alt="homepage hero" width={400} height={400} src="/homepage_hero.png"></Image>
         </div>
       </div>
 

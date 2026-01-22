@@ -1,7 +1,7 @@
 "use client";
 
 import { SiFacebook, SiInstagram, SiLinkerd, SiX } from "@icons-pack/react-simple-icons";
-import { Apple, GraduationCap, House, Linkedin, Mail, Phone, Plus, UsersRound } from "lucide-react";
+import { Apple, GraduationCap, House, Linkedin, Mail, Phone, Plus, SquareChartGantt, UsersRound } from "lucide-react";
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -26,7 +26,7 @@ export interface Opportunity {
   };
 }
 
-export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education";
+export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
 
 const opportunities: Opportunity[] = [
   {
@@ -156,11 +156,11 @@ const opportunities: Opportunity[] = [
 ];
 
 export default function ResourcesPage() {
-  const [category, setCategory] = useState<Category | null>(null);
-  const [opportunity, setOpportunity] = useState<Opportunity>()
+  const [category, setCategory] = useState<Category | null>("All");
+  const [opportunity, setOpportunity] = useState<Opportunity>();
 
   const visibleOpportunities = useMemo(() => {
-    if (category !== null) {
+    if (category !== "All") {
       return [...opportunities].filter((opportunity) => opportunity.category === category)
     } else {
       return opportunities;
@@ -174,6 +174,7 @@ export default function ResourcesPage() {
 
       <nav className="flex flex-col gap-4 mt-2">
         {[
+          { icon: <SquareChartGantt size={20} />, label: "All" },
           { icon: <Apple size={20} />, label: "Food" },
           { icon: <UsersRound size={20} />, label: "Social & Family Support" },
           { icon: <House size={20} />, label: "Housing" },
@@ -201,6 +202,34 @@ export default function ResourcesPage() {
     <main className="col-span-12 md:col-span-8 lg:col-span-9">
       <div className="flex justify-between items-end mb-8">
         <h2 className="text-3xl font-extrabold">Resources</h2>
+        <div className="lg:hidden md:hidden dropdown dropdown-end">
+          <button className="btn btn-ghost">
+            Categories
+          </button>
+          <ul className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            {[
+              { icon: <SquareChartGantt size={20} />, label: "All" },
+              { icon: <Apple size={20} />, label: "Food" },
+              { icon: <UsersRound size={20} />, label: "Social & Family Support" },
+              { icon: <House size={20} />, label: "Housing" },
+              { icon: <Plus size={20} />, label: "Health & Wellness" },
+              { icon: <GraduationCap size={20} />, label: "Education" },
+            ].map((cat) => (
+              <button
+                key={cat.label}
+                className={`flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors text-left ${(cat.label === category) && "bg-gray-200"}`}
+                onClick={() => {
+                  if (cat.label !== category) {
+                    setCategory(cat.label as Category)
+                  }
+                }}
+              >
+                <span>{cat.icon}</span>
+                <span className="font-bold text-gray-700">{cat.label}</span>
+              </button>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Responsive Grid: Changes column count based on available space */}
@@ -252,8 +281,7 @@ export default function ResourcesPage() {
           ></iframe>
         </div>
         <label className="font-bold text-lg">Contact</label>
-        <div className="flex flex-wrap gap-3">
-
+        <div className="flex flex-wrap gap-3 mt-2">
           {opportunity?.contact.phone && <div className="gap-2 flex">
             <Phone />
             {opportunity.contact.phone}

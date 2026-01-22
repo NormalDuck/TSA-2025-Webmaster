@@ -12,7 +12,7 @@ export default function AboutPage() {
       </span>
 
       <div className="flex justify-center">
-        <Image src="/about_page_hero.jpg" alt="about page hero" width={200} height={200} ></Image>
+        <Image className="rounded-lg shadow-xl" src="/about_page_hero.jpg" alt="about page hero" width={400} height={400} ></Image>
       </div>
     </div>
 
