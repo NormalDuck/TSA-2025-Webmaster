@@ -243,7 +243,7 @@ export default function ResourcesPage() {
             }}
             className="flex flex-col group cursor-pointer"
           >
-            <div className="relative aspect-16/10 overflow-hidden rounded-2xl mb-4 bg-gray-100">
+            <div className="relative aspect-16/10 overflow-hidden rounded-2xl mb-4 bg-gray-100 shadow-2xl ">
               <Image
                 src={item.coverImage}
                 alt={item.name}

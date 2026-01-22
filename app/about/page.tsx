@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return <div>
-    <div className="bg-lime-400 p-20 flex justify-center">
-      <label className="text-5xl font-extrabold">About us</label>
+    <div className="bg-[#024A70] p-40 flex justify-center">
+      <label className="text-5xl font-extrabold text-black">About us</label>
     </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 p-8 gap-4 items-center">
