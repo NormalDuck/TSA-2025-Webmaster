@@ -14,23 +14,47 @@ export default function ReferencesPage() {
 
   return <div className="p-8 space-y-5">
     <h1 className="text-4xl font-extrabold">References</h1>
+    <div className='divider'></div>
 
     <div className='grid grid-cols-2 gap-6'>
 
-      <div className='shadow-2xl p-8'>
-        <h1 className='text-2xl font-black'>
+      <div className='shadow-2xl p-8 rounded-lg'>
+        <h1 className='text-2xl font-black mb-4'>
           Code Stack
         </h1>
-        <p>This website uses NextJS, a framework built on top of ReactJS to deliver fast </p>
+        <p>
+          This website uses NextJS, a framework built on top of ReactJS to deliver fast web applications through image optimization, hot reloading,
+          and much more features. It allows developers to have a better experience with creating websites and web applications.
+          ReactJS allows our code to be modular, reusable, and fixes problems with making complex, unsafe code with traditional HTML and JavaScript.
+          On top of NextJS, we use TailwindCSS, a modular, extensible framework that aims to solve problems with traditional css has. TailwindCSS generates bundled
+          CSS, minimal CSS using PostCSS to transform TailwindCSS into compatible styles across different devices. In addition, we use daisyui, a TailwindCSS
+        </p>
       </div>
 
-      <div className='shadow-2xl p-8'>
-        <h1 className='text-2xl font-black'>
-          Code Stack
+      <div className='shadow-2xl p-8 rounded-lg min-h-100 flex flex-col justify-center'>
+        <h1 className='text-2xl font-black mb-4'>
+          Additional Libraries Used
         </h1>
-      </div>
 
+        <div className='space-y-4'>
+          <div>
+            <code className='block font-mono text-sm'>@icons-pack/react-simple-icons</code>
+            <label className='text-gray-600'>Library used for branding icons</label>
+          </div>
+
+          <div>
+            <code className='block font-mono text-sm'>lucide-react</code>
+            <label className='text-gray-600'>Icons library that contains svg files for daily objects</label>
+          </div>
+
+          <div>
+            <code className='block font-mono text-sm'>react-multi-carousel</code>
+            <label className='text-gray-600'>A library used to create carousels in React applications</label>
+          </div>
+        </div>
+      </div>
     </div>
+
 
     {/* PDF files section */}
     <div className="flex flex-col lg:flex-row gap-6 h-200 py-9">
