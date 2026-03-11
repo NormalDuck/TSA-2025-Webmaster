@@ -1,10 +1,11 @@
 "use client";
 
-import { SiFacebook, SiInstagram, SiLinkerd, SiX } from "@icons-pack/react-simple-icons";
+import { SiFacebook, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { Apple, GraduationCap, House, Linkedin, Mail, Map, Phone, Plus, SquareChartGantt, UsersRound } from "lucide-react";
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import Carousel from "react-multi-carousel";
 
 export interface Opportunity {
   name: string;
@@ -12,6 +13,7 @@ export interface Opportunity {
   category: Category;
   coverImage: string; // The main image shown on the card
   additionalImages?: string[]; // Optional array for a gallery
+  mapSrc: string,
   contact: {
     email?: string;
     phone?: string;
@@ -34,6 +36,7 @@ const opportunities: Opportunity[] = [
     category: "Food",
     description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     coverImage: "/resources/rainier_valley_foodbank.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@rvfb.org",
       phone: "(206) 723-4105",
@@ -46,6 +49,7 @@ const opportunities: Opportunity[] = [
     category: "Food",
     description: "Applying an equitable anti-racist and food justice lens, SFC partners with distributors and BIPOC vendors to ensure the city’s emergency food system continues to grow stronger and more sustainable.",
     coverImage: "/resources/seattle_food_committee.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "(206) 694-6756",
       address: "1501 N 45th St, Seattle, WA 98103-6708",
@@ -58,6 +62,7 @@ const opportunities: Opportunity[] = [
     category: "Food",
     description: "Serves families in North Seattle marginalized by food, economic, and racial injustice through a Food Bank and Family Resource Center, providing culturally responsive services to 6,000 households annually.",
     coverImage: "/resources/family_works.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "theteam@familyworksseattle.org",
       phone: "(206) 647-1770",
@@ -70,6 +75,7 @@ const opportunities: Opportunity[] = [
     category: "Social & Family Support",
     description: "Provides safe spaces for youth to reach their potential through after-school mentoring, college-readiness, and STEAM activities, focusing on students aged 6 to 21.",
     coverImage: "/resources/neighborhood_house.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@nhwa.org",
       phone: "206-923-6480",
@@ -83,6 +89,7 @@ const opportunities: Opportunity[] = [
     category: "Housing",
     description: "Administers performance-based homeless services to decrease unsheltered homelessness across King County using equity and social justice principles.",
     coverImage: "/resources/KCRHA.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@kcrha.org",
       phone: "(206) 930-8846",
@@ -96,6 +103,7 @@ const opportunities: Opportunity[] = [
     category: "Housing",
     description: "Since 1999, Mary’s Place has helped women and families move out of homelessness into stable situations, providing emergency shelter, housing, and employment services.",
     coverImage: "/resources/marys_place.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "206-621-8474",
       address: "PO Box 1711, Seattle, WA 98111",
@@ -107,6 +115,7 @@ const opportunities: Opportunity[] = [
     category: "Health & Wellness",
     description: "Provides high-quality, culturally appropriate primary health care regardless of ability to pay, nationality, or immigration status.",
     coverImage: "/resources/seattle_roots.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "(206) 299-1900",
       address: "2101 East Yesler Way, Seattle, WA 98122",
@@ -118,6 +127,7 @@ const opportunities: Opportunity[] = [
     category: "Health & Wellness",
     description: "Adult residential treatment program for individuals aged 18+ struggling with anxiety, depression, and trauma, offering paths toward mental wellness.",
     coverImage: "/resources/thira_health.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "admissions@thirahealth.com",
       phone: "855-483-1561",
@@ -130,6 +140,7 @@ const opportunities: Opportunity[] = [
     category: "Education",
     description: "Provides no-cost technical training and AI skills to advance economic mobility and connect skilled talent to leading tech businesses.",
     coverImage: "/resources/per_scholas.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "seattletraining@perscholas.org",
       phone: "206-209-2940",
@@ -146,6 +157,7 @@ const opportunities: Opportunity[] = [
     category: "Education",
     description: "A non-profit collecting donated reusable materials to fund arts programming and free creative workshops, serving as a hub for environmental stewardship.",
     coverImage: "/resources/seattle_recreative.png",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@seattlerecreative.org",
       phone: "1-833-467-3873",
@@ -264,12 +276,22 @@ export default function ResourcesPage() {
     </main>
 
     <dialog id="opportunity_description" className="modal ">
-      <div className="modal-box">
+      <div className="modal-box w-11/12 max-w-5xl">
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
-        <h3 className="font-bold text-lg">{opportunity?.name}</h3>
-        <p className="py-4">{opportunity?.description}</p>
+        <h3 className="mb-4 font-bold text-2xl">{opportunity?.name}</h3>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <p>{opportunity?.description}</p>
+          </div>
+          <div className="flex justify-center">
+            {/*placeholder map*/}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus" width="300" height="300" allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
         <label className="font-bold text-lg">Contact</label>
         <div className="flex flex-wrap gap-3 mt-2">
 
@@ -309,6 +331,29 @@ export default function ResourcesPage() {
             {opportunity.contact.address}
           </div>}
         </div>
+
+        {opportunity?.additionalImages && <Carousel
+          responsive={{ desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 3 }, tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 2 }, mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 } }}
+          keyBoardControl={true}
+          transitionDuration={500}
+          containerClass="py-10"
+          itemClass="px-2"
+        >
+
+          {opportunity?.additionalImages.map((link) => {
+            <div className="rounded-xl shadow-md border border-slate-100 p-4 flex flex-col gap-4 text-center hover:shadow-lg transition-shadow duration-300">
+              <div className="overflow-hidden rounded-lg">
+                <Image
+                  src={link}
+                  width={1000}
+                  height={1000}
+                  alt="resource image"
+                  className="aspect-video object-cover w-full h-full"
+                />
+              </div>
+            </div>
+          })}
+        </Carousel >}
       </div>
     </dialog>
   </div>)
