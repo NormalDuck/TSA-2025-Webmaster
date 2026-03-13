@@ -6,25 +6,13 @@ import Link from "next/link";
 import "react-multi-carousel/lib/styles.css";
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 import { Mail, Phone } from "lucide-react";
+import { Syne } from "next/font/google";
+import Navbar from "@/components/navbar";
 
-/*const geistSans = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-*/
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-const chivo = Chivo({
-  subsets: ['latin'],
-  variable: '--font-chivo',
-});
+  variable: "--font-syne",
+})
 
 export const metadata: Metadata = {
   title: "WAsHub",
@@ -35,119 +23,96 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
+
 }>) {
   return (
     <html lang="en" data-theme="light">
       <body
-        //className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={`${inter.variable} ${chivo.variable} ${inter.className} antialiased`}
+        className={`${syne.variable} antialiased`}
       >
-        <div className="bg-white text-black">
-          <div className="bg-white border-b-2 border-slate-500 w-full grain h-20 flex justify-between items-center p-4 lg:px-16 xl:px-32 bg-text bg-opacity-80 backdrop-blur-md sticky top-0 z-50 transition-all duration-700 shadow-lg">
-            <div className="flex-1">
-              <Link href={"/"} className="btn btn-ghost text-xl">WAsHub</Link>
-            </div>
-
-            <div className="hidden lg:flex flex-none">
-              <ul className="menu menu-horizontal px-1">
-                <li><Link href={"/resources"}>Resources</Link></li>
-                <li><Link href={"/about"}>About</Link></li>
-                <li><Link href={"/references"}>References</Link></li>
-              </ul>
-            </div>
-
-            <div className="lg:hidden dropdown dropdown-end">
-              <button className="btn btn-square btn-ghost">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
-              </button>
-              <ul className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                <li><Link href={"/resources"}>Resources</Link></li>
-                <li><Link href={"/about"}>About</Link></li>
-                <li><Link href={"/references"}>References</Link></li>
-              </ul>
-            </div>
-          </div>
-
+        <main className="pt-20">
+        <Navbar />
+        </main>
           {children}
 
-          <footer className="w-full bg-[#024A70] text-slate-100">
-            <div className="mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* Footer */}
+          <footer className="w-full bg-[#100F0A] pb-4">
+           <div className="px-35 py-15 grid grid-cols-1 md:grid-cols-2 ">
 
-              <div className="flex flex-col gap-6">
-                <div>
-                  <h2 className="text-4xl font-bold tracking-tight text-white mb-2">WAsHub</h2>
-                  <p className="text-slate-300 leading-relaxed max-w-sm">
-                    Get the best resources, first. Subscribe to receive updates and helpful tips from our community.
-                  </p>
-                </div>
 
-                <div className="flex w-full max-w-sm items-stretch">
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="bg-white/10 border border-white/20 px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400 w-full transition-all placeholder:text-slate-400"
-                  />
-                  <button className="bg-blue-500 hover:bg-blue-400 transition-colors px-6 py-2 rounded-r-lg font-semibold">
-                    Join
-                  </button>
-                </div>
-              </div>
+             <div className="flex flex-col">
+               <div>
+                 <h2 className="text-4xl font-bold tracking-tight text-white mb-2">WAs<span style ={{ color: "#FD6900" }}>Hub</span></h2>
+                 <p className="text-[#FFFFFF] text-opacity-80 leading-relaxed max-w-sm text-[14px]">
+                   Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id.
+                 </p>
 
-              <div className="flex flex-col gap-8">
-                <div>
-                  <h3 className="text-lg font-bold uppercase tracking-widest text-blue-300 mb-4">Follow us</h3>
-                  <div className="flex gap-5 text-2xl">
-                    <a href="#" className="hover:text-blue-400 transition-transform hover:-translate-y-1"><SiFacebook /></a>
-                    <a href="#" className="hover:text-pink-400 transition-transform hover:-translate-y-1"><SiInstagram /></a>
-                  </div>
-                </div>
 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 group">
-                    <div className="p-2 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
-                      <Phone size={18} />
-                    </div>
-                    <span className="text-slate-200">983.222.6211</span>
-                  </div>
-                  <div className="flex items-center gap-3 group">
-                    <div className="p-2 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
-                      <Mail size={18} />
-                    </div>
-                    <span className="text-slate-200">contact@washub.org</span>
-                  </div>
-                </div>
-              </div>
+                 <div className="flex gap-5 text-2xl mt-5 font-extrabold text-[8px] text-white" >
+                   <a href="#" className="hover:text-blue-400 transition-transform hover:-translate-y-1"><SiFacebook /></a>
+                   <a href="#" className="hover:text-pink-400 transition-transform hover:-translate-y-1"><SiInstagram /></a>
+                 </div>
+               </div>
+             </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="flex flex-col gap-3">
-                  <h3 className="font-bold text-white border-b border-white/10 pb-2 mb-2">Links</h3>
-                  <Link href="/resources" className="text-slate-400 hover:text-white transition-colors">Resources</Link>
-                  <Link href="/about" className="text-slate-400 hover:text-white transition-colors">About</Link>
-                  <Link href="/references" className="text-slate-400 hover:text-white transition-colors">Reference</Link>
-                </div>
 
-                <div className="flex flex-col gap-3">
-                  <h3 className="font-bold text-white border-b border-white/10 pb-2 mb-2">Explore</h3>
-                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Library</a>
-                  <a href="#" className="text-slate-400 hover:text-white transition-colors">Archive</a>
-                </div>
 
-                <div className="flex flex-col gap-3">
-                  <h3 className="font-bold text-white border-b border-white/10 pb-2 mb-2">Company</h3>
-                  <Link href="/about" className="text-slate-400 hover:text-white transition-colors">Our Story</Link>
-                  <Link href="/about" className="text-slate-400 hover:text-white transition-colors">Mission</Link>
-                </div>
-              </div>
 
-            </div>
+             <div className="grid lg:grid-cols-4 gap-2">
+               <div className="flex flex-col gap-3">
+                 <h3 className="font-extrabold text-[#9f9f9d] pb-2  text-[12px]">QUICK LINKS</h3>
+                 <Link href="/resources" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Resources</Link>
+                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">About</Link>
+                 <Link href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Donate</Link>
+                 <Link href="/references" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">References</Link>
+               </div>
 
-            {/* Bottom Bar */}
-            <div className="border-t border-white/5 py-6 text-center text-sm text-slate-500">
-              © 2026 WAsHub. All rights reserved.
-            </div>
-          </footer>
 
-        </div>
+               <div className="flex flex-col gap-3">
+                 <h3 className="font-extrabold text-[#9f9f9d] pb-2  text-[12px]">RESOURCES</h3>
+                 <a href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Popular Resources</a>
+                 <a href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Resources Library</a>
+                 <a href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Search</a>
+               </div>
+
+
+               <div className="flex flex-col gap-3">
+                 <h3 className="font-extrabold text-[#9f9f9d] pb-2 text-[12px]">ABOUT US</h3>
+                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Our Story</Link>
+                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Mission</Link>
+                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Team</Link>
+                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Volunteer</Link>
+               </div>
+
+
+               <div className="flex flex-col gap-2" >
+                 <h3 className="font-extrabold text-[#9f9f9d] pb-2 text-[12px]">CONTACT</h3>
+                 <p className="font-bold text-[#FFFFFF] text-[16px]">(983) 222-6211 <br /> <span className="text-[#9F9F9F] text-opacity-60 text-[10px]">Mon-Fri . 8am - 5pm</span></p>
+                 <p className="font-bold text-[#FFFFFF] text-[16px]">contact@washub.org</p>
+
+
+                 <button
+                   className="flex gap-3 px-4 py-3 text-xs font-bold tracking-widest transition-all hover:gap-5"
+                   style={{
+                   backgroundColor: "#1D140C",
+                   border: "1.5px solid #FD6900",
+                   borderRadius: "20px",
+                 }}
+               >
+                 <p className="text-[#FD6900] text-[8px] font-extrabold">24/7 CRISIS LINE<br /> <span className="text-[#FFFFFF] text-[8px]">(555) 999-0000</span> </p>
+           </button>
+               </div>
+             </div>
+
+
+           </div>
+
+
+           {/* Bottom Bar */}
+           <div className="border-t border-white/20 px-35 py-4 text-sm text-[#C0C0C0] text-[12px]">
+             © 2026 WAsHub. All rights reserved.
+           </div>
+         </footer>
       </body>
     </html>
   );

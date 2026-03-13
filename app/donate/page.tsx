@@ -1,3 +1,7 @@
 export default function DonatePage() {
-  return <>Donate Page</>
+  return <>
+    <div className="min-h-screen">
+
+    </div>
+  </>
 }
