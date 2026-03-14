@@ -5,7 +5,7 @@ export default function AboutPage() {
   {/*Section 1: Who we are */}
   <section>
     <div className="min-h-screen p-12 bg-[#100F0A] flex flex-col justify-between">
-      <div>
+      <div className="mt-10 px-25">
         <h1 className="text-[90px] font-extrabold text-white mt-[350px] leading-[.9]">
           Who we<br/>
           <span className="text-transparent" style={{ WebkitTextStroke: "1px white" }}>really</span><br/>
@@ -17,7 +17,7 @@ export default function AboutPage() {
       </div>
 
       {/* Stats row - bottom right */}
-      <div className="flex gap-16 mb-12 ml-auto w-fit">
+      <div className="flex gap-15 ml-auto w-fit">
         <div>
           <p className="text-white text-[40px] font-extrabold leading-none">2012</p>
           <p className="text-white/40 text-xs tracking-widest uppercase mt-1">Founded</p>
@@ -31,6 +31,17 @@ export default function AboutPage() {
           <p className="text-white/40 text-xs tracking-widest uppercase mt-1">Volunteers</p>
         </div>
       </div>
+
+      {/* Animated down arrow - centered */}
+      <div className="flex justify-center my-auto">
+        <div className="animate-bounce text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <polyline points="19 12 12 19 5 12" />
+          </svg>
+        </div>
+      </div>
+    
     </div>
   </section>
 
