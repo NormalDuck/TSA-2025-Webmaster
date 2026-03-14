@@ -4,27 +4,27 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Footer from "@/components/footer";
 
-{/* Polaroid images for the home page} */}
+
 const IMAGES_COL_1 = [
-  { src: "/images/food1.jpg", rotate: "-rotate-1" },
-  { src: "/images/food2.jpg", rotate: "rotate-2" },
-  { src: "/images/food3.jpg", rotate: "-rotate-2" },
-  { src: "/images/food4.jpg", rotate: "rotate-1" },
-  { src: "/images/food5.jpg", rotate: "-rotate-1" },
+  { src: "/resources/seattle_roots.png", rotate: "-rotate-1", height: "h-52" },
+  { src: "/images/food2.jpg", rotate: "rotate-2", height: "h-54" },
+  { src: "/images/food3.jpg", rotate: "-rotate-2", height: "h-51" },
+  { src: "/images/food4.jpg", rotate: "rotate-1", height: "h-58" },
+  { src: "/images/food5.jpg", rotate: "-rotate-1", height: "h-55" },
 ];
 
 const IMAGES_COL_2 = [
-  { src: "/images/food6.jpg",  rotate: "rotate-2" },
-  { src: "/images/food7.jpg",  rotate: "-rotate-1" },
-  { src: "/images/food8.jpg",  rotate: "rotate-1" },
-  { src: "/images/food9.jpg",  rotate: "-rotate-2" },
-  { src: "/images/food10.jpg", rotate: "rotate-1" },
+  { src: "/images/food6.jpg",  rotate: "rotate-2", height: "h-56" },
+  { src: "/images/food7.jpg",  rotate: "-rotate-1", height: "h-61" },
+  { src: "/images/food8.jpg",  rotate: "rotate-1", height: "h-54" },
+  { src: "/images/food9.jpg",  rotate: "-rotate-2", height: "h-68" },
+  { src: "/images/food10.jpg", rotate: "rotate-1", height: "h-59" },
 ];
 
-function PolaroidCard({ src, rotate }: { src: string; rotate: string }) {
+function PolaroidCard({ src, rotate, height }: { src: string; rotate: string; height: string }) {
   return (
-    <div className={`bg-white p-2 pb-7 shadow-md ${rotate} shrink-0 w-full`}>
-      <img src={src} alt="" className="w-full h-32 object-cover" />
+    <div className={`bg-white p-3 pb-10 shadow-lg ${rotate} shrink-0 w-full`}>
+      <img src={src} alt="" className={`w-full ${height} object-cover`} />
     </div>
   );
 }
@@ -39,24 +39,23 @@ function ScrollColumn({
   duration?: string;
 }) {
   const doubled = [...images, ...images];
-  const animClass = direction === "up" ? "animate-scroll-up" : "animate-scroll-down";
 
   return (
     <div
       className="overflow-hidden flex-1"
       style={{
-        maskImage:
-          "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-        WebkitMaskImage:
-          "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
       }}
     >
       <div
-        className={`flex flex-col gap-3 ${animClass}`}
-        style={{ animationDuration: duration }}
+        className="flex flex-col gap-3"
+        style={{
+          animation: `${direction === "up" ? "scrollUp" : "scrollDown"} ${duration} linear infinite`,
+        }}
       >
         {doubled.map((img, i) => (
-          <PolaroidCard key={i} {...img} />
+          <PolaroidCard height={""} key={i} {...img} />
         ))}
       </div>
     </div>
@@ -73,11 +72,11 @@ const newsItems = [
   { id: "04", category: "FOOD ACCESS", title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque." },
 ];
 
-{/* Topics for newsletter preferences */}
+
 const topicKeys = ["Housing", "Food", "Health", "Jobs", "Events"] as const;
 type Topic = (typeof topicKeys)[number];
 
-{/*Dot navigation sections*/}
+
 const sections = [
   { id: "hero",       label: "Home" },
   { id: "resources",  label: "Resources" },
@@ -201,7 +200,7 @@ export default function Home() {
                 <span className="block text-black">Your</span>
                 <span className="block relative">
                   <span className="text-[#FD6900]">community,</span>
-                  <span className="absolute left-0 bottom-0 h-0.5 w-[40%] bg-[#CA641B] translate-y-1 opacity-40" />
+                  <span className="absolute left-0 bottom-0 h-0.5 w-[72%] bg-[#CA641B] translate-y-1 opacity-40" />
                 </span>
                 <span className="block text-black">your</span>
                 <span className="block text-black">resources</span>
@@ -221,9 +220,9 @@ export default function Home() {
             </div>
 
             {/* ── Right: polaroid scroll columns ── */}
-            <div className="hidden lg:flex gap-4 w-[420px] xl:w-[500px] shrink-0 h-screen py-10 overflow-hidden">
-              <ScrollColumn images={IMAGES_COL_1} direction="up"   duration="18s" />
-              <ScrollColumn images={IMAGES_COL_2} direction="down" duration="22s" />
+            <div className="hidden flex-1 lg:flex gap-8 w-[420px] xl:w-[500px] shrink-0 h-screen py-10 overflow-hidden">
+              <ScrollColumn images={IMAGES_COL_1} direction="up"   duration="20s" />
+              <ScrollColumn images={IMAGES_COL_2} direction="down" duration="26s" />
             </div>
         </section>
 
@@ -380,7 +379,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
               <div>
                 <p className="text-xs font-extrabold tracking-wide mb-6 text-white">STAY CONNECTED</p>
-                <h2 className="text-[clamp(32px,5vw,60px)] font-extrabold text-white mb-6 leading-[1.1]">
+                <h2 className="text-[clamp(32px,5vw,60px)] font-extrabold text-white mb-6 leading-[.9]">
                   Never miss<br />what matters.
                 </h2>
                 <p className="text-[clamp(12px,1.5vw,14px)] leading-relaxed mb-6 text-white max-w-xs">
