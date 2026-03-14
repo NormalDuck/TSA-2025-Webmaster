@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
+//Nav Links
 const navLinks = [
   { label: "RESOURCES", href: "/resources" },
   { label: "EVENTS", href: "/events" },
@@ -29,23 +31,16 @@ function NavLink({
   const baseColor = isActive ? ORANGE : scrolled ? "#ffffff" : "#404040";
 
   return (
-     <Link
+    <Link
       href={href}
       onClick={onClick}
-      className="px-4 py-2 rounded-lg text-[12px] font-semibold transition-all duration-200"
+      className="px-4 py-2 rounded-lg text-[12px] font-semibold transition-all duration-200 hover:bg-[rgba(253,105,0,0.10)]"
       style={{
         letterSpacing: "0.08em",
         color: baseColor,
-        background: "transparent", 
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = ORANGE;
-        e.currentTarget.style.background = "rgba(253,105,0,0.10)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = baseColor;
-        e.currentTarget.style.background = "transparent"; 
-      }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = ORANGE)}
+      onMouseLeave={(e) => (e.currentTarget.style.color = baseColor)}
     >
       {label}
     </Link>
@@ -86,7 +81,7 @@ export default function Navbar() {
 
       <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
         <div
-          className="flex items-center justify-between px-6 sm:px-8 lg:px-30 py-4 transition-all duration-500"
+          className="flex items-center justify-between px-6 sm:px-8 lg:px-30 py-2 transition-all duration-500"
           style={{
             margin: scrolled ? "12px 16px 0" : "0",
             borderRadius: scrolled ? "14px" : "0px",
@@ -101,6 +96,13 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center select-none shrink-0">
+            <Image
+              src="/walogo.png"
+              alt="WAsHub Logo"
+              width={50}
+              height={50}
+              className="transition-all duration-500 rounded-full m-1"
+              />
             <span
               className="text-[20px] font-extrabold tracking-tight"
             >
