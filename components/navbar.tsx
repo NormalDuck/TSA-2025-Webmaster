@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
+//Nav Links
 const navLinks = [
   { label: "RESOURCES", href: "/resources" },
   { label: "EVENTS", href: "/events" },
@@ -94,6 +96,13 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center select-none shrink-0">
+            <Image
+              src="/walogo.png"
+              alt="WAsHub Logo"
+              width={36}
+              height={36}
+              className="transition-all duration-500 rounded-full m-1"
+              />
             <span
               className="text-[20px] font-extrabold tracking-tight"
             >

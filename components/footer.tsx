@@ -6,7 +6,7 @@ export default function Footer() {
          <footer className="bg-[#1a1a1a] flex flex-col justify-center px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40"
                  style={{ scrollSnapAlign: "start" }}>
 
-           <div className="px-35 py-15 grid grid-cols-1 md:grid-cols-2 ">
+           <div className="px-25 py-15 grid grid-cols-1 md:grid-cols-2 ">
 
              <div className="flex flex-col">
                <div>

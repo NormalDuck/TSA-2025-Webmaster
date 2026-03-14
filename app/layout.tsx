@@ -25,10 +25,8 @@ export default function RootLayout({
       <body
         className={`${syne.variable} antialiased`}
       >
-        <main className="pt-20">
         {/* Navbar */}
         <Navbar />
-        </main>
           {children}
       </body>
     </html>
