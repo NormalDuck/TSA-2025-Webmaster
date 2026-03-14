@@ -29,23 +29,16 @@ function NavLink({
   const baseColor = isActive ? ORANGE : scrolled ? "#ffffff" : "#404040";
 
   return (
-     <Link
+    <Link
       href={href}
       onClick={onClick}
-      className="px-4 py-2 rounded-lg text-[12px] font-semibold transition-all duration-200"
+      className="px-4 py-2 rounded-lg text-[12px] font-semibold transition-all duration-200 hover:bg-[rgba(253,105,0,0.10)]"
       style={{
         letterSpacing: "0.08em",
         color: baseColor,
-        background: "transparent", 
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = ORANGE;
-        e.currentTarget.style.background = "rgba(253,105,0,0.10)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = baseColor;
-        e.currentTarget.style.background = "transparent"; 
-      }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = ORANGE)}
+      onMouseLeave={(e) => (e.currentTarget.style.color = baseColor)}
     >
       {label}
     </Link>
