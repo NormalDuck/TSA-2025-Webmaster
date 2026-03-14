@@ -4,6 +4,66 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Footer from "@/components/footer";
 
+{/* Polaroid images for the home page} */}
+const IMAGES_COL_1 = [
+  { src: "/images/food1.jpg", rotate: "-rotate-1" },
+  { src: "/images/food2.jpg", rotate: "rotate-2" },
+  { src: "/images/food3.jpg", rotate: "-rotate-2" },
+  { src: "/images/food4.jpg", rotate: "rotate-1" },
+  { src: "/images/food5.jpg", rotate: "-rotate-1" },
+];
+
+const IMAGES_COL_2 = [
+  { src: "/images/food6.jpg",  rotate: "rotate-2" },
+  { src: "/images/food7.jpg",  rotate: "-rotate-1" },
+  { src: "/images/food8.jpg",  rotate: "rotate-1" },
+  { src: "/images/food9.jpg",  rotate: "-rotate-2" },
+  { src: "/images/food10.jpg", rotate: "rotate-1" },
+];
+
+function PolaroidCard({ src, rotate }: { src: string; rotate: string }) {
+  return (
+    <div className={`bg-white p-2 pb-7 shadow-md ${rotate} shrink-0 w-full`}>
+      <img src={src} alt="" className="w-full h-32 object-cover" />
+    </div>
+  );
+}
+
+function ScrollColumn({
+  images,
+  direction = "up",
+  duration = "18s",
+}: {
+  images: { src: string; rotate: string }[];
+  direction?: "up" | "down";
+  duration?: string;
+}) {
+  const doubled = [...images, ...images];
+  const animClass = direction === "up" ? "animate-scroll-up" : "animate-scroll-down";
+
+  return (
+    <div
+      className="overflow-hidden flex-1"
+      style={{
+        maskImage:
+          "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+      }}
+    >
+      <div
+        className={`flex flex-col gap-3 ${animClass}`}
+        style={{ animationDuration: duration }}
+      >
+        {doubled.map((img, i) => (
+          <PolaroidCard key={i} {...img} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const newsItems = [
@@ -107,7 +167,7 @@ export default function Home() {
         })}
       </nav>
 
-      {/* ── Scroll Snap Container ────────────── */}
+      {/* ── Scroll Snap Container ────── */}
       <div
         data-scroll-container
         className="h-screen overflow-y-scroll"
@@ -120,42 +180,51 @@ export default function Home() {
 
         {/* Part 1: HomePage */}
         <section
-          id="hero"
-          ref={(el) => { sectionRefs.current.hero = el; }}
-          className="min-h-screen bg-[#FEFCF8] px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 flex flex-col justify-center"
-          style={{ scrollSnapAlign: "start" }}
-        >
-         <div className="inline-flex items-center gap-2 border border-[#52AD6A] rounded-full px-4 py-1.5 mb-6 w-fit">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52AD6A] opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#52AD6A]" />
-            </span>
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[#52AD6A]">
-              Serving Our Community Since 2012
-            </span>
-          </div>
+            id="hero"
+            ref={(el) => { sectionRefs.current.hero = el; }}
+            className="min-h-screen bg-[#FEFCF8] px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 flex items-center"
+            style={{ scrollSnapAlign: "start" }}
+          >
+            {/* ── Left: text content ── */}
+            <div className="flex flex-col justify-center flex-1 py-20">
+              <div className="inline-flex items-center gap-2 border border-[#52AD6A] rounded-full px-4 py-1.5 mb-6 w-fit">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52AD6A] opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#52AD6A]" />
+                </span>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-[#52AD6A]">
+                  Serving Our Community Since 2012
+                </span>
+              </div>
 
-          <h1 className="text-[clamp(36px,7vw,70px)] font-black leading-[.8] tracking-tight mb-6">
-            <span className="block text-black">Your</span>
-            <span className="block relative">
-              <span className="text-[#FD6900]">community,</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-[40%] bg-[#CA641B] translate-y-1 opacity-40" />
-            </span>
-            <span className="block text-black">your</span>
-            <span className="block text-black">resources</span>
-          </h1>
+              <h1 className="text-[clamp(36px,7vw,70px)] font-black leading-[.8] tracking-tight mb-6">
+                <span className="block text-black">Your</span>
+                <span className="block relative">
+                  <span className="text-[#FD6900]">community,</span>
+                  <span className="absolute left-0 bottom-0 h-0.5 w-[40%] bg-[#CA641B] translate-y-1 opacity-40" />
+                </span>
+                <span className="block text-black">your</span>
+                <span className="block text-black">resources</span>
+              </h1>
 
-          <p className="max-w-sm text-[clamp(12px,1.5vw,14px)] text-[#000000] leading-relaxed mb-6">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur
-            adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien
-            vitae pellentesque.
-          </p>
+              <p className="max-w-sm text-[clamp(12px,1.5vw,14px)] text-[#000000] leading-relaxed mb-6">
+                Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur
+                adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien
+                vitae pellentesque.
+              </p>
 
-          <Link href="/resources">
-            <button className="bg-[#E0A959] text-white text-[12px] font-bold rounded-xl uppercase px-4 py-2 hover:bg-[#ffad69] transition-colors duration-200 w-fit">
-              Find Resources
-            </button>
-          </Link>
+              <Link href="/resources">
+                <button className="bg-[#E0A959] text-white text-[12px] font-bold rounded-xl uppercase px-4 py-2 hover:bg-[#ffad69] transition-colors duration-200 w-fit">
+                  Find Resources
+                </button>
+              </Link>
+            </div>
+
+            {/* ── Right: polaroid scroll columns ── */}
+            <div className="hidden lg:flex gap-4 w-[420px] xl:w-[500px] shrink-0 h-screen py-10 overflow-hidden">
+              <ScrollColumn images={IMAGES_COL_1} direction="up"   duration="18s" />
+              <ScrollColumn images={IMAGES_COL_2} direction="down" duration="22s" />
+            </div>
         </section>
 
         {/* Part 2: Top Resources */}
