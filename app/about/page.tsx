@@ -6,28 +6,28 @@ export default function AboutPage() {
   <section>
     <div className="min-h-screen p-12 bg-[#100F0A] flex flex-col justify-between">
       <div>
-        <h1 className="text-[90px] font-bold text-white mt-[120px] leading-[1.0]">
+        <h1 className="text-[90px] font-extrabold text-white mt-[350px] leading-[.9]">
           Who we<br/>
-          <span className="text-transparent" style={{ WebkitTextStroke: "2px white" }}>really</span><br/>
+          <span className="text-transparent" style={{ WebkitTextStroke: "1px white" }}>really</span><br/>
           <span className="text-[#FD6900]">are.</span>
         </h1>
-        <p className="text-white/60 mt-6 max-w-xs text-sm leading-relaxed">
+        <p className="text-white/60 mt-6 max-w-[550px] text-[16px] leading-relaxed">
           Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.
         </p>
       </div>
 
-      {/* Stats row */}
-      <div className="flex gap-16 mb-12">
+      {/* Stats row - bottom right */}
+      <div className="flex gap-16 mb-12 ml-auto w-fit">
         <div>
-          <p className="text-white text-[36px] font-bold leading-none">2012</p>
+          <p className="text-white text-[40px] font-extrabold leading-none">2012</p>
           <p className="text-white/40 text-xs tracking-widest uppercase mt-1">Founded</p>
         </div>
         <div>
-          <p className="text-white text-[36px] font-bold leading-none">12K+</p>
+          <p className="text-white text-[40px] font-extrabold leading-none">12K<span className="text-[#FD6900]">+</span></p>
           <p className="text-white/40 text-xs tracking-widest uppercase mt-1">Served Yearly</p>
         </div>
         <div>
-          <p className="text-white text-[36px] font-bold leading-none">90</p>
+          <p className="text-white text-[40px] font-extrabold leading-none">90</p>
           <p className="text-white/40 text-xs tracking-widest uppercase mt-1">Volunteers</p>
         </div>
       </div>
