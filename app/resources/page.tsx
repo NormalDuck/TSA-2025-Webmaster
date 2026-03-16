@@ -337,11 +337,11 @@ export default function ResourcesPage() {
         </div>
       </main>
 
-      {/* ── Modal ── */}
+      {/* ── Pop up ── */}
       <dialog id="opportunity_description" className="modal">
         <div className="modal-box w-11/12 max-w-2xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
 
-          {/* Hero banner */}
+          {/* Colored header */}
           <div
             className="relative w-full h-32 flex items-end p-5"
             style={{
@@ -350,13 +350,14 @@ export default function ResourcesPage() {
                 : "linear-gradient(135deg, #FD6900, #CA5400)",
             }}
           >
+            {/*Close Button*/}
             <form method="dialog">
               <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center text-white text-xs font-black transition-colors">
                 ✕
               </button>
             </form>
 
-            <span className="absolute top-4 left-5 text-[10px] font-black tracking-widest px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm">
+            <span className="absolute top-4 left-5 text-[10px] font-medium tracking-widest px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm">
               {opportunity?.category?.toUpperCase()}
             </span>
 
