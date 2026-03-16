@@ -4,27 +4,27 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import Footer from "@/components/footer";
 
-
+// Polaroid images for section 1
 const IMAGES_COL_1 = [
-  { src: "/resources/seattle_roots.png", rotate: "-rotate-1", height: "h-52" },
-  { src: "/images/food2.jpg", rotate: "rotate-2", height: "h-54" },
-  { src: "/images/food3.jpg", rotate: "-rotate-2", height: "h-51" },
-  { src: "/images/food4.jpg", rotate: "rotate-1", height: "h-58" },
-  { src: "/images/food5.jpg", rotate: "-rotate-1", height: "h-55" },
+  { src: "/resources/family_works.png", rotate: "-rotate-1",  },
+  { src: "/resources/KCRHA.png", rotate: "rotate-2", },
+  { src: "/topresources/landing_page_news_1.jpg", rotate: "-rotate-2",  },
+  { src: "/resources/marys_place.png", rotate: "rotate-1", },
+  { src: "/topresources/landing_page_news_3.jpg", rotate: "-rotate-1", },
 ];
 
 const IMAGES_COL_2 = [
-  { src: "/images/food6.jpg",  rotate: "rotate-2", height: "h-56" },
-  { src: "/images/food7.jpg",  rotate: "-rotate-1", height: "h-61" },
-  { src: "/images/food8.jpg",  rotate: "rotate-1", height: "h-54" },
-  { src: "/images/food9.jpg",  rotate: "-rotate-2", height: "h-68" },
-  { src: "/images/food10.jpg", rotate: "rotate-1", height: "h-59" },
+  { src: "/images/food6.jpg",  rotate: "rotate-2",  },
+  { src: "/images/food7.jpg",  rotate: "-rotate-1",  },
+  { src: "/images/food8.jpg",  rotate: "rotate-1",  },
+  { src: "/images/food9.jpg",  rotate: "-rotate-2",  },
+  { src: "/images/food10.jpg", rotate: "rotate-1",  },
 ];
 
-function PolaroidCard({ src, rotate, height }: { src: string; rotate: string; height: string }) {
+function PolaroidCard({ src, rotate }: { src: string; rotate: string  }) {
   return (
     <div className={`bg-white p-3 pb-10 shadow-lg ${rotate} shrink-0 w-full`}>
-      <img src={src} alt="" className={`w-full ${height} object-cover`} />
+      <img src={src} alt="" className="w-full h-full aspect-4/3 object-cover" />
     </div>
   );
 }
@@ -32,7 +32,7 @@ function PolaroidCard({ src, rotate, height }: { src: string; rotate: string; he
 function ScrollColumn({
   images,
   direction = "up",
-  duration = "18s",
+  duration = "26s",
 }: {
   images: { src: string; rotate: string }[];
   direction?: "up" | "down";
@@ -55,15 +55,48 @@ function ScrollColumn({
         }}
       >
         {doubled.map((img, i) => (
-          <PolaroidCard height={""} key={i} {...img} />
+          <PolaroidCard  key={i} src={img.src} rotate={img.rotate} />
         ))}
       </div>
     </div>
   );
 }
 
+// Data for Top Resources section
+const resources = [
+  {
+    id: 1,
+    tag: "FOOD ACCESS",
+    title: "Rainer Valley Food Bank",
+    description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
+    icon: "🥦",
+    color: "#FD6900",
+    span: "col-span-2 row-span-2",  
+    image: "/topresources/landing_page_news_1.jpg",
+  },
+  {
+    id: 2,
+    tag: "HOUSING",
+    title: "Mary's Place",
+    description: "Since 1999, Mary’s Place has helped women and families move out of homelessness into stable situations, providing emergency shelter, housing, and employment services.",
+    icon: "🏠",
+    color: "#52AD6A",
+    span: "col-span-1 row-span-1",
+    image: "/topresources/landing_page_news_2.jpg",
+  },
+  {
+    id: 3,
+    tag: "HEALTH",
+    title: "THIRA Health",
+    description: "Adult residential treatment program for individuals aged 18+ struggling with anxiety, depression, and trauma, offering paths toward mental wellness.",
+    icon: "🩺",
+    color: "#ff3333",
+    span: "col-span-1 row-span-1",
+    image: "/topresources/landing_page_news_3.jpg",
+  },
+];
 
-// ── Data ──────────────────────────────────────────────────────────────────────
+// ── Data for News page ─────────
 
 const newsItems = [
   { id: "01", category: "FOOD ACCESS", title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque." },
@@ -103,6 +136,8 @@ export default function Home() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("hero");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+  const [autoHovered, setAutoHovered] = useState<number>(1);
+  const [isManualHover, setIsManualHover] = useState(false);
 
   const toggleTopic = (topic: Topic) =>
     setTopics((prev) => ({ ...prev, [topic]: !prev[topic] }));
@@ -128,6 +163,15 @@ export default function Home() {
 
   const dotColor = dotColors[activeSection] ?? dotColors.hero;
 
+  // Auto-hover carousel cards every 8 seconds, but pause on manual hover
+  useEffect(() => {
+    if (isManualHover) return;
+    const interval = setInterval(() => {
+      setAutoHovered((prev) => (prev % resources.length) + 1);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [isManualHover]);
+  
   return (
     <>
       {/* ── Dot Navigation ─────── */}
@@ -233,66 +277,148 @@ export default function Home() {
           className="min-h-screen bg-[#ede8e0] flex flex-col justify-center overflow-hidden"
           style={{ scrollSnapAlign: "start" }}
         >
-          <div className="w-full max-w-5xl mx-auto px-6 sm:px-10 md:px-12 py-10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
+          <div className="w-full max-w-6xl mx-auto px-6 sm:px-10 md:px-12 flex flex-col h-full py-4 pt-25">
+
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-3 gap-2 shrink-0">
               <div>
-                <p className="text-[13px] sm:text-[15px] font-bold mb-1 text-[#CA5400]">TOP RESOURCES</p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight">What<br />we offer</h2>
+                <p className="text-[13px] font-black tracking-widest text-[#CA5400] mb-.5">
+                  TOP RESOURCES
+                </p>
+                <h2 className="text-[clamp(24px,3.5vw,44px)] font-black leading-[.85] tracking-tight">
+                  What<br />
+                  <span className="text-[#CA5400]">we offer</span>
+                </h2>
               </div>
-              <button className="flex items-center gap-2 text-[13px] sm:text-[15px] font-black tracking-wide text-[#c0622b] transition-all hover:gap-4 whitespace-nowrap">
-                BROWSE ALL PROGRAMS <span>→</span>
-              </button>
+              <Link href="/resources">
+                <button className="flex items-center gap-2 text-[13px] font-bold tracking-wide text-[#c0622b] transition-all hover:gap-4 whitespace-nowrap group">
+                  BROWSE ALL PROGRAMS
+                  <span className="w-7 h-7 rounded-full bg-[#c0622b] text-white flex items-center justify-center text-xs group-hover:bg-[#FD6900] transition-colors">
+                    →
+                  </span>
+                </button>
+              </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {/* Bento Grid */}
+            <div
+              className="grid grid-cols-3 gap-2 flex-1 min-h-0"
+              style={{ gridTemplateRows: "280px 280px" }}
+            >
+              {resources.map((r) => (
               <div
-                className="col-span-2 rounded-2xl cursor-pointer transition-all duration-300"
+                key={r.id}
+                className={`${r.span} rounded-2xl cursor-pointer transition-all duration-500 relative overflow-hidden group`}
                 style={{
-                  backgroundColor: "#ffffff",
-                  height: "clamp(120px, 18vw, 200px)",
-                  border: `2px solid ${hovered === 1 || hovered === null ? "#d4845a" : "#e8e0d8"}`,
-                  boxShadow: hovered === 1 || hovered === null ? "0 8px 32px rgba(200,100,40,0.12)" : "none",
+                  boxShadow: (isManualHover ? hovered : autoHovered) === r.id
+                    ? `0 20px 60px ${r.color}50`
+                    : "0 4px 20px rgba(0,0,0,0.10)",
+                  transform: (isManualHover ? hovered : autoHovered) === r.id
+                    ? "translateY(-3px)"
+                    : "translateY(0)",
                 }}
-                onMouseEnter={() => setHovered(1)}
-                onMouseLeave={() => setHovered(null)}
-              />
-              <div
-                className="rounded-2xl cursor-pointer transition-all duration-300"
-                style={{
-                  backgroundColor: "#d8d2c8",
-                  height: "clamp(120px, 18vw, 200px)",
-                  border: `2px solid ${hovered === 2 ? "#d4845a" : "transparent"}`,
-                  boxShadow: hovered === 2 ? "0 8px 32px rgba(200,100,40,0.10)" : "none",
+                onMouseEnter={() => {
+                  setIsManualHover(true);
+                  setHovered(r.id);
                 }}
-                onMouseEnter={() => setHovered(2)}
-                onMouseLeave={() => setHovered(null)}
-              />
-              {[3, 4, 5].map((id) => (
-                <div
-                  key={id}
-                  className="rounded-2xl cursor-pointer transition-all duration-300"
-                  style={{
-                    backgroundColor: "#d8d2c8",
-                    height: "clamp(90px, 13vw, 150px)",
-                    border: `2px solid ${hovered === id ? "#d4845a" : "transparent"}`,
-                    boxShadow: hovered === id ? "0 8px 32px rgba(200,100,40,0.10)" : "none",
-                  }}
-                  onMouseEnter={() => setHovered(id)}
-                  onMouseLeave={() => setHovered(null)}
+                onMouseLeave={() => {
+                  setIsManualHover(false);
+                  setHovered(null);
+                }}
+              >
+                {/* Background image */}
+                <img
+                  src={r.image}
+                  alt={r.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-              ))}
+
+                {/* Permanent dark gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                {/* Accent color overlay */}
+                <div
+                  className="absolute inset-0 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(to top, ${r.color}dd 0%, ${r.color}55 50%, transparent 100%)`,
+                    opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
+                  }}
+                />
+
+                {/* TOP: tag + icon */}
+                <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
+                  <span
+                    className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full"
+                    style={{ backgroundColor: `${r.color}dd`, color: "white" }}
+                  >
+                    {r.tag}
+                  </span>
+                  <span
+                    className="text-base w-8 h-8 flex items-center justify-center rounded-full"
+                    style={{ backgroundColor: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+                  >
+                    {r.icon}
+                  </span>
+                </div>
+
+                {/* BOTTOM: text content */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+                  <h3
+                    className="font-black text-white leading-tight drop-shadow-lg"
+                    style={{
+                      fontSize: r.id === 1 ? "clamp(18px, 2vw, 26px)" : "clamp(12px, 1.2vw, 15px)",
+                    }}
+                  >
+                    {r.title}
+                  </h3>
+
+                  <div
+                    className="overflow-hidden transition-all duration-300"
+                    style={{
+                      maxHeight: (isManualHover ? hovered : autoHovered) === r.id ? "60px" : "0px",
+                      opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
+                    }}
+                  >
+                    <p
+                      className="leading-snug mt-1.5 text-white/90"
+                      style={{ fontSize: r.id === 1 ? "12px" : "10px" }}
+                    >
+                      {r.description}
+                    </p>
+                  </div>
+
+                  <div
+                    className="flex items-center gap-2 mt-2 transition-all duration-300"
+                    style={{
+                      opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
+                    }}
+                  >
+                    <span className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full text-white border border-white/40 hover:bg-white/20 transition-colors">
+                      LEARN MORE →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-6 gap-4">
-              <p className="text-sm text-[#6a5a4a]">
+            {/* Footer row */}
+            <div className="w-full h-px mt-8 bg-[#B2AFAF]" />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-5 gap-4">
+              <p className="text-sm text-[#000000] font-bold">
                 Not sure where to start?{" "}
-                <span className="cursor-pointer hover:underline text-[#c0622b]">We'll guide you.</span>
+                <span className="cursor-pointer hover:underline text-[#CA5400]">
+                  We'll guide you.
+                </span>
               </p>
               <button className="flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold tracking-widest bg-[#1a1a18] text-white transition-all hover:scale-105 w-fit">
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#3a3a34]">📞</span>
+                <span className="flex items-center justify-center w-6 h-5 rounded-full bg-[#3a3a34]">
+                  📞
+                </span>
                 CALL NOW
               </button>
             </div>
+
           </div>
         </section>
 
