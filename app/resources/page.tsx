@@ -6,6 +6,7 @@ import { Apple, ExternalLink, GraduationCap, House, Linkedin, Mail, Map, Phone, 
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import Carousel from "react-multi-carousel";
+import Footer from "@/components/footer";
 
 export interface Opportunity {
   name: string;
@@ -198,7 +199,7 @@ export default function ResourcesPage() {
   const meta = opportunity ? categoryMeta[opportunity.category] : null;
 
   return (
-    <div className="grid grid-cols-12 gap-6 p-4 md:p-8 bg-[#FEFCF8] min-h-screen">
+    <><div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
 
       {/* ── Sidebar ── */}
       <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">
@@ -282,7 +283,7 @@ export default function ResourcesPage() {
                 onClick={() => {
                   setOpportunity(item);
                   (document.getElementById("opportunity_description")! as HTMLDialogElement).showModal();
-                }}
+                } }
                 className="flex flex-col group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#f0ebe3] hover:-translate-y-1"
               >
                 {/* Image */}
@@ -291,8 +292,7 @@ export default function ResourcesPage() {
                     src={item.coverImage}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                    className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   <span
                     className="absolute top-3 left-3 text-[10px] font-black tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
                     style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
@@ -337,9 +337,9 @@ export default function ResourcesPage() {
         </div>
       </main>
 
-      {/* ── Pop up ── */}
+      {/* ── Pop up ───*/}
       <dialog id="opportunity_description" className="modal">
-        <div className="modal-box w-11/12 max-w-2xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
+        <div className="modal-box w-11/12 max-w-3xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
 
           {/* Colored header */}
           <div
@@ -368,8 +368,7 @@ export default function ResourcesPage() {
                   alt={opportunity.name ?? ""}
                   width={56}
                   height={56}
-                  className="object-cover w-full h-full"
-                />
+                  className="object-cover w-full h-full" />
               )}
             </div>
           </div>
@@ -380,16 +379,16 @@ export default function ResourcesPage() {
             {/* Title + URL */}
             <div className="flex items-start justify-between gap-3">
               <div>
-                <h3 className="font-black text-xl text-[#100F0A] leading-tight">
+                <h3 className="font-bold text-[28px] text-[#100F0A] leading-tight">
                   {opportunity?.name}
                 </h3>
-                <p className="text-[11px] text-[#9a8a7a] mt-0.5 flex items-center gap-1">
+                <p className="text-[12px] text-[#9a8a7a] mt-0.5 flex items-center gap-1">
                   <Map size={10} className="shrink-0" />
                   {opportunity?.contact.address}
                 </p>
               </div>
               {opportunity?.contact.url && (
-                  <a
+                <a
                   href={opportunity.contact.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -405,26 +404,25 @@ export default function ResourcesPage() {
             {/* Description + Map */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[10px] font-black tracking-widest mb-2" style={{ color: meta?.color ?? "#CA5400" }}>
+                <p className="text-[16px] font-bold mb-2 text-[#FD6900]">
                   ABOUT
                 </p>
-                <p className="text-sm text-[#3a3028] leading-relaxed">
+                <p className="text-[16px] text-[#100F0A] leading-[1.2]">
                   {opportunity?.description}
                 </p>
               </div>
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[10px] font-black tracking-widest mb-2" style={{ color: meta?.color ?? "#CA5400" }}>
+                <p className="text-[16px] font-bold mb-2 text-[#FD6900]">
                   LOCATION
                 </p>
                 <div className="overflow-hidden rounded-xl">
                   <iframe
                     src={opportunity?.mapSrc}
                     width="100%"
-                    height="150"
+                    height="300"
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                    referrerPolicy="no-referrer-when-downgrade" />
                 </div>
               </div>
             </div>
@@ -436,7 +434,7 @@ export default function ResourcesPage() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {opportunity?.contact.phone && (
-                    <a
+                  <a
                     href={`tel:${opportunity.contact.phone}`}
                     className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
@@ -451,7 +449,7 @@ export default function ResourcesPage() {
                   </a>
                 )}
                 {opportunity?.contact.email && (
-                    <a
+                  <a
                     href={`mailto:${opportunity.contact.email}`}
                     className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
@@ -466,7 +464,7 @@ export default function ResourcesPage() {
                   </a>
                 )}
                 {opportunity?.contact.socials?.instagram && (
-                    <a
+                  <a
                     href={opportunity.contact.socials.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -500,7 +498,7 @@ export default function ResourcesPage() {
                   </a>
                 )}
                 {opportunity?.contact.socials?.facebook && (
-                    <a
+                  <a
                     href={opportunity.contact.socials.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -517,7 +515,7 @@ export default function ResourcesPage() {
                   </a>
                 )}
                 {opportunity?.contact.socials?.x && (
-                    <a
+                  <a
                     href={opportunity.contact.socials.x}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -545,8 +543,8 @@ export default function ResourcesPage() {
                 <Carousel
                   responsive={{
                     desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
-                    tablet:  { breakpoint: { max: 1024, min: 464 },  items: 2, slidesToSlide: 1 },
-                    mobile:  { breakpoint: { max: 464,  min: 0 },    items: 1, slidesToSlide: 1 },
+                    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 1 },
+                    mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 },
                   }}
                   keyBoardControl
                   transitionDuration={500}
@@ -560,8 +558,7 @@ export default function ResourcesPage() {
                         width={400}
                         height={250}
                         alt={`${opportunity.name} image ${i + 1}`}
-                        className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-                      />
+                        className="object-cover w-full h-full hover:scale-105 transition-transform duration-500" />
                     </div>
                   ))}
                 </Carousel>
@@ -571,6 +568,9 @@ export default function ResourcesPage() {
         </div>
       </dialog>
 
+    {/* Footer */}
     </div>
+      <Footer />
+    </>
   );
 }
