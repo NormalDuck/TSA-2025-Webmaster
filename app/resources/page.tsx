@@ -2,11 +2,11 @@
 
 import { SiFacebook, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { Apple, ExternalLink, GraduationCap, House, Linkedin, Mail, Map, Phone, Plus, SquareChartGantt, UsersRound } from "lucide-react";
-
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import Footer from "@/components/footer";
+import { useSearchParams } from "next/navigation";
 
 export interface Opportunity {
   name: string;
@@ -31,6 +31,7 @@ export interface Opportunity {
 
 export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
 
+
 //Meta information for each category
 const categoryMeta: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
   "Food":                    { color: "#FD6900", bg: "#FFF3E0", icon: <Apple size={14} /> },
@@ -46,7 +47,12 @@ const opportunities: Opportunity[] = [
     name: "Rainier Valley Food Bank",
     category: "Food",
     description: "RVFB is the primary emergency food resource for Seattle's most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
-    coverImage: "/resources/rainier_valley_foodbank.png",
+    coverImage: "/resources/rainierfoodbank/rainier_valley_foodbank.png",
+    additionalImages:[
+      "/resources/rainierfoodbank/rainier_foodbank_1.png",
+      "/resources/rainierfoodbank/rainier_foodbank_2.png",
+      "/resources/rainierfoodbank/rainier_foodbank_3.png",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@rvfb.org",
@@ -59,7 +65,12 @@ const opportunities: Opportunity[] = [
     name: "Seattle Food Committee",
     category: "Food",
     description: "Applying an equitable anti-racist and food justice lens, SFC partners with distributors and BIPOC vendors to ensure the city's emergency food system continues to grow stronger and more sustainable.",
-    coverImage: "/resources/seattle_food_committee.png",
+    coverImage: "/resources/seattlecommitte/seattle_food_committee.png",
+    additionalImages:[
+      "/resources/seattlecommitte/seattle_committe_1.jpg",
+      "/resources/seattlecommitte/seattle_committe_2.jpg",
+      "/resources/seattlecommitte/seattle_committe_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-694-6756",
@@ -72,7 +83,12 @@ const opportunities: Opportunity[] = [
     name: "Family Works Seattle",
     category: "Social & Family Support",
     description: "Serves families in North Seattle marginalized by food, economic, and racial injustice through a Food Bank and Family Resource Center, providing culturally responsive services to 6,000 households annually.",
-    coverImage: "/resources/family_works_logo.png",
+    coverImage: "/resources/familyworks/family_works_logo.png",
+    additionalImages:[
+      "/resources/familyworks/familyworks_1.jpg",
+      "/resources/familyworks/familyworks_2.jpg",
+      "/resources/familyworks/familyworks_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "theteam@familyworksseattle.org",
@@ -85,21 +101,31 @@ const opportunities: Opportunity[] = [
     name: "Neighborhood House",
     category: "Social & Family Support",
     description: "Provides safe spaces for youth to reach their potential through after-school mentoring, college-readiness, and STEAM activities, focusing on students aged 6 to 21.",
-    coverImage: "/resources/neighborhood_house.png",
+    coverImage: "/resources/neighborhoodhouse/neighborhood_house_logo.png",
+    additionalImages:[
+      "/resources/neighborhoodhouse/neighborhood_house_1.jpg",
+      "/resources/neighborhoodhouse/neighborhood_house_2.jpg",
+      "/resources/neighborhoodhouse/neighborhood_house_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@nhwa.org",
       phone: "1-(206)-923-6480",
       address: "1225 South Weller Street, Suite 510, Seattle, WA 98144",
       url: "https://nhwa.org/",
-      socials: { instagram: "https://www.instagram.com/neighborhoodhousekc/" }
+      socials: { instagram: "https://www.instagram.com/neighborhoodhousekc/" },
     }
   },
   {
     name: "King County Regional Homelessness Authority",
     category: "Housing",
     description: "Administers performance-based homeless services to decrease unsheltered homelessness across King County using equity and social justice principles.",
-    coverImage: "/resources/KCRHA.png",
+    coverImage: "/resources/kcrha/KCRHA.png",
+    additionalImages:[
+      "/resources/kcrha/KCRHA_1.jpg",
+      "/resources/kcrha/KCRHA_2.jpg",
+      "/resources/kcrha/KCRHA_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@kcrha.org",
@@ -113,7 +139,12 @@ const opportunities: Opportunity[] = [
     name: "Mary's Place",
     category: "Housing",
     description: "Since 1999, Mary's Place has helped women and families move out of homelessness into stable situations, providing emergency shelter, housing, and employment services.",
-    coverImage: "/resources/marys_place.png",
+    coverImage: "/resources/marysplace/marys_place.png",
+    additionalImages:[
+      "/resources/marysplace/marys_place_1.jpg",
+      "/resources/marysplace/marys_place_2.jpg",
+      "/resources/marysplace/marys_place_3.png",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-621-8474",
@@ -125,7 +156,12 @@ const opportunities: Opportunity[] = [
     name: "Seattle Roots Community Health",
     category: "Health & Wellness",
     description: "Provides high-quality, culturally appropriate primary health care regardless of ability to pay, nationality, or immigration status.",
-    coverImage: "/resources/seattle_roots.png",
+    coverImage: "/resources/seattleroots/seattle_roots.png",
+    additionalImages:[
+      "/resources/seattleroots/seattle_roots_1.jpg",
+      "/resources/seattleroots/seattle_roots_2.jpg",
+      "/resources/seattleroots/seattle_roots_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-299-1900",
@@ -137,7 +173,12 @@ const opportunities: Opportunity[] = [
     name: "THIRA Health",
     category: "Health & Wellness",
     description: "Adult residential treatment program for individuals aged 18+ struggling with anxiety, depression, and trauma, offering paths toward mental wellness.",
-    coverImage: "/resources/thira_health.png",
+    coverImage: "/resources/thirahealth/thira_health.png",
+    additionalImages:[
+      "/resources/thirahealth/thira_health_1.png",
+      "/resources/thirahealth/thira_health_2.png",
+      "/resources/thirahealth/thira_health_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "admissions@thirahealth.com",
@@ -150,7 +191,12 @@ const opportunities: Opportunity[] = [
     name: "Per Scholas",
     category: "Education",
     description: "Provides no-cost technical training and AI skills to advance economic mobility and connect skilled talent to leading tech businesses.",
-    coverImage: "/resources/per_scholas.png",
+    coverImage: "/resources/perscholas/per_scholas_logo.png",
+    additionalImages:[
+      "/resources/perscholas/per_scholas_1.jpg",
+      "/resources/perscholas/per_scholas_2.jpg",
+      "/resources/perscholas/per_scholas_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "seattletraining@perscholas.org",
@@ -167,7 +213,12 @@ const opportunities: Opportunity[] = [
     name: "Seattle ReCreative",
     category: "Education",
     description: "A non-profit collecting donated reusable materials to fund arts programming and free creative workshops, serving as a hub for environmental stewardship.",
-    coverImage: "/resources/seattle_recreative.png",
+    coverImage: "/resources/seattlerecreative/seattle_recreative.png",
+    additionalImages:[
+      "/resources/seattlerecreative/seattle_recreative_1.jpg",
+      "/resources/seattlerecreative/seattle_recreative_2.jpg",
+      "/resources/seattlerecreative/seattle_recreative_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@seattlerecreative.org",
@@ -180,7 +231,12 @@ const opportunities: Opportunity[] = [
     name: "FareStart",
     category: "Food",
     description: "HOW IT ALL BEGAN. Our James Beard Award-winning model for social change dates back to 1992. It started with an idea that we could help people gain the job and self-empowerment skills needed to move out of poverty while also feeding the community and generating revenue to support our work. Since then, we have run various social enterprise businesses as on-the-job classrooms for our students that also nourish our communities. This innovative, entrepreneurial approach ensures that we address the root causes of poverty and food insecurity to empower brighter futures. Throughout the past three decades, our commitment to transforming lives through food, life skills and job training has remained steadfast. We have served nearly 15,000 youth and adults in our job training programs and provided 19 million meals to local nonprofits, shelters, respite centers, youth and adult daycare centers and schools.",
-    coverImage: "/resources/fare_start_logo.jpg",
+    coverImage: "/resources/farestart/fare_start_logo.jpg",
+    additionalImages:[
+      "resources/farestart/fare_start_1.jpg",
+      "resources/farestart/fare_start_2.jpg",
+      "resources/farestart/fare_start_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@farestart.org",
@@ -193,7 +249,12 @@ const opportunities: Opportunity[] = [
     name: "University District Food Bank",
     category: "Food",
     description: "Our U-District Pantry is open for in-person shopping on Monday, Tuesday, Thursday, and Friday. We offer fresh fruits and vegetables, dairy, eggs or frozen meat, canned and dried goods, toiletries, baby formula, diapers, and pet food plus connections to important community resources. We try to provide food for several days, but please follow posted  guidelines so that food is available for all our customers. We do our best, but sometimes we won’t have everything you hope to find. If there are foods you would like to find on our shelves, please let us know (leave a note in our comment box, tell a food bank staff person) so that we can look for ways to include these foods in the future. We are always excited to consider more produce, dairy, and protein options. If you are uncomfortable shopping in our store directly, you can complete a shopping preference form and a volunteer shopper can collect your groceries while you wait. We primarily support community members from zip codes 98102, 98103, 98105, 98112, 98115, and 98125 although all are welcome. Customers may visit once per week during any of our open hours. We can also help you find more food help if we aren’t meeting your needs. Just ask or check with the Community Information Line (just dial 2-1-1 or toll free at 1-800-621-4636) and the Crisis Connections website. ",
-    coverImage: "/resources/udfb_logo.jpg",
+    coverImage: "/resources/universityfoodbank/udfb_logo.jpg",
+    additionalImages:[
+      "/resources/universityfoodbank/udfb_1.jpg",
+      "/resources/universityfoodbank/udfb_2.jpg",
+      "/resources/universityfoodbank/udfb_3.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "",
@@ -206,7 +267,12 @@ const opportunities: Opportunity[] = [
     name: "Northwest Harvest",
     category: "Food",
     description: "We build partnerships in communities across Washington to get food where it’s needed most. We provide an average of two million meals each month through our statewide network of more than 350 food banks, meal programs, schools, and community-based organizations. Part of a justice-centered movement, we advocate to change inequitable policies, practices, and institutions that perpetuate hunger and poverty. Together, we ensure communities across our state can access the nutritious food they want and need to thrive. ",
-    coverImage: "/resources/nw_harvest_logo.jpg",
+    coverImage: "/resources/northwestharvest/nw_harvest_logo.jpg",
+    additionalImages:[
+      "/resources/northwestharvest/nw_havest_1.jpg",
+      "/resources/northwestharvest/nw_havest_2.png",
+      "/resources/northwestharvest/nw_havest_3.png",
+    ],
     mapSrc: "",
     contact: {
       email: "info@northwestharvest.org",
@@ -219,7 +285,12 @@ const opportunities: Opportunity[] = [
     name: "Pike Market Senior Center & Food Bank",
     category: "Food",
     description: "Free groceries, ready-to-eat food & home delivery. Our Food Bank is available to people of any age. We provide free groceries, ready-to-eat food for those who are without housing, and home delivery for qualified residents of Downtown Seattle. ",
-    coverImage: "/resources/pike_foodbank_logo.jpg",
+    coverImage: "/resources/pikefoodbank/pike_foodbank_logo.jpg",
+    additionalImages:[
+      "/resources/pikefoodbank/pike_foodbank_1.jpg",
+      "/resources/pikefoodbank/pike_foodbank_2.jpg",
+      "/resources/pikefoodbank/pike_foodbank_3.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "",
@@ -232,7 +303,12 @@ const opportunities: Opportunity[] = [
     name: "Jewish Family Service",
     category: "Food",
     description: "JFS has been providing free food to our community for close to 100 years. We improve access to healthy, culturally appropriate food, with dignity and respect, to individuals and families throughout the Puget Sound region. ",
-    coverImage: "/resources/jfs_logo.jpg",
+    coverImage: "/resources/jewishfamilyservice/jfs_logo.jpg",
+    additionalImages:[
+      "/resources/jewishfamilyservice/jfs_1.jpg",
+      "/resources/jewishfamilyservice/jfs_2.jpg",
+      "/resources/jewishfamilyservice/jfs_3.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "",
@@ -385,7 +461,7 @@ const opportunities: Opportunity[] = [
     }
   },
   {
-    name: "Norwest Abortion Access Fund",
+    name: "Northwest Abortion Access Fund",
     category: "Health & Wellness",
     description: "The Northwest Abortion Access Fund is an abortion fund serving Washington, Oregon, Idaho, and Alaska. Trained, compassionate volunteer advocates run our toll-free helpline. We help people pay for their abortion care by sending funding directly to the clinic. We also help people get to and from the clinic. And we make sure people traveling for care have a safe place to stay. ",
     coverImage: "",
@@ -514,59 +590,173 @@ const categories = [
 ];
 
 export default function ResourcesPage() {
+  const [resourceSearch, setResourceSearch] = useState("");
   const [category, setCategory] = useState<Category>("All");
   const [opportunity, setOpportunity] = useState<Opportunity>();
 
   const visibleOpportunities = useMemo(() => {
-    if (category !== "All") {
-      return opportunities.filter((o) => o.category === category);
-    }
-    return opportunities;
-  }, [category]);
+    const byCategory = category !== "All"
+      ? opportunities.filter((o) => o.category === category)
+      : opportunities;
+  
+    if (!resourceSearch.trim()) return byCategory;
+  
+    const q = resourceSearch.toLowerCase();
+    return byCategory.filter(
+      (o) =>
+        o.name.toLowerCase().includes(q) ||
+        o.description.toLowerCase().includes(q) ||
+        o.contact.address.toLowerCase().includes(q)
+    );
+  }, [category, resourceSearch]);
 
   const meta = opportunity ? categoryMeta[opportunity.category] : null;
 
+
+  //Learn more button
+  const titleToOpportunityName: Record<string, string> = {
+    "Rainier Valley Food Bank": "Rainier Valley Food Bank",
+    "Mary's Place": "Mary's Place",
+    "THIRA Health": "THIRA Health",
+  };
+
+  const searchParams = useSearchParams();
+  const resourceName = searchParams.get("resource");
+  const match = opportunities.find(
+    (o) => o.name === titleToOpportunityName[decodeURIComponent(resourceName!)]
+  );
+
+  useEffect(() => {
+    const resourceName = searchParams.get("resource");
+    if (!resourceName) return;
+
+    const match = opportunities.find(
+      (o) => o.name.toLowerCase() === decodeURIComponent(resourceName).toLowerCase()
+    );
+
+    if (match) {
+      setOpportunity(match);
+      setTimeout(() => {
+        (document.getElementById("opportunity_description") as HTMLDialogElement)?.showModal();
+      }, 100);
+    }
+  }, [searchParams]);
+
+  
   return (
     <><div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
 
-      {/* ── Sidebar ── */}
+      {/*Sidebar*/}
       <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#6a5a4a] font-black">Categories</h2>
-        <nav className="flex flex-col gap-1 mt-2">
-          {categories.map((cat) => {
-            const isActive = cat.label === category;
-            const m = categoryMeta[cat.label];
-            return (
+        <div className="sticky top-6 flex flex-col gap-3 pt-20">
+
+          <p className="text-[12px] uppercase tracking-[0.18em] text-[#000000] font-semibold px-1 mb-1">
+            Categories
+          </p>
+
+          {/* Search bar */}
+          <div className="relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a8a7a]">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </span>
+            <input
+              type="text"
+              placeholder="Search for resources..."
+              value={resourceSearch}
+              onChange={(e) => setResourceSearch(e.target.value)}
+              className="w-full pl-8 pr-8 py-2 text-[13px] rounded-xl border transition-all duration-150 outline-none"
+              style={{
+                backgroundColor: "#faf7f2",
+                border: "1px solid #e8e0d5",
+                color: "#4a3c30",
+                caretColor: "#CA5400",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = "#CA5400";
+                e.currentTarget.style.boxShadow = "0 0 0 3px #CA540018";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "#e8e0d5";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            />
+            {resourceSearch && (
               <button
-                key={cat.label}
-                onClick={() => setCategory(cat.label as Category)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-left"
-                style={{
-                  backgroundColor: isActive ? (m?.bg ?? "#f5f0e8") : "transparent",
-                  color: isActive ? (m?.color ?? "#CA5400") : "#6a5a4a",
-                }}
+                onClick={() => setResourceSearch("")}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full flex items-center justify-center transition-colors"
+                style={{ backgroundColor: "#c4b8ac", color: "white" }}
               >
-                <span
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                  style={{ backgroundColor: isActive ? (m?.color ?? "#CA5400") + "22" : "#f5f0e8" }}
-                >
-                  <span style={{ color: isActive ? (m?.color ?? "#CA5400") : "#9a8a7a" }}>
-                    {cat.icon}
-                  </span>
-                </span>
-                <span className="font-bold text-[16px]">{cat.label}</span>
-                {isActive && (
-                  <span
-                    className="ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
-                  >
-                    {visibleOpportunities.length}
-                  </span>
-                )}
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+                  <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
               </button>
-            );
-          })}
-        </nav>
+            )}
+          </div>
+
+          {/* Nav */}
+          <nav className="flex flex-col gap-0.5">
+            {categories.map((cat) => {
+              const isActive = cat.label === category;
+              const m = categoryMeta[cat.label];
+              return (
+                <button
+                  key={cat.label}
+                  onClick={() => setCategory(cat.label as Category)}
+                  className="relative flex items-center gap-3 px-3 py-2.5 rounded-2xl text-left w-full transition-all duration-150 overflow-hidden"
+                  style={{
+                    backgroundColor: isActive ? (m?.bg ?? "#f5f0e8") : "transparent",
+                    color: isActive ? (m?.color ?? "#CA5400") : "#6a5a4a",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive)
+                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#faf7f2";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive)
+                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
+                  }}
+                >
+                  {isActive && (
+                    <span
+                      className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full"
+                      style={{ backgroundColor: m?.color ?? "#CA5400" }}
+                    />
+                  )}
+                  <span
+                    className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-150"
+                    style={{
+                      backgroundColor: isActive ? (m?.color ?? "#CA5400") + "18" : "#ede8e0",
+                    }}
+                  >
+                    <span className="text-[15px]" style={{ color: isActive ? (m?.color ?? "#CA5400") : "#9a8a7a" }}>
+                      {cat.icon}
+                    </span>
+                  </span>
+                  <span
+                    className="flex-1 text-[14px] tracking-[-0.01em] transition-colors duration-150"
+                    style={{ fontWeight: isActive ? 700 : 500 }}
+                  >
+                    {cat.label}
+                  </span>
+                  {isActive && (
+                    <span
+                      className="text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums"
+                      style={{
+                        backgroundColor: (m?.color ?? "#CA5400") + "18",
+                        color: m?.color ?? "#CA5400",
+                      }}
+                    >
+                      {visibleOpportunities.length}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+
+        </div>
       </aside>
 
       {/* ── Main ── */}
@@ -599,7 +789,30 @@ export default function ResourcesPage() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        {visibleOpportunities.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-24 gap-3 text-center">
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center mb-2"
+              style={{ backgroundColor: "#f5f0e8" }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9a8a7a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <p className="text-[18px] font-bold text-[#3a3028]">No resources found</p>
+            <p className="text-[13px] text-[#9a8a7a] max-w-xs">
+              No results for <span className="font-semibold text-[#6a5a4a]">"{resourceSearch}"</span>. Try a different keyword or browse by category.
+            </p>
+            <button
+              onClick={() => setResourceSearch("")}
+              className="mt-3 px-5 py-2 rounded-xl text-[13px] font-bold text-white transition-opacity hover:opacity-90"
+              style={{ backgroundColor: "#CA5400" }}
+            >
+              Clear search
+            </button>
+          </div>
+        ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {visibleOpportunities.map((item) => {
             const m = categoryMeta[item.category];
             return (
@@ -613,11 +826,13 @@ export default function ResourcesPage() {
               >
                 {/* Image */}
                 <div className="relative aspect-video overflow-hidden bg-[#f5f0e8]">
+                  {item.coverImage && (
                   <Image
                     src={item.coverImage}
                     alt={item.name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  )}
                   <span
                     className="absolute top-3 left-3 text-[12px] font-bold tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
                     style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
@@ -637,7 +852,7 @@ export default function ResourcesPage() {
                   </p>
                   <div className="flex items-center gap-1 mt-1">
                     <Map size={11} className="text-[#CA5400] shrink-0" />
-                    <p className="text-[11px] text-[#9a8a7a] truncate">{item.contact.address}</p>
+                    <p className="text-[12px] text-[#9a8a7a] truncate">{item.contact.address}</p>
                   </div>
                 </div>
 
@@ -646,8 +861,8 @@ export default function ResourcesPage() {
                   className="px-4 py-2.5 flex items-center justify-between border-t"
                   style={{ borderColor: "#f0ebe3" }}
                 >
-                  <span className="text-[10px] font-black tracking-widest" style={{ color: m?.color ?? "#CA5400" }}>
-                    VIEW DETAILS
+                  <span className="text-[12px] uppercase font-extrabold tracking-wide" style={{ color: m?.color ?? "#CA5400" }}>
+                    View Details
                   </span>
                   <span
                     className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs transition-transform group-hover:translate-x-0.5"
@@ -660,8 +875,8 @@ export default function ResourcesPage() {
             );
           })}
         </div>
-      </main>
-
+        )}</main>
+      
       {/* ── Pop up ───*/}
       <dialog id="opportunity_description" className="modal">
         <div className="modal-box w-11/12 max-w-3xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
@@ -731,7 +946,7 @@ export default function ResourcesPage() {
             {/* Description + Map */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[14px] font-black mb-2 text-[#CA5400]">
+                <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
                   ABOUT
                 </p>
                 <p className="text-[14px] text-[#100F0A] leading-[1.2]">
@@ -739,7 +954,7 @@ export default function ResourcesPage() {
                 </p>
               </div>
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[14px] font-black mb-2 text-[#CA5400]">
+                <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
                   LOCATION
                 </p>
                 <div className="overflow-hidden rounded-xl">
@@ -756,7 +971,7 @@ export default function ResourcesPage() {
 
             {/* Contact */}
             <div className="bg-[#f5f0e8] rounded-2xl p-4">
-              <p className="text-[14px] font-black tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+              <p className="text-[14px] font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
                 CONTACT
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -863,34 +1078,52 @@ export default function ResourcesPage() {
 
             {/* Gallery */}
             {opportunity?.additionalImages && opportunity.additionalImages.length > 0 && (
-              <div>
-                <p className="text-[10px] font-black tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
-                  GALLERY
-                </p>
-                <Carousel
-                  responsive={{
-                    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
-                    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 1 },
-                    mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 },
-                  }}
-                  keyBoardControl
-                  transitionDuration={500}
-                  containerClass="pb-2"
-                  itemClass="px-1.5"
-                >
-                  {opportunity.additionalImages.map((link, i) => (
-                    <div key={i} className="overflow-hidden rounded-xl aspect-video border border-[#e8e0d8]">
-                      <Image
-                        src={link}
-                        width={400}
-                        height={250}
-                        alt={`${opportunity.name} image ${i + 1}`}
-                        className="object-cover w-full h-full hover:scale-105 transition-transform duration-500" />
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-            )}
+            <div className="mt-2">
+              <p className="text-[14px] ml-4 font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+                GALLERY
+              </p>
+              <Carousel
+                responsive={{
+                  desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
+                  tablet: { breakpoint: { max: 1024, min: 640 }, items: 2, slidesToSlide: 1 },
+                  mobile: { breakpoint: { max: 640, min: 0 }, items: 1, slidesToSlide: 1 },
+                }}
+                keyBoardControl
+                transitionDuration={400}
+                containerClass="pb-4"
+                itemClass="px-2"
+                customLeftArrow={
+                  <button className="absolute left-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                }
+                customRightArrow={
+                  <button className="absolute right-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                }
+              >
+                {opportunity.additionalImages.map((link, i) => (
+                  <div
+                    key={i}
+                    className="overflow-hidden rounded-2xl aspect-4/3 border border-[#e8e0d8] shadow-sm"
+                  >
+                    <Image
+                      src={link}
+                      width={600}
+                      height={450}
+                      alt={`${opportunity.name} image ${i + 1}`}
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          )}
           </div>
         </div>
       </dialog>

@@ -6,19 +6,19 @@ import Footer from "@/components/footer";
 
 // Polaroid images for section 1
 const IMAGES_COL_1 = [
-  { src: "/resources/family_works.png", rotate: "-rotate-1",  },
-  { src: "/resources/KCRHA.png", rotate: "rotate-2", },
-  { src: "/topresources/landing_page_news_1.jpg", rotate: "-rotate-2",  },
-  { src: "/resources/marys_place.png", rotate: "rotate-1", },
-  { src: "/topresources/landing_page_news_3.jpg", rotate: "-rotate-1", },
+  { src: "/resources/familyworks/family_works_logo.png", rotate: "-rotate-1",  },
+  { src: "/resources/farestart/fare_start_logo.jpg", rotate: "rotate-2", },
+  { src: "/resources/seattlecommitte/seattle_food_committee.png", rotate: "-rotate-2",  },
+  { src: "/resources/seattlerecreative/seattle_recreative.png", rotate: "rotate-1", },
+  { src: "/resources/neighborhoodhouse/neighborhood_house_logo.png", rotate: "-rotate-1", },
 ];
 
 const IMAGES_COL_2 = [
-  { src: "/images/food6.jpg",  rotate: "rotate-2",  },
-  { src: "/images/food7.jpg",  rotate: "-rotate-1",  },
-  { src: "/images/food8.jpg",  rotate: "rotate-1",  },
-  { src: "/images/food9.jpg",  rotate: "-rotate-2",  },
-  { src: "/images/food10.jpg", rotate: "rotate-1",  },
+  { src: "/resources/northwestharvest/nw_harvest_logo.jpg",  rotate: "rotate-2",  },
+  { src: "/resources/perscholas/per_scholas_logo.png",  rotate: "-rotate-1",  },
+  { src: "/resources/pikefoodbank/pike_foodbank_logo.jpg",  rotate: "rotate-1",  },
+  { src: "/resources/thirahealth/thira_health.png",  rotate: "-rotate-2",  },
+  { src: "/resources/universityfoodbank/udfb_logo.jpg", rotate: "rotate-1",  },
 ];
 
 function PolaroidCard({ src, rotate }: { src: string; rotate: string  }) {
@@ -67,7 +67,7 @@ const resources = [
   {
     id: 1,
     tag: "FOOD ACCESS",
-    title: "Rainer Valley Food Bank",
+    title: "Rainier Valley Food Bank",
     description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     icon: "🥦",
     color: "#FD6900",
@@ -127,7 +127,6 @@ const dotColors: Record<string, { active: string; inactive: string }> = {
   newsletter: { active: "#ffffff", inactive: "#ffffff40" },
 };
 
-// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function Home() {
   const [topics, setTopics] = useState<Record<Topic, boolean>>({
@@ -142,7 +141,7 @@ export default function Home() {
   const toggleTopic = (topic: Topic) =>
     setTopics((prev) => ({ ...prev, [topic]: !prev[topic] }));
 
-  // Track active section via IntersectionObserver
+  // Track active section for top resources section
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     sections.forEach(({ id }) => {
@@ -163,12 +162,12 @@ export default function Home() {
 
   const dotColor = dotColors[activeSection] ?? dotColors.hero;
 
-  // Auto-hover carousel cards every 8 seconds, but pause on manual hover
+  // Auto-hover carousel cards every 4 seconds, but pause on manual hover
   useEffect(() => {
     if (isManualHover) return;
     const interval = setInterval(() => {
       setAutoHovered((prev) => (prev % resources.length) + 1);
-    }, 8000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [isManualHover]);
   
@@ -393,9 +392,11 @@ export default function Home() {
                       opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
                     }}
                   >
+                    <Link href={`/resources?resource=${encodeURIComponent(r.title)}`}>
                     <span className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full text-white border border-white/40 hover:bg-white/20 transition-colors">
                       LEARN MORE →
                     </span>
+                    </Link>
                   </div>
                 </div>
               </div>
