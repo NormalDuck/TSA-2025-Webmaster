@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useMemo, useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import Footer from "@/components/footer";
+import { useSearchParams } from "next/navigation";
 
 export interface Opportunity {
   name: string;
@@ -610,6 +611,37 @@ export default function ResourcesPage() {
   }, [category, resourceSearch]);
 
   const meta = opportunity ? categoryMeta[opportunity.category] : null;
+
+
+  //Learn more button
+  const titleToOpportunityName: Record<string, string> = {
+    "Rainier Valley Food Bank": "Rainier Valley Food Bank",
+    "Mary's Place": "Mary's Place",
+    "THIRA Health": "THIRA Health",
+  };
+
+  const searchParams = useSearchParams();
+  const resourceName = searchParams.get("resource");
+  const match = opportunities.find(
+    (o) => o.name === titleToOpportunityName[decodeURIComponent(resourceName!)]
+  );
+
+  useEffect(() => {
+    const resourceName = searchParams.get("resource");
+    if (!resourceName) return;
+
+    const match = opportunities.find(
+      (o) => o.name.toLowerCase() === decodeURIComponent(resourceName).toLowerCase()
+    );
+
+    if (match) {
+      setOpportunity(match);
+      setTimeout(() => {
+        (document.getElementById("opportunity_description") as HTMLDialogElement)?.showModal();
+      }, 100);
+    }
+  }, [searchParams]);
+
   
   return (
     <><div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">

@@ -67,7 +67,7 @@ const resources = [
   {
     id: 1,
     tag: "FOOD ACCESS",
-    title: "Rainer Valley Food Bank",
+    title: "Rainier Valley Food Bank",
     description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     icon: "🥦",
     color: "#FD6900",
@@ -127,7 +127,6 @@ const dotColors: Record<string, { active: string; inactive: string }> = {
   newsletter: { active: "#ffffff", inactive: "#ffffff40" },
 };
 
-// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function Home() {
   const [topics, setTopics] = useState<Record<Topic, boolean>>({
@@ -142,7 +141,7 @@ export default function Home() {
   const toggleTopic = (topic: Topic) =>
     setTopics((prev) => ({ ...prev, [topic]: !prev[topic] }));
 
-  // Track active section via IntersectionObserver
+  // Track active section for top resources section
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     sections.forEach(({ id }) => {
@@ -163,12 +162,12 @@ export default function Home() {
 
   const dotColor = dotColors[activeSection] ?? dotColors.hero;
 
-  // Auto-hover carousel cards every 8 seconds, but pause on manual hover
+  // Auto-hover carousel cards every 4 seconds, but pause on manual hover
   useEffect(() => {
     if (isManualHover) return;
     const interval = setInterval(() => {
       setAutoHovered((prev) => (prev % resources.length) + 1);
-    }, 8000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [isManualHover]);
   
@@ -393,9 +392,11 @@ export default function Home() {
                       opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
                     }}
                   >
+                    <Link href={`/resources?resource=${encodeURIComponent(r.title)}`}>
                     <span className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full text-white border border-white/40 hover:bg-white/20 transition-colors">
                       LEARN MORE →
                     </span>
+                    </Link>
                   </div>
                 </div>
               </div>
