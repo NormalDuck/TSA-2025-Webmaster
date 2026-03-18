@@ -226,10 +226,10 @@ export default function ResourcesPage() {
                     {cat.icon}
                   </span>
                 </span>
-                <span className="font-bold text-sm">{cat.label}</span>
+                <span className="font-bold text-[16px]">{cat.label}</span>
                 {isActive && (
                   <span
-                    className="ml-auto text-[10px] font-black px-2 py-0.5 rounded-full"
+                    className="ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full"
                     style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
                   >
                     {visibleOpportunities.length}
@@ -247,10 +247,7 @@ export default function ResourcesPage() {
         {/* Header */}
         <div className="flex justify-between items-end mb-8">
           <div>
-            <p className="text-[11px] font-black tracking-widest text-[#CA5400] mb-1">
-              SEATTLE COMMUNITY
-            </p>
-            <h2 className="text-3xl font-black text-[#100F0A]">Resources</h2>
+            <h2 className="text-[32px] font-bold text-[#100F0A]">Resources</h2>
           </div>
 
           {/* Mobile dropdown */}
@@ -294,7 +291,7 @@ export default function ResourcesPage() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   <span
-                    className="absolute top-3 left-3 text-[10px] font-black tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
+                    className="absolute top-3 left-3 text-[12px] font-bold tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
                     style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
                   >
                     {m?.icon}
@@ -304,7 +301,7 @@ export default function ResourcesPage() {
 
                 {/* Content */}
                 <div className="p-4 flex flex-col gap-2 flex-1">
-                  <h3 className="text-base font-black text-[#100F0A] leading-tight group-hover:text-[#CA5400] transition-colors">
+                  <h3 className="text-base font-bold text-[#100F0A] leading-[.9] group-hover:text-[#CA5400] transition-colors">
                     {item.name}
                   </h3>
                   <p className="text-xs text-[#6a5a4a] line-clamp-3 leading-relaxed flex-1">
@@ -382,17 +379,19 @@ export default function ResourcesPage() {
                 <h3 className="font-bold text-[28px] text-[#100F0A] leading-tight">
                   {opportunity?.name}
                 </h3>
-                <p className="text-[12px] text-[#9a8a7a] mt-0.5 flex items-center gap-1">
+                <p className="text-[14px] text-[#9a8a7a] mt-0.5 flex items-center gap-1">
                   <Map size={10} className="shrink-0" />
                   {opportunity?.contact.address}
                 </p>
               </div>
+
+              {/* Website Button */}
               {opportunity?.contact.url && (
                 <a
                   href={opportunity.contact.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[10px] font-black tracking-widest text-white transition-colors"
+                  className="shrink-0 flex items-center gap-1.5 px-3.5 py-1.75 rounded-xl text-[10px] font-bold tracking-widest text-white transition-colors"
                   style={{ backgroundColor: meta?.color ?? "#CA5400" }}
                 >
                   <ExternalLink size={10} />
@@ -404,15 +403,15 @@ export default function ResourcesPage() {
             {/* Description + Map */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[16px] font-bold mb-2 text-[#FD6900]">
+                <p className="text-[14px] font-black mb-2 text-[#CA5400]">
                   ABOUT
                 </p>
-                <p className="text-[16px] text-[#100F0A] leading-[1.2]">
+                <p className="text-[14px] text-[#100F0A] leading-[1.2]">
                   {opportunity?.description}
                 </p>
               </div>
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[16px] font-bold mb-2 text-[#FD6900]">
+                <p className="text-[14px] font-black mb-2 text-[#CA5400]">
                   LOCATION
                 </p>
                 <div className="overflow-hidden rounded-xl">
@@ -429,7 +428,7 @@ export default function ResourcesPage() {
 
             {/* Contact */}
             <div className="bg-[#f5f0e8] rounded-2xl p-4">
-              <p className="text-[10px] font-black tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+              <p className="text-[14px] font-black tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
                 CONTACT
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

@@ -264,7 +264,7 @@ export default function Home() {
             </div>
 
             {/* ── Right: polaroid scroll columns ── */}
-            <div className="hidden flex-1 lg:flex gap-8 w-[420px] xl:w-[500px] shrink-0 h-screen py-10 overflow-hidden">
+            <div className="hidden flex-1 lg:flex gap-8 w-105 xl:w-125 shrink-0 h-screen py-10 overflow-hidden">
               <ScrollColumn images={IMAGES_COL_1} direction="up"   duration="20s" />
               <ScrollColumn images={IMAGES_COL_2} direction="down" duration="26s" />
             </div>
@@ -334,7 +334,7 @@ export default function Home() {
                 />
 
                 {/* Permanent dark gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent" />
 
                 {/* Accent color overlay */}
                 <div
