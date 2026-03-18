@@ -56,8 +56,6 @@ export default function AboutPage() {
     const handleScroll = () => {
       if (!containerRef.current || !timelineWrapperRef.current) return;
 
-      // Your Navbar listens on window.scrollY (falls back from data-scroll-container),
-      // so we do the same — no separate container needed.
       const scrollTop = window.scrollY;
 
       // Progress only within the timeline block
@@ -127,7 +125,7 @@ export default function AboutPage() {
           <div className="min-h-screen p-12 bg-[#100F0A] flex flex-col justify-between">
             <div className="mt-10 px-25">
               <h1
-                className="text-[90px] font-extrabold text-white mt-[350px] leading-[.9]"
+                className="text-[90px] font-extrabold text-white mt-87.5 leading-[.9]"
                 style={{ fontFamily: "'Syne', sans-serif" }}
               >
                 Who we<br />
@@ -135,7 +133,7 @@ export default function AboutPage() {
                 <span className="text-[#FD6900]">are.</span>
               </h1>
               <p
-                className="text-white/60 mt-6 max-w-[550px] text-[16px] leading-relaxed"
+                className="text-white/60 mt-6 max-w-137.5 text-[16px] leading-relaxed"
                 style={{ fontFamily: "'Syne', sans-serif" }}
               >
                 Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet
