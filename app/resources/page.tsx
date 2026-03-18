@@ -119,7 +119,12 @@ const opportunities: Opportunity[] = [
     name: "King County Regional Homelessness Authority",
     category: "Housing",
     description: "Administers performance-based homeless services to decrease unsheltered homelessness across King County using equity and social justice principles.",
-    coverImage: "/resources/KCRHA.png",
+    coverImage: "/resources/kcrha/KCRHA.png",
+    additionalImages:[
+      "/resources/kcrha/KCRHA_1.jpg",
+      "/resources/kcrha/KCRHA_2.jpg",
+      "/resources/kcrha/KCRHA_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@kcrha.org",
@@ -133,7 +138,12 @@ const opportunities: Opportunity[] = [
     name: "Mary's Place",
     category: "Housing",
     description: "Since 1999, Mary's Place has helped women and families move out of homelessness into stable situations, providing emergency shelter, housing, and employment services.",
-    coverImage: "/resources/marys_place.png",
+    coverImage: "/resources/marysplace/marys_place.png",
+    additionalImages:[
+      "/resources/marysplace/marys_place_1.jpg",
+      "/resources/marysplace/marys_place_2.jpg",
+      "/resources/marysplace/marys_place_3.png",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-621-8474",
@@ -145,7 +155,12 @@ const opportunities: Opportunity[] = [
     name: "Seattle Roots Community Health",
     category: "Health & Wellness",
     description: "Provides high-quality, culturally appropriate primary health care regardless of ability to pay, nationality, or immigration status.",
-    coverImage: "/resources/seattle_roots.png",
+    coverImage: "/resources/seattleroots/seattle_roots.png",
+    additionalImages:[
+      "/resources/seattleroots/seattle_roots_1.jpg",
+      "/resources/seattleroots/seattle_roots_2.jpg",
+      "/resources/seattleroots/seattle_roots_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-299-1900",
@@ -157,7 +172,12 @@ const opportunities: Opportunity[] = [
     name: "THIRA Health",
     category: "Health & Wellness",
     description: "Adult residential treatment program for individuals aged 18+ struggling with anxiety, depression, and trauma, offering paths toward mental wellness.",
-    coverImage: "/resources/thira_health.png",
+    coverImage: "/resources/thirahealth/thira_health.png",
+    additionalImages:[
+      "/resources/thirahealth/thira_health_1.png",
+      "/resources/thirahealth/thira_health_2.png",
+      "/resources/thirahealth/thira_health_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "admissions@thirahealth.com",
@@ -170,7 +190,12 @@ const opportunities: Opportunity[] = [
     name: "Per Scholas",
     category: "Education",
     description: "Provides no-cost technical training and AI skills to advance economic mobility and connect skilled talent to leading tech businesses.",
-    coverImage: "/resources/per_scholas.png",
+    coverImage: "/resources/perscholas/per_scholas_logo.png",
+    additionalImages:[
+      "/resources/perscholas/per_scholas_1.jpg",
+      "/resources/perscholas/per_scholas_2.jpg",
+      "/resources/perscholas/per_scholas_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "seattletraining@perscholas.org",
@@ -187,7 +212,12 @@ const opportunities: Opportunity[] = [
     name: "Seattle ReCreative",
     category: "Education",
     description: "A non-profit collecting donated reusable materials to fund arts programming and free creative workshops, serving as a hub for environmental stewardship.",
-    coverImage: "/resources/seattle_recreative.png",
+    coverImage: "/resources/seattlerecreative/seattle_recreative.png",
+    additionalImages:[
+      "/resources/seattlerecreative/seattle_recreative_1.jpg",
+      "/resources/seattlerecreative/seattle_recreative_2.jpg",
+      "/resources/seattlerecreative/seattle_recreative_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@seattlerecreative.org",
@@ -218,7 +248,12 @@ const opportunities: Opportunity[] = [
     name: "University District Food Bank",
     category: "Food",
     description: "Our U-District Pantry is open for in-person shopping on Monday, Tuesday, Thursday, and Friday. We offer fresh fruits and vegetables, dairy, eggs or frozen meat, canned and dried goods, toiletries, baby formula, diapers, and pet food plus connections to important community resources. We try to provide food for several days, but please follow posted  guidelines so that food is available for all our customers. We do our best, but sometimes we won’t have everything you hope to find. If there are foods you would like to find on our shelves, please let us know (leave a note in our comment box, tell a food bank staff person) so that we can look for ways to include these foods in the future. We are always excited to consider more produce, dairy, and protein options. If you are uncomfortable shopping in our store directly, you can complete a shopping preference form and a volunteer shopper can collect your groceries while you wait. We primarily support community members from zip codes 98102, 98103, 98105, 98112, 98115, and 98125 although all are welcome. Customers may visit once per week during any of our open hours. We can also help you find more food help if we aren’t meeting your needs. Just ask or check with the Community Information Line (just dial 2-1-1 or toll free at 1-800-621-4636) and the Crisis Connections website. ",
-    coverImage: "/resources/udfb_logo.jpg",
+    coverImage: "/resources/universityfoodbank/udfb_logo.jpg",
+    additionalImages:[
+      "/resources/universityfoodbank/udfb_1.jpg",
+      "/resources/universityfoodbank/udfb_2.jpg",
+      "/resources/universityfoodbank/udfb_3.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "",
@@ -269,9 +304,9 @@ const opportunities: Opportunity[] = [
     description: "JFS has been providing free food to our community for close to 100 years. We improve access to healthy, culturally appropriate food, with dignity and respect, to individuals and families throughout the Puget Sound region. ",
     coverImage: "/resources/jewishfamilyservice/jfs_logo.jpg",
     additionalImages:[
-      "resources/jewishfamilyservice/jfs_1.jpg",
-      "resources/jewishfamilyservice/jfs_2.jpg",
-      "resources/jewishfamilyservice/jfs_3.jpg",
+      "/resources/jewishfamilyservice/jfs_1.jpg",
+      "/resources/jewishfamilyservice/jfs_2.jpg",
+      "/resources/jewishfamilyservice/jfs_3.jpg",
     ],
     mapSrc: "",
     contact: {
@@ -937,7 +972,7 @@ export default function ResourcesPage() {
                 {opportunity.additionalImages.map((link, i) => (
                   <div
                     key={i}
-                    className="overflow-hidden rounded-2xl aspect-[4/3] border border-[#e8e0d8] shadow-sm"
+                    className="overflow-hidden rounded-2xl aspect-4/3 border border-[#e8e0d8] shadow-sm"
                   >
                     <Image
                       src={link}

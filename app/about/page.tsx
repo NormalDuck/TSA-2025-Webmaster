@@ -48,9 +48,9 @@ export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [inTimeline, setInTimeline] = useState(false);
-  const sectionRefs = useRef([]);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef(null);
-  const timelineWrapperRef = useRef(null);
+  const timelineWrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -205,7 +205,7 @@ export default function AboutPage() {
               key={i}
               item={item}
               index={i}
-              refCallback={(el) => (sectionRefs.current[i] = el)}
+              refCallback={(el: HTMLDivElement | null) => (sectionRefs.current[i] = el)}
             />
           ))}
         </div>
@@ -237,8 +237,21 @@ export default function AboutPage() {
   );
 }
 
-function TimelineSection({ item, index, refCallback }) {
-  const ref = useRef(null);
+interface TimelineSectionProps {
+  item: {
+    year: string;
+    title: string;
+    body: string;
+    color: string;
+    accent: string;
+    image: string;
+  };
+  index: number;
+  refCallback: (el: HTMLDivElement | null) => void;
+}
+
+function TimelineSection({ item, index, refCallback }: TimelineSectionProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
   const isRight = index % 2 !== 0;
 
@@ -253,7 +266,7 @@ function TimelineSection({ item, index, refCallback }) {
     return () => observer.disconnect();
   }, []);
 
-  const combined = (el) => {
+  const combined = (el: HTMLDivElement | null) => {
     ref.current = el;
     refCallback(el);
   };
