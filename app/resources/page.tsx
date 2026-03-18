@@ -588,9 +588,6 @@ const categories = [
   { icon: <GraduationCap size={20} />, label: "Education" },
 ];
 
-
-
-
 export default function ResourcesPage() {
   const [resourceSearch, setResourceSearch] = useState("");
   const [category, setCategory] = useState<Category>("All");
@@ -760,6 +757,29 @@ export default function ResourcesPage() {
         </div>
 
         {/* Cards Grid */}
+        {visibleOpportunities.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-24 gap-3 text-center">
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center mb-2"
+              style={{ backgroundColor: "#f5f0e8" }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9a8a7a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <p className="text-[18px] font-bold text-[#3a3028]">No resources found</p>
+            <p className="text-[13px] text-[#9a8a7a] max-w-xs">
+              No results for <span className="font-semibold text-[#6a5a4a]">"{resourceSearch}"</span>. Try a different keyword or browse by category.
+            </p>
+            <button
+              onClick={() => setResourceSearch("")}
+              className="mt-3 px-5 py-2 rounded-xl text-[13px] font-bold text-white transition-opacity hover:opacity-90"
+              style={{ backgroundColor: "#CA5400" }}
+            >
+              Clear search
+            </button>
+          </div>
+        ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {visibleOpportunities.map((item) => {
             const m = categoryMeta[item.category];
@@ -823,8 +843,8 @@ export default function ResourcesPage() {
             );
           })}
         </div>
-      </main>
-
+        )}</main>
+      
       {/* ── Pop up ───*/}
       <dialog id="opportunity_description" className="modal">
         <div className="modal-box w-11/12 max-w-3xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
