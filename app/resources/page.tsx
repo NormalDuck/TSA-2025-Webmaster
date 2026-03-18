@@ -2,9 +2,8 @@
 
 import { SiFacebook, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { Apple, ExternalLink, GraduationCap, House, Linkedin, Mail, Map, Phone, Plus, SquareChartGantt, UsersRound } from "lucide-react";
-
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import Footer from "@/components/footer";
 
@@ -30,6 +29,7 @@ export interface Opportunity {
 }
 
 export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
+
 
 //Meta information for each category
 const categoryMeta: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
@@ -588,60 +588,146 @@ const categories = [
   { icon: <GraduationCap size={20} />, label: "Education" },
 ];
 
+
+
+
 export default function ResourcesPage() {
+  const [resourceSearch, setResourceSearch] = useState("");
   const [category, setCategory] = useState<Category>("All");
   const [opportunity, setOpportunity] = useState<Opportunity>();
 
   const visibleOpportunities = useMemo(() => {
-    if (category !== "All") {
-      return opportunities.filter((o) => o.category === category);
-    }
-    return opportunities;
-  }, [category]);
+    const byCategory = category !== "All"
+      ? opportunities.filter((o) => o.category === category)
+      : opportunities;
+  
+    if (!resourceSearch.trim()) return byCategory;
+  
+    const q = resourceSearch.toLowerCase();
+    return byCategory.filter(
+      (o) =>
+        o.name.toLowerCase().includes(q) ||
+        o.description.toLowerCase().includes(q) ||
+        o.contact.address.toLowerCase().includes(q)
+    );
+  }, [category, resourceSearch]);
 
   const meta = opportunity ? categoryMeta[opportunity.category] : null;
-
+  
   return (
     <><div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
 
-      {/* ── Sidebar ── */}
+      {/*Sidebar*/}
       <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">
-        <h2 className="text-xs uppercase tracking-widest text-[#6a5a4a] font-black">Categories</h2>
-        <nav className="flex flex-col gap-1 mt-2">
-          {categories.map((cat) => {
-            const isActive = cat.label === category;
-            const m = categoryMeta[cat.label];
-            return (
+        <div className="sticky top-6 flex flex-col gap-3 pt-20">
+
+          <p className="text-[12px] uppercase tracking-[0.18em] text-[#000000] font-semibold px-1 mb-1">
+            Categories
+          </p>
+
+          {/* Search bar */}
+          <div className="relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a8a7a]">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </span>
+            <input
+              type="text"
+              placeholder="Search for resources..."
+              value={resourceSearch}
+              onChange={(e) => setResourceSearch(e.target.value)}
+              className="w-full pl-8 pr-8 py-2 text-[13px] rounded-xl border transition-all duration-150 outline-none"
+              style={{
+                backgroundColor: "#faf7f2",
+                border: "1px solid #e8e0d5",
+                color: "#4a3c30",
+                caretColor: "#CA5400",
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = "#CA5400";
+                e.currentTarget.style.boxShadow = "0 0 0 3px #CA540018";
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = "#e8e0d5";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            />
+            {resourceSearch && (
               <button
-                key={cat.label}
-                onClick={() => setCategory(cat.label as Category)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all text-left"
-                style={{
-                  backgroundColor: isActive ? (m?.bg ?? "#f5f0e8") : "transparent",
-                  color: isActive ? (m?.color ?? "#CA5400") : "#6a5a4a",
-                }}
+                onClick={() => setResourceSearch("")}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full flex items-center justify-center transition-colors"
+                style={{ backgroundColor: "#c4b8ac", color: "white" }}
               >
-                <span
-                  className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors"
-                  style={{ backgroundColor: isActive ? (m?.color ?? "#CA5400") + "22" : "#f5f0e8" }}
-                >
-                  <span style={{ color: isActive ? (m?.color ?? "#CA5400") : "#9a8a7a" }}>
-                    {cat.icon}
-                  </span>
-                </span>
-                <span className="font-bold text-[16px]">{cat.label}</span>
-                {isActive && (
-                  <span
-                    className="ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full"
-                    style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
-                  >
-                    {visibleOpportunities.length}
-                  </span>
-                )}
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+                  <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
               </button>
-            );
-          })}
-        </nav>
+            )}
+          </div>
+
+          {/* Nav */}
+          <nav className="flex flex-col gap-0.5">
+            {categories.map((cat) => {
+              const isActive = cat.label === category;
+              const m = categoryMeta[cat.label];
+              return (
+                <button
+                  key={cat.label}
+                  onClick={() => setCategory(cat.label as Category)}
+                  className="relative flex items-center gap-3 px-3 py-2.5 rounded-2xl text-left w-full transition-all duration-150 overflow-hidden"
+                  style={{
+                    backgroundColor: isActive ? (m?.bg ?? "#f5f0e8") : "transparent",
+                    color: isActive ? (m?.color ?? "#CA5400") : "#6a5a4a",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive)
+                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#faf7f2";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive)
+                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
+                  }}
+                >
+                  {isActive && (
+                    <span
+                      className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full"
+                      style={{ backgroundColor: m?.color ?? "#CA5400" }}
+                    />
+                  )}
+                  <span
+                    className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-150"
+                    style={{
+                      backgroundColor: isActive ? (m?.color ?? "#CA5400") + "18" : "#ede8e0",
+                    }}
+                  >
+                    <span className="text-[15px]" style={{ color: isActive ? (m?.color ?? "#CA5400") : "#9a8a7a" }}>
+                      {cat.icon}
+                    </span>
+                  </span>
+                  <span
+                    className="flex-1 text-[14px] tracking-[-0.01em] transition-colors duration-150"
+                    style={{ fontWeight: isActive ? 700 : 500 }}
+                  >
+                    {cat.label}
+                  </span>
+                  {isActive && (
+                    <span
+                      className="text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums"
+                      style={{
+                        backgroundColor: (m?.color ?? "#CA5400") + "18",
+                        color: m?.color ?? "#CA5400",
+                      }}
+                    >
+                      {visibleOpportunities.length}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+
+        </div>
       </aside>
 
       {/* ── Main ── */}
@@ -674,7 +760,7 @@ export default function ResourcesPage() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {visibleOpportunities.map((item) => {
             const m = categoryMeta[item.category];
             return (
@@ -714,7 +800,7 @@ export default function ResourcesPage() {
                   </p>
                   <div className="flex items-center gap-1 mt-1">
                     <Map size={11} className="text-[#CA5400] shrink-0" />
-                    <p className="text-[11px] text-[#9a8a7a] truncate">{item.contact.address}</p>
+                    <p className="text-[12px] text-[#9a8a7a] truncate">{item.contact.address}</p>
                   </div>
                 </div>
 
@@ -723,8 +809,8 @@ export default function ResourcesPage() {
                   className="px-4 py-2.5 flex items-center justify-between border-t"
                   style={{ borderColor: "#f0ebe3" }}
                 >
-                  <span className="text-[10px] font-black tracking-widest" style={{ color: m?.color ?? "#CA5400" }}>
-                    VIEW DETAILS
+                  <span className="text-[12px] uppercase font-extrabold tracking-wide" style={{ color: m?.color ?? "#CA5400" }}>
+                    View Details
                   </span>
                   <span
                     className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs transition-transform group-hover:translate-x-0.5"
