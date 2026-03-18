@@ -6,19 +6,19 @@ import Footer from "@/components/footer";
 
 // Polaroid images for section 1
 const IMAGES_COL_1 = [
-  { src: "/resources/family_works.png", rotate: "-rotate-1",  },
-  { src: "/resources/KCRHA.png", rotate: "rotate-2", },
-  { src: "/topresources/landing_page_news_1.jpg", rotate: "-rotate-2",  },
-  { src: "/resources/marys_place.png", rotate: "rotate-1", },
-  { src: "/topresources/landing_page_news_3.jpg", rotate: "-rotate-1", },
+  { src: "/resources/familyworks/family_works_logo.png", rotate: "-rotate-1",  },
+  { src: "/resources/farestart/fare_start_logo.jpg", rotate: "rotate-2", },
+  { src: "/resources/seattlecommitte/seattle_food_committee.png", rotate: "-rotate-2",  },
+  { src: "/resources/seattlerecreative/seattle_recreative.png", rotate: "rotate-1", },
+  { src: "/resources/neighborhoodhouse/neighborhood_house_logo.png", rotate: "-rotate-1", },
 ];
 
 const IMAGES_COL_2 = [
-  { src: "/images/food6.jpg",  rotate: "rotate-2",  },
-  { src: "/images/food7.jpg",  rotate: "-rotate-1",  },
-  { src: "/images/food8.jpg",  rotate: "rotate-1",  },
-  { src: "/images/food9.jpg",  rotate: "-rotate-2",  },
-  { src: "/images/food10.jpg", rotate: "rotate-1",  },
+  { src: "/resources/northwestharvest/nw_harvest_logo.jpg",  rotate: "rotate-2",  },
+  { src: "/resources/perscholas/per_scholas_logo.png",  rotate: "-rotate-1",  },
+  { src: "/resources/pikefoodbank/pike_foodbank_logo.jpg",  rotate: "rotate-1",  },
+  { src: "/resources/thirahealth/thira_health.png",  rotate: "-rotate-2",  },
+  { src: "/resources/universityfoodbank/udfb_logo.jpg", rotate: "rotate-1",  },
 ];
 
 function PolaroidCard({ src, rotate }: { src: string; rotate: string  }) {
