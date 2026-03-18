@@ -46,7 +46,12 @@ const opportunities: Opportunity[] = [
     name: "Rainier Valley Food Bank",
     category: "Food",
     description: "RVFB is the primary emergency food resource for Seattle's most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
-    coverImage: "/resources/rainier_valley_foodbank.png",
+    coverImage: "/resources/rainierfoodbank/rainier_valley_foodbank.png",
+    additionalImages:[
+      "/resources/rainierfoodbank/rainier_foodbank_1.png",
+      "/resources/rainierfoodbank/rainier_foodbank_2.png",
+      "/resources/rainierfoodbank/rainier_foodbank_3.png",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@rvfb.org",
@@ -59,7 +64,12 @@ const opportunities: Opportunity[] = [
     name: "Seattle Food Committee",
     category: "Food",
     description: "Applying an equitable anti-racist and food justice lens, SFC partners with distributors and BIPOC vendors to ensure the city's emergency food system continues to grow stronger and more sustainable.",
-    coverImage: "/resources/seattle_food_committee.png",
+    coverImage: "/resources/seattlecommitte/seattle_food_committee.png",
+    additionalImages:[
+      "/resources/seattlecommitte/seattle_committe_1.jpg",
+      "/resources/seattlecommitte/seattle_committe_2.jpg",
+      "/resources/seattlecommitte/seattle_committe_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-694-6756",
@@ -72,7 +82,12 @@ const opportunities: Opportunity[] = [
     name: "Family Works Seattle",
     category: "Social & Family Support",
     description: "Serves families in North Seattle marginalized by food, economic, and racial injustice through a Food Bank and Family Resource Center, providing culturally responsive services to 6,000 households annually.",
-    coverImage: "/resources/family_works_logo.png",
+    coverImage: "/resources/familyworks/family_works_logo.png",
+    additionalImages:[
+      "/resources/familyworks/familyworks_1.jpg",
+      "/resources/familyworks/familyworks_2.jpg",
+      "/resources/familyworks/familyworks_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "theteam@familyworksseattle.org",
@@ -85,14 +100,19 @@ const opportunities: Opportunity[] = [
     name: "Neighborhood House",
     category: "Social & Family Support",
     description: "Provides safe spaces for youth to reach their potential through after-school mentoring, college-readiness, and STEAM activities, focusing on students aged 6 to 21.",
-    coverImage: "/resources/neighborhood_house.png",
+    coverImage: "/resources/neighborhoodhouse/neighborhood_house_logo.png",
+    additionalImages:[
+      "/resources/neighborhoodhouse/neighborhood_house_1.jpg",
+      "/resources/neighborhoodhouse/neighborhood_house_2.jpg",
+      "/resources/neighborhoodhouse/neighborhood_house_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@nhwa.org",
       phone: "1-(206)-923-6480",
       address: "1225 South Weller Street, Suite 510, Seattle, WA 98144",
       url: "https://nhwa.org/",
-      socials: { instagram: "https://www.instagram.com/neighborhoodhousekc/" }
+      socials: { instagram: "https://www.instagram.com/neighborhoodhousekc/" },
     }
   },
   {
@@ -180,7 +200,12 @@ const opportunities: Opportunity[] = [
     name: "FareStart",
     category: "Food",
     description: "HOW IT ALL BEGAN. Our James Beard Award-winning model for social change dates back to 1992. It started with an idea that we could help people gain the job and self-empowerment skills needed to move out of poverty while also feeding the community and generating revenue to support our work. Since then, we have run various social enterprise businesses as on-the-job classrooms for our students that also nourish our communities. This innovative, entrepreneurial approach ensures that we address the root causes of poverty and food insecurity to empower brighter futures. Throughout the past three decades, our commitment to transforming lives through food, life skills and job training has remained steadfast. We have served nearly 15,000 youth and adults in our job training programs and provided 19 million meals to local nonprofits, shelters, respite centers, youth and adult daycare centers and schools.",
-    coverImage: "/resources/fare_start_logo.jpg",
+    coverImage: "/resources/farestart/fare_start_logo.jpg",
+    additionalImages:[
+      "resources/farestart/fare_start_1.jpg",
+      "resources/farestart/fare_start_2.jpg",
+      "resources/farestart/fare_start_3.jpg",
+    ],
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
     contact: {
       email: "info@farestart.org",
@@ -206,7 +231,12 @@ const opportunities: Opportunity[] = [
     name: "Northwest Harvest",
     category: "Food",
     description: "We build partnerships in communities across Washington to get food where it’s needed most. We provide an average of two million meals each month through our statewide network of more than 350 food banks, meal programs, schools, and community-based organizations. Part of a justice-centered movement, we advocate to change inequitable policies, practices, and institutions that perpetuate hunger and poverty. Together, we ensure communities across our state can access the nutritious food they want and need to thrive. ",
-    coverImage: "/resources/nw_harvest_logo.jpg",
+    coverImage: "/resources/northwestharvest/nw_harvest_logo.jpg",
+    additionalImages:[
+      "/resources/northwestharvest/nw_havest_1.jpg",
+      "/resources/northwestharvest/nw_havest_2.png",
+      "/resources/northwestharvest/nw_havest_3.png",
+    ],
     mapSrc: "",
     contact: {
       email: "info@northwestharvest.org",
@@ -219,7 +249,12 @@ const opportunities: Opportunity[] = [
     name: "Pike Market Senior Center & Food Bank",
     category: "Food",
     description: "Free groceries, ready-to-eat food & home delivery. Our Food Bank is available to people of any age. We provide free groceries, ready-to-eat food for those who are without housing, and home delivery for qualified residents of Downtown Seattle. ",
-    coverImage: "/resources/pike_foodbank_logo.jpg",
+    coverImage: "/resources/pikefoodbank/pike_foodbank_logo.jpg",
+    additionalImages:[
+      "/resources/pikefoodbank/pike_foodbank_1.jpg",
+      "/resources/pikefoodbank/pike_foodbank_2.jpg",
+      "/resources/pikefoodbank/pike_foodbank_3.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "",
@@ -232,7 +267,12 @@ const opportunities: Opportunity[] = [
     name: "Jewish Family Service",
     category: "Food",
     description: "JFS has been providing free food to our community for close to 100 years. We improve access to healthy, culturally appropriate food, with dignity and respect, to individuals and families throughout the Puget Sound region. ",
-    coverImage: "/resources/jfs_logo.jpg",
+    coverImage: "/resources/jewishfamilyservice/jfs_logo.jpg",
+    additionalImages:[
+      "resources/jewishfamilyservice/jfs_1.jpg",
+      "resources/jewishfamilyservice/jfs_2.jpg",
+      "resources/jewishfamilyservice/jfs_3.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "",
@@ -385,7 +425,7 @@ const opportunities: Opportunity[] = [
     }
   },
   {
-    name: "Norwest Abortion Access Fund",
+    name: "Northwest Abortion Access Fund",
     category: "Health & Wellness",
     description: "The Northwest Abortion Access Fund is an abortion fund serving Washington, Oregon, Idaho, and Alaska. Trained, compassionate volunteer advocates run our toll-free helpline. We help people pay for their abortion care by sending funding directly to the clinic. We also help people get to and from the clinic. And we make sure people traveling for care have a safe place to stay. ",
     coverImage: "",
@@ -613,11 +653,13 @@ export default function ResourcesPage() {
               >
                 {/* Image */}
                 <div className="relative aspect-video overflow-hidden bg-[#f5f0e8]">
+                  {item.coverImage && (
                   <Image
                     src={item.coverImage}
                     alt={item.name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  )}
                   <span
                     className="absolute top-3 left-3 text-[12px] font-bold tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
                     style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
@@ -731,7 +773,7 @@ export default function ResourcesPage() {
             {/* Description + Map */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[14px] font-black mb-2 text-[#CA5400]">
+                <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
                   ABOUT
                 </p>
                 <p className="text-[14px] text-[#100F0A] leading-[1.2]">
@@ -739,7 +781,7 @@ export default function ResourcesPage() {
                 </p>
               </div>
               <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[14px] font-black mb-2 text-[#CA5400]">
+                <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
                   LOCATION
                 </p>
                 <div className="overflow-hidden rounded-xl">
@@ -756,7 +798,7 @@ export default function ResourcesPage() {
 
             {/* Contact */}
             <div className="bg-[#f5f0e8] rounded-2xl p-4">
-              <p className="text-[14px] font-black tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+              <p className="text-[14px] font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
                 CONTACT
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -863,34 +905,52 @@ export default function ResourcesPage() {
 
             {/* Gallery */}
             {opportunity?.additionalImages && opportunity.additionalImages.length > 0 && (
-              <div>
-                <p className="text-[10px] font-black tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
-                  GALLERY
-                </p>
-                <Carousel
-                  responsive={{
-                    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
-                    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2, slidesToSlide: 1 },
-                    mobile: { breakpoint: { max: 464, min: 0 }, items: 1, slidesToSlide: 1 },
-                  }}
-                  keyBoardControl
-                  transitionDuration={500}
-                  containerClass="pb-2"
-                  itemClass="px-1.5"
-                >
-                  {opportunity.additionalImages.map((link, i) => (
-                    <div key={i} className="overflow-hidden rounded-xl aspect-video border border-[#e8e0d8]">
-                      <Image
-                        src={link}
-                        width={400}
-                        height={250}
-                        alt={`${opportunity.name} image ${i + 1}`}
-                        className="object-cover w-full h-full hover:scale-105 transition-transform duration-500" />
-                    </div>
-                  ))}
-                </Carousel>
-              </div>
-            )}
+            <div className="mt-2">
+              <p className="text-[14px] ml-4 font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+                GALLERY
+              </p>
+              <Carousel
+                responsive={{
+                  desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
+                  tablet: { breakpoint: { max: 1024, min: 640 }, items: 2, slidesToSlide: 1 },
+                  mobile: { breakpoint: { max: 640, min: 0 }, items: 1, slidesToSlide: 1 },
+                }}
+                keyBoardControl
+                transitionDuration={400}
+                containerClass="pb-4"
+                itemClass="px-2"
+                customLeftArrow={
+                  <button className="absolute left-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                }
+                customRightArrow={
+                  <button className="absolute right-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                }
+              >
+                {opportunity.additionalImages.map((link, i) => (
+                  <div
+                    key={i}
+                    className="overflow-hidden rounded-2xl aspect-[4/3] border border-[#e8e0d8] shadow-sm"
+                  >
+                    <Image
+                      src={link}
+                      width={600}
+                      height={450}
+                      alt={`${opportunity.name} image ${i + 1}`}
+                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          )}
           </div>
         </div>
       </dialog>
