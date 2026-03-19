@@ -44,7 +44,7 @@ const categoryMeta: Record<string, { color: string; bg: string; icon: React.Reac
 const opportunities: Opportunity[] = [
 {
   name: "Rainier Valley Food Bank",
-  category: "Food" as Category,
+  category: "Food",
     description: "RVFB is the primary emergency food resource for Seattle's most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     coverImage: "/resources/rainierfoodbank/rainier_valley_foodbank.png",
     additionalImages: [
