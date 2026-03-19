@@ -70,13 +70,13 @@ function ScrollColumn({
 const topThreeResources = [
   {
     id: 1,
-    tag: "FOOD ACCESS",
+    tag: "FOOD",
     title: "Rainier Valley Food Bank",
     description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     icon: "🥦",
     color: "#FD6900",
     span: "col-span-2 row-span-2",
-    image: "/topresources/landing_page_news_1.jpg",
+    image: "/resources/rainierfoodbank/rainier_foodbank_1.png",
   },
   {
     id: 2,
@@ -86,17 +86,17 @@ const topThreeResources = [
     icon: "🏠",
     color: "#52AD6A",
     span: "col-span-1 row-span-1",
-    image: "/topresources/landing_page_news_2.jpg",
+    image: "/resources/marysplace/marys_place_3.png",
   },
   {
     id: 3,
     tag: "HEALTH",
-    title: "THIRA Health",
-    description: "Adult residential treatment program for individuals aged 18+ struggling with anxiety, depression, and trauma, offering paths toward mental wellness.",
+    title: "Lahai Health",
+    description: "Lahai Health is a free and charitable health clinic committed to providing quality and compassionate care to individuals and families who face barriers to accessing healthcare in King and Snohomish Counties.",
     icon: "🩺",
     color: "#ff3333",
     span: "col-span-1 row-span-1",
-    image: "/topresources/landing_page_news_3.jpg",
+    image: "/resources/lahai/lahai_1.jpg",
   },
 ];
 
@@ -105,31 +105,31 @@ const topThreeResources = [
 const newsItems = [
   { 
     id: "01", 
-    category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    category: "SOCIAL & FAMILY SUPPORT", 
+    title: "Local Non-Profit Hosts Winter Clothes Drive for Families",
+    summary: "A local Seattle non-profit is going to be hosting a winter clothes drive for families on January 12 at 12pm. With more supporters than ever, they have partnered with elementary schools and foster programs to provide kids with the warm clothes they need this winter. If you’re interested in donating or getting involved, keep reading! ",
+    image: "/news/news_family_image.jpg",
   },
   { 
     id: "02", 
-    category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    category: "HEALTH & WELLNESS", 
+    title: "Mobile Clinics: What are they?",
+    summary: "Since the pandemic, many health institutions have been participating in mobile clinics. We seem to them often at schools and community centers, but many still aren’t familiar with them despite their great benefits, especially for underserved communities. In this article, we’ll be discussing what mobile clinics are and how they’ve expanded over the years. ",
+    image: "/news/news_health_image.jpg",
   },
   { 
     id: "03", 
-    category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    category: "HOUSING", 
+    title: "Habitat for Humanity Open New Building in Capitol Hill",
+    summary: "Habitat for Humanity in a non-profit organization aimed at helping create affordable housing. For the past year they have been working on a new building down in Capitol Hill that just opened last Friday. Many Seattle citizens are anticipating great changes and opportunities to arise from this!",
+    image: "/news/news_housing.jpg",
   },
   { 
     id: "04", 
     category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    title: "High School Partners with Rainier Valley Foodbank for a Food Drive",
+    summary: "At a high school in the Seattle Public School district, their school Key Club has partnered with Rainier Valley Foodbank for a food drive. Students at the school donate food items at the Key Club donation bin, and they send those off to RVFB for others to receive. When asked why they chose to host a food drive with RVFB, a student said, “Rainier Valley Foodbank is open to everyone, and though many who receive those goods aren’t student here, they’re still a part of our community.”",
+    image: "/news/news_food.jpg",
   },
 ];
 //Progress bar time
@@ -156,9 +156,30 @@ const dotColors: Record<string, { active: string; inactive: string }> = {
   newsletter: { active: "#ffffff", inactive: "#ffffff40" },
 };
 
+//-----------------------------------------------------Calendar --------------------------------------------------------
+
+//Events Data
+const EVENTS = [
+  { date: '2026-03-17', type: 'WORKSHOP', title: 'Resume & Interview Skills', detail: 'Main Hub  10am - 1pm  Free' },
+  { date: '2026-03-26', type: 'HEALTH CLINIC', title: 'Community Health Screening', detail: 'Main Hub  10am - 1pm  Free' },
+  { date: '2026-04-04', type: 'WORKSHOP', title: 'Resume & Interview Skills', detail: 'Main Hub  10am - 1pm  Free' },
+  { date: '2026-04-11', type: 'WORKSHOP', title: 'Small Business Basics', detail: 'Room B  9am - 12pm  Free' },
+  { date: '2026-04-18', type: 'COMMUNITY EVENT', title: 'Spring Community Fair', detail: 'Main Hall  11am - 3pm  Free' },
+  { date: '2026-05-02', type: 'WORKSHOP', title: 'Digital Skills Bootcamp', detail: 'Main Hub  10am - 2pm  Free' },
+  { date: '2026-05-15', type: 'HEALTH CLINIC', title: 'Mental Health Open Day', detail: 'Wellness Room  10am - 4pm  Free' },
+];
+
+//Months and Days
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAY_LABELS = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+
+function isoDate(y: number, m: number, d: number) {
+  return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+}
+
 
 export default function Home() {
-  //News Page
+  //-----------------------News Page--------------------------------
   const [featuredIdx, setFeaturedIdx] = useState(0);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [progress, setProgress] = useState(0);
@@ -213,13 +234,12 @@ export default function Home() {
     Housing: false, Food: false, Health: false, Jobs: false, Events: false,
   });
   
-  //Top Resources
+  //-------------Top Resources-------------------------------------------------------
   const [hovered, setHovered] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("hero");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
   const [autoHovered, setAutoHovered] = useState<number>(1);
   const [isManualHover, setIsManualHover] = useState(false);
-
   const toggleTopic = (topic: Topic) =>
     setTopics((prev) => ({ ...prev, [topic]: !prev[topic] }));
 
@@ -252,6 +272,62 @@ export default function Home() {
     }, 4000);
     return () => clearInterval(interval);
   }, [isManualHover]);
+
+
+  //-----------------------------------function for the calendar-----------------------------------
+  const today = new Date();
+  const todayISO = isoDate(today.getFullYear(), today.getMonth(), today.getDate());
+
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
+  const goToPrev = () => {
+    if (viewMonth === 0) { setViewMonth(11); setViewYear(y => y - 1); }
+    else setViewMonth(m => m - 1);
+    setSelectedDate(null);
+  };
+  const goToNext = () => {
+    if (viewMonth === 11) { setViewMonth(0); setViewYear(y => y + 1); }
+    else setViewMonth(m => m + 1);
+    setSelectedDate(null);
+  };
+
+  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const prevMonthDays = new Date(viewYear, viewMonth, 0).getDate();
+
+  const cells: { iso: string; day: number; currentMonth: boolean }[] = [];
+  for (let i = 0; i < firstDay; i++) {
+    const d = prevMonthDays - firstDay + 1 + i;
+    const prevMonth = viewMonth === 0 ? 11 : viewMonth - 1;
+    const prevYear = viewMonth === 0 ? viewYear - 1 : viewYear;
+    cells.push({ iso: isoDate(prevYear, prevMonth, d), day: d, currentMonth: false });
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    cells.push({ iso: isoDate(viewYear, viewMonth, d), day: d, currentMonth: true });
+  }
+  const remaining = cells.length % 7 === 0 ? 0 : 7 - (cells.length % 7);
+  for (let d = 1; d <= remaining; d++) {
+    const nextMonth = viewMonth === 11 ? 0 : viewMonth + 1;
+    const nextYear = viewMonth === 11 ? viewYear + 1 : viewYear;
+    cells.push({ iso: isoDate(nextYear, nextMonth, d), day: d, currentMonth: false });
+  }
+
+  const eventDates = new Set(EVENTS.map(e => e.date));
+
+  const displayedEvents = selectedDate
+    ? EVENTS.filter(e => e.date === selectedDate)
+    : EVENTS.filter(e => e.date >= todayISO).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
+
+  const eventsHeading = selectedDate
+    ? (() => { const [, m, d] = selectedDate.split('-'); return `${MONTHS[parseInt(m) - 1]} ${parseInt(d)}`; })()
+    : 'Next up';
+
+
+
+
+
 
   return (
     <>
@@ -576,13 +652,15 @@ export default function Home() {
               </div>
 
               {/* Right — image fills the row height */}
-              <div className="relative rounded-xl overflow-hidden bg-[#161410] border border-[#2a2820] min-h-0">
+              <div className="relative rounded-xl overflow-hidden bg-[#161410] border border-[#2a2820] min-h-0 mb-8">
+                {featured.image && (
+                <img
+                  src={featured.image}
+                  alt={featured.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
                 <div className="absolute inset-0 bg-linear-to-br from-[#CA5400]/8 to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <span className="text-[#2a2820] text-[9px] font-black tracking-widest uppercase">
-                    {featured.category}
-                  </span>
-                </div>
               </div>
             </div>
 
@@ -640,15 +718,111 @@ export default function Home() {
         <section
           id="events"
           ref={(el) => { sectionRefs.current.events = el; }}
-          className="min-h-screen bg-[#fefcf8] flex flex-col justify-center overflow-hidden"
-          style={{ scrollSnapAlign: "start" }}
+          className="h-screen bg-[#fefcf8] flex flex-col justify-center overflow-hidden pt-30"
+          style={{ scrollSnapAlign: 'start' }}
         >
-          <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+          <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-25 mt-5 ">
+            {/* Top header */}
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-2">
+              <h2 className="text-[clamp(36px,5vw,60px)] font-extrabold text-[#100F0A] leading-[.8]">
+                <span className="text-[#FD6900]">Join us</span><br />in person
+              </h2>
+              <p className="text-[12px] text-[#191919] opacity-.5 md:max-w-65 md:text-right leading-[1.6] mt-10">
+                Free workshops, health clinics, community events,
+                and many more – open to all residents.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 mt-5 pb-20">
+              {/* Left: Calendar */}
               <div>
-                <h2 className="text-[clamp(36px,5vw,60px)] font-extrabold text-[#100F0A] mb-6 leading-[1.1]">
-                  <span className="text-[#FD6900]">Join us</span><br />in person
-                </h2>
+                <div className="flex items-center gap-3 mt-2 mb-3">
+                  <span className="font-extrabold text-[18px] text-[#100F0A]">{MONTHS[viewMonth]}</span>
+                  <span className="font-extrabold text-[18px] text-[#100F0A]">{viewYear}</span>
+                  <button onClick={goToPrev} className="w-6 h-6 border border-[#ddd] rounded flex items-center justify-center text-sm hover:bg-[#f0ede7] transition-colors">‹</button>
+                  <button onClick={goToNext} className="w-6 h-6 border border-[#ddd] rounded flex items-center justify-center text-sm hover:bg-[#f0ede7] transition-colors">›</button>
+                </div>
+
+                {/* Day labels */}
+                <div className="grid grid-cols-7 gap-0.5 mb-0.5 px-4">
+                  {DAY_LABELS.map(d => (
+                    <div key={d} className="text-center text-[12px] font-bold tracking-wide text-[#aaa] uppercase py-1">{d}</div>
+                  ))}
+                </div>
+
+                {/* Cells */}
+                <div className="grid grid-cols-7 gap-0.5 pb-4 px-4">
+                  {cells.map((cell, i) => {
+                    const isToday = cell.iso === todayISO;
+                    const isSelected = cell.iso === selectedDate;
+                    const hasEvent = eventDates.has(cell.iso) && cell.currentMonth;
+
+                    let cellClass = 'aspect-square flex items-center justify-center text-[11px] font-medium relative ';
+                    if (!cell.currentMonth) cellClass += 'text-[#ccc] ';
+                    else if (isSelected) cellClass += 'bg-[#FD6900] text-white rounded-full ';
+                    else if (isToday) cellClass += 'bg-[#100F0A] text-[#fefcf8] rounded-full ';
+                    else cellClass += 'text-[#100F0A] ';
+                    if (hasEvent && !isSelected && !isToday) cellClass += 'hover:bg-[#fff3ea] rounded cursor-pointer ';
+                    if (hasEvent && cell.currentMonth) cellClass += 'cursor-pointer ';
+
+                    return (
+                    <div
+                      key={i}
+                      className={`aspect-square flex items-center justify-center text-[11px] font-medium relative ${
+                        !cell.currentMonth ? 'text-[#ccc]' :
+                        hasEvent && !isSelected && !isToday ? 'hover:bg-[#fff3ea] rounded cursor-pointer text-[#100F0A]' :
+                        'text-[#100F0A]'
+                      } ${hasEvent && cell.currentMonth ? 'cursor-pointer' : ''}`}
+                      onClick={() => hasEvent && cell.currentMonth && setSelectedDate(prev => prev === cell.iso ? null : cell.iso)}
+                    >
+                      <span className={`w-20 h-20 flex items-center justify-center rounded-full text-[14px] font-medium ${
+                        isSelected ? 'bg-[#FD6900] text-white' :
+                        isToday ? 'bg-[#100F0A] text-[#fefcf8]' :
+                        ''
+                      }`}>
+                        {cell.day}
+                      </span>
+                      {hasEvent && cell.currentMonth && (
+                        <span
+                          className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full"
+                          style={{ background: isSelected || isToday ? '#fff' : '#FD6900' }}
+                        />
+                      )}
+                    </div>
+                  );
+                  })}
+                </div>
+              </div>
+
+              {/* Right: Events */}
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <span className="font-extrabold text-lg text-[#100F0A]">{eventsHeading}</span>
+                  <a href="/events" className="flex items-center gap-1.5 text-[11px] font-bold tracking-widest uppercase text-[#FD6900] hover:underline">
+                    View full calendar <span>→</span>
+                  </a>
+                </div>
+
+                <div className="divide-y divide-[#e0ddd7]">
+                  {displayedEvents.length === 0 ? (
+                    <p className="py-8 text-sm text-center text-[#aaa]">No events on this day</p>
+                  ) : displayedEvents.map((ev, i) => {
+                    const [, m, d] = ev.date.split('-');
+                    return (
+                      <div key={i} className="flex items-start gap-5 py-4">
+                        <div className="min-w-[48px] text-center">
+                          <div className="text-[#FD6900] font-extrabold text-3xl leading-none">{parseInt(d)}</div>
+                          <div className="text-[#100F0A] text-[10px] font-bold tracking-widest mt-0.5 uppercase">{MONTHS[parseInt(m) - 1].slice(0, 3)}</div>
+                        </div>
+                        <div>
+                          <div className="text-[10px] font-bold tracking-widest text-[#999] uppercase mb-0.5">{ev.type}</div>
+                          <div className="font-bold text-[#100F0A] text-base leading-snug">{ev.title}</div>
+                          <div className="text-xs text-[#666] mt-0.5">{ev.detail}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
