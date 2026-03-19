@@ -196,7 +196,7 @@ const opportunities: Opportunity[] = [
       "/resources/perscholas/per_scholas_2.jpg",
       "/resources/perscholas/per_scholas_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.615457781105!2d-122.3425843!3d47.6141665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549015afb0767ad3%3A0x889c28932e25aeaa!2sPer%20Scholas%20Seattle!5e0!3m2!1sen!2sus!4v1773907605015!5m2!1sen!2sus",
     contact: {
       email: "seattletraining@perscholas.org",
       phone: "1-(206)-209-2940",
@@ -218,7 +218,7 @@ const opportunities: Opportunity[] = [
       "/resources/seattlerecreative/seattle_recreative_2.jpg",
       "/resources/seattlerecreative/seattle_recreative_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86181.6275711991!2d-122.39874464179685!3d47.54490590000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490410e304c67e9%3A0x4acd8e9976c324d2!2sSeattle%20ReCreative%20Georgetown!5e0!3m2!1sen!2sus!4v1773907669044!5m2!1sen!2sus",
     contact: {
       email: "info@seattlerecreative.org",
       phone: "1-(833)-467-3873",
@@ -517,12 +517,15 @@ const opportunities: Opportunity[] = [
     name: "Northwest Abortion Access Fund",
     category: "Health & Wellness",
     description: "The Northwest Abortion Access Fund is an abortion fund serving Washington, Oregon, Idaho, and Alaska. Trained, compassionate volunteer advocates run our toll-free helpline. We help people pay for their abortion care by sending funding directly to the clinic. We also help people get to and from the clinic. And we make sure people traveling for care have a safe place to stay. ",
-    coverImage: "",
+    coverImage: "/resources/northwestabortion/NW_Abortion_Fund_logo.png",
+    additionalImages:[
+      "/resources/northwestabortion/NW_Abortion_Fund_1.jpg",
+    ],
     mapSrc: "",
     contact: {
       email: "info@nwaafund.org",
-      phone: "1-866-NWAAF10 or (1-866-692-2310)",
-      address: "",
+      phone: "1-(866)-692-2310",
+      address: "N/A",
       url: "https://nwaafund.org/"
     }
   },
@@ -548,12 +551,17 @@ const opportunities: Opportunity[] = [
     name: "Help Me Grow",
     category: "Health & Wellness",
     description: "Help Me Grow Washington is a growing system of nonprofit organizations, Tribal nations, regional and county health and social service organizations, providers and provider organizations, and state agencies working together to serve families in Washington. We weave together state and community systems, providers, and resources to offer a full spectrum of supports to all families in Washington state with young children. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/helpmegrow/help_me_grow_logo.png",
+    additionalImages:[
+      "/resources/helpmegrow/help_me_grow_1.jpg",
+      "/resources/helpmegrow/help_me_grow_2.jpg",
+      "/resources/helpmegrow/help_me_grow_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d891.3727139914065!2d-122.32741160487296!3d47.700670345920884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549013ff9c4debb9%3A0x4887dfc8b26bcdbd!2sNorthgate%20Executive%20Center%20I%2C%20155%20NE%20100th%20St%20%23410%2C%20Seattle%2C%20WA%2098125!5e0!3m2!1sen!2sus!4v1773906763515!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-800-322-2588",
-      address: "PO Box 155 N.E. 100th St., #410 Seattle, WA 98125 ",
+      address: "PO Box 155 N.E. 100th St., #410 Seattle, WA 98125",
       url: "https://helpmegrowwa.org/"
     }
   },
@@ -561,8 +569,13 @@ const opportunities: Opportunity[] = [
     name: "Washington Healthcare Access Alliance",
     category: "Health & Wellness",
     description: "Washington Healthcare Access Alliance is Washington's free clinic association. We provide programming focused on free and charitable care and healthcare volunteerism.",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/whaa/WHAA_logo.png",
+    additionalImages:[
+      "/resources/whaa/WHAA_1.jpg",
+      "/resources/whaa/WHAA_2.jpg",
+      "/resources/whaa/WHAA_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2707.140185297283!2d-122.48806884999999!3d47.2725141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549054eef8fb1a15%3A0xeea7e0f2b4990c32!2sTacoma%2C%20WA%2098417!5e0!3m2!1sen!2sus!4v1773906930020!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-(206)-788-3700",
@@ -574,8 +587,13 @@ const opportunities: Opportunity[] = [
     name: "Youth in Focus",
     category: "Education",
     description: "As Seattle’s only photography-based youth development organization, we provide free photography classes and mentorship to over 450 middle and high school students each year. We create a safe, inclusive community where teens can explore their creativity, develop technical skills, and gain the confidence to share their stories—and shape their futures. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/yif/yif_logo.jpg",
+    additionalImages:[
+      "/resources/yif/yif_1.jpg",
+      "/resources/yif/yif_2.jpg",
+      "/resources/yif/yif_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5382.321016559659!2d-122.30147479999998!3d47.58412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906a8be911926f%3A0x5492562a2e4c9870!2sYouth%20in%20Focus!5e0!3m2!1sen!2sus!4v1773907075189!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-(206)-723-1479",
@@ -587,8 +605,13 @@ const opportunities: Opportunity[] = [
     name: "Treehouse",
     category: "Education",
     description: "Started in 1988, Treehouse is the only nonprofit in Washington state focused on the specific educational, material and financial needs of youth in foster care. Our approach is to walk alongside youth and support their unique needs. Together, we are creating a road to hope and possibility for youth in foster care in Washington state. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/treehouse/treehouse_logo.png",
+    additionalImages:[
+      "/resources/treehouse/treehouse_1.jpg",
+      "/resources/treehouse/treehouse_2.jpg",
+      "/resources/treehouse/treehouse_3.jpg",
+    ],
+    mapSrc:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5382.310508415388!2d-122.30126709999998!3d47.584222199999985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906a8be911926f%3A0x11c15d8aa8964cbc!2sTreehouse!5e0!3m2!1sen!2sus!4v1773907191976!5m2!1sen!2sus",
     contact: {
       email: "info@treehouseforkids.org",
       phone: "1-(206)-767-7000",
@@ -600,8 +623,13 @@ const opportunities: Opportunity[] = [
     name: "Rainier Scholars",
     category: "Education",
     description: "Rainier Scholars cultivates students’ academic and leadership potential through rigorous, transformative opportunities that increase college graduation rates and empower new generations of leaders. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/rainierscholars/rainier_scholars_logo.jpg",
+    additionalImages:[
+      "/resources/rainierscholars/rainier_scholars_1.jpg",
+      "/resources/rainierscholars/rainier_scholars_2.jpg",
+      "/resources/rainierscholars/rainier_scholars_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.163217568084!2d-122.30131349999999!3d47.58406730000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906a8be911926f%3A0x5db51753e6775f4e!2sRainier%20Scholars!5e0!3m2!1sen!2sus!4v1773907304197!5m2!1sen!2sus",
     contact: {
       email: "info@rainierscholars.org",
       phone: "1-(206)-407-2111",
@@ -613,12 +641,17 @@ const opportunities: Opportunity[] = [
     name: "One World Now!",
     category: "Education",
     description: "OneWorld Now! was founded in Seattle, Washington, in 2002, following the events of 9/11. It was a brave vision in the atmosphere of the time. OWN Founder, Kristin Hayden, sought to build bridges of connection with cultures the U.S. has been challenged to understand. She also believed in the power of focusing on high school students who have the least access to global education. In the beginning, we launched a pilot Arabic language program at Ingraham High School in north Seattle with just 12 students. Today, OWN involves 250 students annually. Our programs enroll students in person in Seattle and online from across the U.S. – and beyond!",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/oneworld/one_world_logo.jpg",
+    additionalImages:[
+      "/resources/oneworld/one_world_1.jpg",
+      "/resources/oneworld/one_world_2.png",
+      "/resources/oneworld/one_world_3.png",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2690.4907250088904!2d-122.3248519!3d47.597147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906abaae2e4f17%3A0x44851467320b8d76!2sOneWorld%20Now!5e0!3m2!1sen!2sus!4v1773907457612!5m2!1sen!2sus",
     contact: {
       email: "info@oneworldnow.org",
       phone: "1-(206)-223-7703",
-      address: "PO Box 3263 Seattle, WA 98114",
+      address: "610 Maynard Ave S, Seattle, WA 98104",
       url: "https://oneworldnow.org/"
     }
   },
@@ -626,12 +659,17 @@ const opportunities: Opportunity[] = [
     name: "School Connect WA",
     category: "Education",
     description: "At School Connect WA, we provide exceptional academic afterschool programs for underserved children through the generous support of local churches and the united efforts of our whole community. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/schoolconnect/school_connect_logo.jpg",
+    additionalImages:[
+      "/resources/schoolconnect/school_connect_1.jpg",
+      "/resources/schoolconnect/school_connect_2.jpg",
+      "/resources/schoolconnect/school_connect_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.797623853004!2d-122.2962424!3d47.5522674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041f1a213e61f%3A0x2344aa62b300442e!2sSchool%20Connect%20WA!5e0!3m2!1sen!2sus!4v1773907564402!5m2!1sen!2sus",
     contact: {
       email: "info@schoolconnectwa.org",
       phone: "1-(206)-249-9247",
-      address: "2820 S Orcas St  |  Seattle, WA 98108 ",
+      address: "2820 S Orcas St, Seattle, WA 98108",
       url: "https://www.schoolconnectwa.org/"
     }
   }
