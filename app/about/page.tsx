@@ -7,12 +7,12 @@ import Image from "next/image";
 
 const timelineData = [
   {
-    year: "2013",
+    year: "2012",
     title: "A Humble Beginning",
     body: "Founded by Katherine Marina, she realized how hard it was to find quality community resources for low-income families. She decided to start Wake-up with the goal of creating a community that makes finding resources easy.",
     color: "#e8e0d5",
     accent: "#d4622a",
-    image: "/timeline/about_page_hero.jpg",
+    image: "/timeline/timeline_2012.jpg",
   },
   {
     year: "2017",
@@ -20,7 +20,7 @@ const timelineData = [
     body: "Opened an office in Capitol Hill. Helped over 1,000 people in the greater Seattle area receive resources they need.",
     color: "#e8e0d5",
     accent: "#d4622a",
-    image: "/timeline/about_page_hero.jpg",
+    image: "/timeline/timeline_2017.jpg",
   },
   {
     year: "2020",
@@ -28,15 +28,15 @@ const timelineData = [
     body: "Struck by the pandemic, we decided to shift our focus to redesigning our website to be accessible to everyone, creating a user friendly design and an option for anyone to upload a resource, no login required.",
     color: "#e8e0d5",
     accent: "#d4622a",
-    image: "/timeline/about_page_hero.jpg",
+    image: "/timeline/timeline_2020.jpg",
   },
   {
-    year: "2023",
+    year: "2025",
     title: "New Horizons",
     body: "After 13 amazing years, we have still continued providing people in the Seattle, Washington area a safe place to share and find resources. We look forward to the many more years to come!",
     color: "#e8e0d5",
     accent: "#d4622a",
-    image: "/timeline/about_page_hero.jpg",
+    image: "/timeline/timeline_2025.jpg",
   },
 ];
 
@@ -275,8 +275,8 @@ export default function AboutPage() {
                 {/* Stat strip */}
                 <div className="flex gap-8 mt-10">
                   {[
-                    { value: "1,200+", label: "Active Volunteers" },
-                    { value: "40+",    label: "Partner Orgs" },
+                    { value: "90+", label: "Active Volunteers" },
+                    { value: "35+",    label: "Partner Orgs" },
                     { value: "8k hrs", label: "Served This Year" },
                   ].map(({ value, label }) => (
                     <div key={label}>

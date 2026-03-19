@@ -651,8 +651,7 @@ export default function Home() {
                   Never miss<br />what matters.
                 </h2>
                 <p className="text-[clamp(12px,1.5vw,14px)] leading-relaxed mb-6 text-white max-w-xs">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing
-                  elit quisque faucibus ex sapien vitae.
+                    Get the best resources, first. Subscribe to receive new resources, updates, and helpful tips from WAsHub.
                 </p>
                 <ul className="space-y-2">
                   {["Weekly updates every Monday morning", "Event reminders 48 hours in advance", "Your data stays private"].map((item) => (
