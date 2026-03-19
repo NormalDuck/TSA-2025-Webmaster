@@ -75,7 +75,6 @@ const opportunities: Opportunity[] = [
       "/resources/rainierfoodbank/rainier_foodbank_2.png",
       "/resources/rainierfoodbank/rainier_foodbank_3.png",
     ],
-    description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d976.4345332612065!2d-122.27155783419396!3d47.52256292704315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54904272bde20a7f%3A0x35f2ec223db1fa9e!2s9021%20Rainier%20Ave%20S%2C%20Seattle%2C%20WA%2098118!5e0!3m2!1sen!2sus!4v1773863046263!5m2!1sen!2sus",
     contact: {
       email: "info@rvfb.org",
@@ -94,7 +93,6 @@ const opportunities: Opportunity[] = [
       "/resources/seattlecommitte/seattle_committe_2.jpg",
       "/resources/seattlecommitte/seattle_committe_3.jpg",
     ],
-    description: "Applying an equitable anti-racist and food justice lens, SFC partners with distributors and BIPOC vendors to ensure the city’s emergency food system continues to grow stronger and more sustainable.",
     mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.1958252780496!2d-122.34151958735626!3d47.66119207107466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901450d4cee58f%3A0x90fef526d8a4e8e6!2s1501%20N%2045th%20St%2C%20Seattle%2C%20WA%2098103!5e0!3m2!1sen!2sus!4v1773863213500!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-694-6756",
@@ -745,7 +743,7 @@ export default function ResourcesPage() {
                 >
                   {isActive && (
                     <span
-                      className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full"
+                      className="absolute left-0 top-2 bottom-2 w-0.75 rounded-full"
                       style={{ backgroundColor: m?.color ?? "#CA5400" }}
                     />
                   )}
