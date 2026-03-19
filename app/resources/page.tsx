@@ -30,6 +30,8 @@ export interface Opportunity {
 }
 
 import { Category, Resources, resources } from "@/constants/resources";
+import { useStore } from "zustand";
+import { customResourcesState } from "@/state/user-resources";
 
 //Meta information for each category
 const categoryMeta: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
@@ -247,7 +249,7 @@ const opportunities: Opportunity[] = [
   {
     name: "University District Food Bank",
     category: "Food",
-    description: "Our U-District Pantry is open for in-person shopping on Monday, Tuesday, Thursday, and Friday. We offer fresh fruits and vegetables, dairy, eggs or frozen meat, canned and dried goods, toiletries, baby formula, diapers, and pet food plus connections to important community resources. We try to provide food for several days, but please follow posted  guidelines so that food is available for all our customers. We do our best, but sometimes we won’t have everything you hope to find. If there are foods you would like to find on our shelves, please let us know (leave a note in our comment box, tell a food bank staff person) so that we can look for ways to include these foods in the future. We are always excited to consider more produce, dairy, and protein options. If you are uncomfortable shopping in our store directly, you can complete a shopping preference form and a volunteer shopper can collect your groceries while you wait. We primarily support community members from zip codes 98102, 98103, 98105, 98112, 98115, and 98125 although all are welcome. Customers may visit once per week during any of our open hours. We can also help you find more food help if we aren’t meeting your needs. Just ask or check with the Community Information Line (just dial 2-1-1 or toll free at 1-800-621-4636) and the Crisis Connections website. ",
+    description: "Our U-District Pantry is open for in-person shopping on Monday, Tuesday, Thursday, and Friday. We offer fresh fruits and vegetables, dairy, eggs or frozen meat, canned and dried goods, toiletries, baby formula, diapers, and pet food plus connections to important community resources. We try to provide food for several days, but please follow posted  guidelines so that food is available for all our customers. We do our best, but sometimes we won't have everything you hope to find. If there are foods you would like to find on our shelves, please let us know (leave a note in our comment box, tell a food bank staff person) so that we can look for ways to include these foods in the future. We are always excited to consider more produce, dairy, and protein options. If you are uncomfortable shopping in our store directly, you can complete a shopping preference form and a volunteer shopper can collect your groceries while you wait. We primarily support community members from zip codes 98102, 98103, 98105, 98112, 98115, and 98125 although all are welcome. Customers may visit once per week during any of our open hours. We can also help you find more food help if we aren't meeting your needs. Just ask or check with the Community Information Line (just dial 2-1-1 or toll free at 1-800-621-4636) and the Crisis Connections website. ",
     coverImage: "/resources/universityfoodbank/udfb_logo.jpg",
     additionalImages:[
       "/resources/universityfoodbank/udfb_1.jpg",
@@ -264,7 +266,7 @@ const opportunities: Opportunity[] = [
   {
     name: "Northwest Harvest",
     category: "Food",
-    description: "We build partnerships in communities across Washington to get food where it’s needed most. We provide an average of two million meals each month through our statewide network of more than 350 food banks, meal programs, schools, and community-based organizations. Part of a justice-centered movement, we advocate to change inequitable policies, practices, and institutions that perpetuate hunger and poverty. Together, we ensure communities across our state can access the nutritious food they want and need to thrive. ",
+    description: "We build partnerships in communities across Washington to get food where it's needed most. We provide an average of two million meals each month through our statewide network of more than 350 food banks, meal programs, schools, and community-based organizations. Part of a justice-centered movement, we advocate to change inequitable policies, practices, and institutions that perpetuate hunger and poverty. Together, we ensure communities across our state can access the nutritious food they want and need to thrive. ",
     coverImage: "/resources/northwestharvest/nw_harvest_logo.jpg",
     additionalImages:[
       "/resources/northwestharvest/nw_havest_1.jpg",
@@ -336,7 +338,7 @@ const opportunities: Opportunity[] = [
   {
     name: "Akin",
     category: "Social & Family Support",
-    description: "Akin exists to support and strengthen Washington state families. From prenatal to adulthood, prevention to intervention, our programs and services are built upon more than a century of helping create nurturing environments and systemic improvements for families in the state. As we move into the future, we’re holding fast to our dedication to keeping families together. ",
+    description: "Akin exists to support and strengthen Washington state families. From prenatal to adulthood, prevention to intervention, our programs and services are built upon more than a century of helping create nurturing environments and systemic improvements for families in the state. As we move into the future, we're holding fast to our dedication to keeping families together. ",
     coverImage: "/resources/akin/akin_logo.jpg",
     additionalImages:[
       "/resources/akin/akin_1.jpg",
@@ -426,7 +428,7 @@ const opportunities: Opportunity[] = [
   {
     name: "Habitat for Humanity",
     category: "Housing",
-    description: "In King and Kittitas Counties, and around the world, Habitat for Humanity brings people together as volunteers, homeowners, donors, and community members to create strength, stability, and self-reliance through shelter. Habitat International was named by Engage for Good as its “2020 Golden Halo Award” nonprofit winner, the group’s highest honor for causes that engage in activities designed to do well by doing good. In 2021 Habitat was also named “One of America’s 100 Favorite Charities*”. In our community, Habitat for Humanity constructs affordable homes, repairs homes for income-qualified homeowners and seniors, operates discount home improvement stores in Auburn, Southcenter, Bellevue, and Ellensburg, and mobilizes nearly 2,500 volunteers a year. ",
+    description: "In King and Kittitas Counties, and around the world, Habitat for Humanity brings people together as volunteers, homeowners, donors, and community members to create strength, stability, and self-reliance through shelter. Habitat International was named by Engage for Good as its 2020 Golden Halo Award nonprofit winner, the group's highest honor for causes that engage in activities designed to do well by doing good. In 2021 Habitat was also named One of America's 100 Favorite Charities*. In our community, Habitat for Humanity constructs affordable homes, repairs homes for income-qualified homeowners and seniors, operates discount home improvement stores in Auburn, Southcenter, Bellevue, and Ellensburg, and mobilizes nearly 2,500 volunteers a year.",
     coverImage: "/resources/habitatforhumanity/habitat_logo.jpg",
     additionalImages:[
       "/resources/habitatforhumanity/habitat_1.jpg",
@@ -480,7 +482,7 @@ const opportunities: Opportunity[] = [
   {
     name: "Community Youth Services",
     category: "Housing",
-    description: "We can provide you with nutritious food and to-go snacks, help you sign up for shower times, get you clean, warm clothing from our clothing closet, including access to laundry services, and hygiene supplies. We can help with crisis intervention when you’re having a hard time, offer safe shelter, and render first aid and supplies. We arrange drug/alcohol treatment referrals, assist with job search and goal setting, refer to legal support and advocacy, other community referrals…and more! We follow your lead and Case Managers are on-site to support you in reaching any and all of your goals.\n\nOur Outreach Teams are available for off-site appointments and we continue to build recreational, educational, and developmentally appropriate activities throughout the week (subject to COVID restrictions).",
+    description: "We can provide you with nutritious food and to-go snacks, help you sign up for shower times, get you clean, warm clothing from our clothing closet, including access to laundry services, and hygiene supplies. We can help with crisis intervention when you're having a hard time, offer safe shelter, and render first aid and supplies. We arrange drug/alcohol treatment referrals, assist with job search and goal setting, refer to legal support and advocacy, other community referrals…and more! We follow your lead and Case Managers are on-site to support you in reaching any and all of your goals.\n\nOur Outreach Teams are available for off-site appointments and we continue to build recreational, educational, and developmentally appropriate activities throughout the week (subject to COVID restrictions).",
     coverImage: "/resources/cys/cys_logo.jpg",
     additionalImages:[
       "/resources/cys/cys_1.jpg",
@@ -573,7 +575,7 @@ const opportunities: Opportunity[] = [
   {
     name: "Youth in Focus",
     category: "Education",
-    description: "As Seattle’s only photography-based youth development organization, we provide free photography classes and mentorship to over 450 middle and high school students each year. We create a safe, inclusive community where teens can explore their creativity, develop technical skills, and gain the confidence to share their stories—and shape their futures. ",
+    description: "As Seattle's only photography-based youth development organization, we provide free photography classes and mentorship to over 450 middle and high school students each year. We create a safe, inclusive community where teens can explore their creativity, develop technical skills, and gain the confidence to share their stories—and shape their futures. ",
     coverImage: "",
     mapSrc: "",
     contact: {
@@ -599,7 +601,7 @@ const opportunities: Opportunity[] = [
   {
     name: "Rainier Scholars",
     category: "Education",
-    description: "Rainier Scholars cultivates students’ academic and leadership potential through rigorous, transformative opportunities that increase college graduation rates and empower new generations of leaders. ",
+    description: "Rainier Scholars cultivates students' academic and leadership potential through rigorous, transformative opportunities that increase college graduation rates and empower new generations of leaders. ",
     coverImage: "",
     mapSrc: "",
     contact: {
@@ -651,12 +653,21 @@ export default function ResourcesPage() {
   const [resourceSearch, setResourceSearch] = useState("");
   const [category, setCategory] = useState<Category>("All");
   const [opportunity, setOpportunity] = useState<Resources>();
+  const [currentResource, setCurrentResource] = useState<Resources>({
+    category: "All", contact: { address: "" },
+    name: "", coverImage: "", additionalImages: [], description: "", mapSrc: ""
+  });
+  const [mainImage, setMainImage] = useState<string>("");
+  const [mainImageFile, setMainImageFile] = useState<File | null>(null);
+  const [additionalImages, setAdditionalImages] = useState<(File | null)[]>([null, null, null]);
 
+  const customResources = useStore(customResourcesState);
   const visibleOpportunities = useMemo(() => {
+    const joinedResources = [...resources, ...customResources.resources];
     const byCategory = category !== "All"
-      ? opportunities.filter((o) => o.category === category)
-      : opportunities;
-  
+      ? joinedResources.filter((o) => o.category === category)
+      : joinedResources;
+
     if (!resourceSearch.trim()) return byCategory;
 
     const q = resourceSearch.toLowerCase();
@@ -666,17 +677,9 @@ export default function ResourcesPage() {
         o.description.toLowerCase().includes(q) ||
         o.contact.address.toLowerCase().includes(q)
     );
-  }, [category, resourceSearch]);
+  }, [category, resourceSearch, customResources]);
 
   const meta = opportunity ? categoryMeta[opportunity.category] : null;
-
-
-  //Learn more button
-  const titleToOpportunityName: Record<string, string> = {
-    "Rainier Valley Food Bank": "Rainier Valley Food Bank",
-    "Mary's Place": "Mary's Place",
-    "THIRA Health": "THIRA Health",
-  };
 
   const searchParams = useSearchParams();
 
@@ -696,295 +699,478 @@ export default function ResourcesPage() {
     }
   }, [searchParams]);
 
-
   return (
-    <><div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
+    <>
+      <div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
 
-      {/*Sidebar*/}
-      <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">
-        <div className="sticky top-6 flex flex-col gap-3 pt-20">
+        <button className="z-50 fixed bottom-6 right-6 bg-[#E0A959] hover:bg-[#C28A39] text-white rounded-full p-4 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110" onClick={() => { (document.getElementById("new_resource")! as HTMLDialogElement).showModal() }}
+        >
+          <Plus></Plus>
+        </button>
 
-          <p className="text-[12px] uppercase tracking-[0.18em] text-[#000000] font-semibold px-1 mb-1">
-            Categories
-          </p>
-
-          {/* Search bar */}
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a8a7a]">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-            </span>
-            <input
-              type="text"
-              placeholder="Search for resources..."
-              value={resourceSearch}
-              onChange={(e) => setResourceSearch(e.target.value)}
-              className="w-full pl-8 pr-8 py-2 text-[13px] rounded-xl border transition-all duration-150 outline-none"
-              style={{
-                backgroundColor: "#faf7f2",
-                border: "1px solid #e8e0d5",
-                color: "#4a3c30",
-                caretColor: "#CA5400",
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.borderColor = "#CA5400";
-                e.currentTarget.style.boxShadow = "0 0 0 3px #CA540018";
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = "#e8e0d5";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            />
-            {resourceSearch && (
-              <button
-                onClick={() => setResourceSearch("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full flex items-center justify-center transition-colors"
-                style={{ backgroundColor: "#c4b8ac", color: "white" }}
-              >
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-          </div>
-
-          {/* Nav */}
-          <nav className="flex flex-col gap-0.5">
-            {categories.map((cat) => {
-              const isActive = cat.label === category;
-              const m = categoryMeta[cat.label];
-              return (
-                <button
-                  key={cat.label}
-                  onClick={() => setCategory(cat.label as Category)}
-                  className="relative flex items-center gap-3 px-3 py-2.5 rounded-2xl text-left w-full transition-all duration-150 overflow-hidden"
-                  style={{
-                    backgroundColor: isActive ? (m?.bg ?? "#f5f0e8") : "transparent",
-                    color: isActive ? (m?.color ?? "#CA5400") : "#6a5a4a",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive)
-                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#faf7f2";
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive)
-                      (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
-                  }}
-                >
-                  {isActive && (
-                    <span
-                      className="absolute left-0 top-2 bottom-2 w-0.75 rounded-full"
-                      style={{ backgroundColor: m?.color ?? "#CA5400" }}
-                    />
-                  )}
-                  <span
-                    className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-150"
-                    style={{
-                      backgroundColor: isActive ? (m?.color ?? "#CA5400") + "18" : "#ede8e0",
-                    }}
-                  >
-                    <span className="text-[15px]" style={{ color: isActive ? (m?.color ?? "#CA5400") : "#9a8a7a" }}>
-                      {cat.icon}
-                    </span>
-                  </span>
-                  <span
-                    className="flex-1 text-[14px] tracking-[-0.01em] transition-colors duration-150"
-                    style={{ fontWeight: isActive ? 700 : 500 }}
-                  >
-                    {cat.label}
-                  </span>
-                  {isActive && (
-                    <span
-                      className="text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums"
-                      style={{
-                        backgroundColor: (m?.color ?? "#CA5400") + "18",
-                        color: m?.color ?? "#CA5400",
-                      }}
-                    >
-                      {visibleOpportunities.length}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-
-        </div>
-      </aside>
-
-      {/* ── Main ── */}
-      <main className="col-span-12 md:col-span-8 lg:col-span-9">
-
-        {/* Header */}
-        <div className="flex justify-between items-end mb-8">
-          <div>
-            <h2 className="text-[32px] font-bold text-[#100F0A]">Resources</h2>
-          </div>
-
-          {/* Mobile dropdown */}
-          <div className="lg:hidden md:hidden dropdown dropdown-end">
-            <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#f5f0e8] text-sm font-bold text-[#6a5a4a]">
-              Categories ▾
-            </button>
-            <ul className="dropdown-content menu bg-[#FEFCF8] rounded-2xl z-10 w-56 p-2 shadow-xl border border-[#e8e0d8] mt-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat.label}
-                  className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#f5f0e8] transition-colors text-left"
-                  onClick={() => setCategory(cat.label as Category)}
-                >
-                  <span className="text-[#CA5400]">{cat.icon}</span>
-                  <span className="font-bold text-sm text-[#3a3028]">{cat.label}</span>
-                </button>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Cards Grid */}
-        {visibleOpportunities.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-3 text-center">
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center mb-2"
-              style={{ backgroundColor: "#f5f0e8" }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9a8a7a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-            </div>
-            <p className="text-[18px] font-bold text-[#3a3028]">No resources found</p>
-            <p className="text-[13px] text-[#9a8a7a] max-w-xs">
-              No results for <span className="font-semibold text-[#6a5a4a]">"{resourceSearch}"</span>. Try a different keyword or browse by category.
-            </p>
-            <button
-              onClick={() => setResourceSearch("")}
-              className="mt-3 px-5 py-2 rounded-xl text-[13px] font-bold text-white transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "#CA5400" }}
-            >
-              Clear search
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-            {visibleOpportunities.map((item) => {
-              const m = categoryMeta[item.category];
-              return (
-                <div
-                  key={item.name}
-                  onClick={() => {
-                    setOpportunity(item);
-                    (document.getElementById("opportunity_description")! as HTMLDialogElement).showModal();
-                  }}
-                  className="flex flex-col group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#f0ebe3] hover:-translate-y-1"
-                >
-                  {/* Image */}
-                  <div className="relative aspect-video overflow-hidden bg-[#f5f0e8]">
-                    {item.coverImage && (
-                      <Image
-                        src={item.coverImage}
-                        alt={item.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                    )}
-                    <span
-                      className="absolute top-3 left-3 text-[12px] font-bold tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
-                      style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
-                    >
-                      {m?.icon}
-                      {item.category}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4 flex flex-col gap-2 flex-1">
-                    <h3 className="text-base font-bold text-[#100F0A] leading-[.9] group-hover:text-[#CA5400] transition-colors">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs text-[#6a5a4a] line-clamp-3 leading-relaxed flex-1">
-                      {item.description}
-                    </p>
-                    <div className="flex items-center gap-1 mt-1">
-                      <Map size={11} className="text-[#CA5400] shrink-0" />
-                      <p className="text-[12px] text-[#9a8a7a] truncate">{item.contact.address}</p>
-                    </div>
-                  </div>
-
-                  {/* Card footer */}
-                  <div
-                    className="px-4 py-2.5 flex items-center justify-between border-t"
-                    style={{ borderColor: "#f0ebe3" }}
-                  >
-                    <span className="text-[12px] uppercase font-extrabold tracking-wide" style={{ color: m?.color ?? "#CA5400" }}>
-                      View Details
-                    </span>
-                    <span
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs transition-transform group-hover:translate-x-0.5"
-                      style={{ backgroundColor: m?.color ?? "#CA5400" }}
-                    >
-                      →
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}</main>
-
-      {/* ── Pop up ───*/}
-      <dialog id="opportunity_description" className="modal">
-        <div className="modal-box w-11/12 max-w-3xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
-
-          {/* Colored header */}
-          <div
-            className="relative w-full h-32 flex items-end p-5"
-            style={{
-              background: meta
-                ? `linear-gradient(135deg, ${meta.color} 0%, ${meta.color}cc 100%)`
-                : "linear-gradient(135deg, #FD6900, #CA5400)",
-            }}
-          >
-            {/*Close Button*/}
-            <form method="dialog">
-              <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center text-white text-xs font-black transition-colors">
-                ✕
-              </button>
-            </form>
-
-            <span className="absolute top-4 left-5 text-[10px] font-medium tracking-widest px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm">
-              {opportunity?.category?.toUpperCase()}
-            </span>
-
-            <div className="absolute -bottom-7 left-5 w-14 h-14 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
-              {opportunity?.coverImage && (
-                <Image
-                  src={opportunity.coverImage}
-                  alt={opportunity.name ?? ""}
-                  width={56}
-                  height={56}
-                  className="object-cover w-full h-full" />
-              )}
-            </div>
-          </div >
-
-          {/* Scrollable body */}
-          < div className="px-5 pt-12 pb-4 overflow-y-auto max-h-[68vh] flex flex-col gap-5" >
-
-            {/* Title + URL */}
-            < div className="flex items-start justify-between gap-3" >
+        <dialog id="new_resource" className="modal">
+          <div className="modal-box max-w-2xl">
+            <h3 className="font-bold text-lg mb-6">Add New Resource</h3>
+            
+            <div className="space-y-6">
               <div>
-                <h3 className="font-bold text-[28px] text-[#100F0A] leading-tight">
-                  {opportunity?.name}
-                </h3>
-                <p className="text-[14px] text-[#9a8a7a] mt-0.5 flex items-center gap-1">
-                  <Map size={10} className="shrink-0" />
-                  {opportunity?.contact.address}
-                </p>
+                <label className="block text-sm font-medium mb-2">Name</label>
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                  value={currentResource.name}
+                  onChange={(e) => setCurrentResource({ ...currentResource, name: e.target.value })}
+                  placeholder="Resource name"
+                />
               </div>
 
-              {/* Website Button */}
-              {
-                opportunity?.contact.url && (
+              <div>
+                <label className="block text-sm font-medium mb-2">Category</label>
+                <select
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                  value={currentResource.category}
+                  onChange={(e) => setCurrentResource({ ...currentResource, category: e.target.value as Category })}
+                >
+                  <option value="Food">Food</option>
+                  <option value="Social & Family Support">Social & Family Support</option>
+                  <option value="Housing">Housing</option>
+                  <option value="Health & Wellness">Health & Wellness</option>
+                  <option value="Education">Education</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Description</label>
+                <textarea
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959] min-h-[100px]"
+                  value={currentResource.description}
+                  onChange={(e) => setCurrentResource({ ...currentResource, description: e.target.value })}
+                  placeholder="Describe this resource..."
+                />
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Address</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                    value={currentResource.contact.address}
+                    onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, address: e.target.value } })}
+                    placeholder="Street address"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Phone</label>
+                    <input
+                      type="text"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                      value={currentResource.contact.phone || ""}
+                      onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, phone: e.target.value } })}
+                      placeholder="Phone number"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Email</label>
+                    <input
+                      type="email"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                      value={currentResource.contact.email || ""}
+                      onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, email: e.target.value } })}
+                      placeholder="Email address"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Website URL</label>
+                  <input
+                    type="url"
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                    value={currentResource.contact.url || ""}
+                    onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, url: e.target.value } })}
+                    placeholder="https://example.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Main Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="file-input file-input-bordered w-full"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] || null;
+                    setMainImageFile(file);
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => setMainImage(reader.result as string);
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                />
+                {mainImage && (
+                  <div className="mt-2 relative w-full h-32 rounded-lg overflow-hidden">
+                    <img src={mainImage} alt="Main preview" className="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Additional Images (up to 3)</label>
+                <div className="space-y-3">
+                  {[0, 1, 2].map((i) => (
+                    <div key={i} className="flex gap-2 items-center">
+                      <span className="text-sm text-gray-500 w-6">{i + 1}.</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="file-input file-input-bordered flex-1"
+                        onChange={(e) => {
+                          const newImages = [...additionalImages];
+                          const file = e.target.files?.[0] || null;
+                          newImages[i] = file;
+                          setAdditionalImages(newImages);
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-end gap-3">
+              <button
+                className="btn btn-ghost"
+                onClick={() => (document.getElementById("new_resource") as HTMLDialogElement)?.close()}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn bg-[#E0A959] hover:bg-[#C28A39] text-white border-none"
+                onClick={async () => {
+                  const processFile = (file: File | null): Promise<string> => {
+                    return new Promise((resolve) => {
+                      if (!file) {
+                        resolve("");
+                        return;
+                      }
+                      const reader = new FileReader();
+                      reader.onloadend = () => resolve(reader.result as string);
+                      reader.readAsDataURL(file);
+                    });
+                  };
+
+                  const [mainImg, ...additionalImgs] = await Promise.all([
+                    processFile(mainImageFile),
+                    ...additionalImages.map(processFile),
+                  ]);
+
+                  customResources.addResource({
+                    ...currentResource,
+                    coverImage: mainImg,
+                    additionalImages: additionalImgs.filter(Boolean) as string[],
+                    mapSrc: "",
+                  });
+
+                  (document.getElementById("new_resource") as HTMLDialogElement)?.close();
+                }}
+              >
+                Publish
+              </button>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog >
+
+        {/*Sidebar*/}
+        <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">
+          <div className="sticky top-6 flex flex-col gap-3 pt-20">
+
+            <p className="text-[12px] uppercase tracking-[0.18em] text-[#000000] font-semibold px-1 mb-1">
+              Categories
+            </p>
+
+            {/* Search bar */}
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a8a7a]">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                </svg>
+              </span>
+              <input
+                type="text"
+                placeholder="Search for resources..."
+                value={resourceSearch}
+                onChange={(e) => setResourceSearch(e.target.value)}
+                className="w-full pl-8 pr-8 py-2 text-[13px] rounded-xl border transition-all duration-150 outline-none"
+                style={{
+                  backgroundColor: "#faf7f2",
+                  border: "1px solid #e8e0d5",
+                  color: "#4a3c30",
+                  caretColor: "#CA5400",
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = "#CA5400";
+                  e.currentTarget.style.boxShadow = "0 0 0 3px #CA540018";
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = "#e8e0d5";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              />
+              {resourceSearch && (
+                <button
+                  onClick={() => setResourceSearch("")}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full flex items-center justify-center transition-colors"
+                  style={{ backgroundColor: "#c4b8ac", color: "white" }}
+                >
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {/* Nav */}
+            <nav className="flex flex-col gap-0.5">
+              {categories.map((cat) => {
+                const isActive = cat.label === category;
+                const m = categoryMeta[cat.label];
+                return (
+                  <button
+                    key={cat.label}
+                    onClick={() => setCategory(cat.label as Category)}
+                    className="relative flex items-center gap-3 px-3 py-2.5 rounded-2xl text-left w-full transition-all duration-150 overflow-hidden"
+                    style={{
+                      backgroundColor: isActive ? (m?.bg ?? "#f5f0e8") : "transparent",
+                      color: isActive ? (m?.color ?? "#CA5400") : "#6a5a4a",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive)
+                        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#faf7f2";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive)
+                        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
+                    }}
+                  >
+                    {isActive && (
+                      <span
+                        className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full"
+                        style={{ backgroundColor: m?.color ?? "#CA5400" }}
+                      />
+                    )}
+                    <span
+                      className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-all duration-150"
+                      style={{
+                        backgroundColor: isActive ? (m?.color ?? "#CA5400") + "18" : "#ede8e0",
+                      }}
+                    >
+                      <span className="text-[15px]" style={{ color: isActive ? (m?.color ?? "#CA5400") : "#9a8a7a" }}>
+                        {cat.icon}
+                      </span>
+                    </span>
+                    <span
+                      className="flex-1 text-[14px] tracking-[-0.01em] transition-colors duration-150"
+                      style={{ fontWeight: isActive ? 700 : 500 }}
+                    >
+                      {cat.label}
+                    </span>
+                    {isActive && (
+                      <span
+                        className="text-[11px] font-bold px-2 py-0.5 rounded-full tabular-nums"
+                        style={{
+                          backgroundColor: (m?.color ?? "#CA5400") + "18",
+                          color: m?.color ?? "#CA5400",
+                        }}
+                      >
+                        {visibleOpportunities.length}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+
+          </div>
+        </aside>
+
+        {/* ── Main ── */}
+        <main className="col-span-12 md:col-span-8 lg:col-span-9">
+
+          {/* Header */}
+          <div className="flex justify-between items-end mb-8">
+            <div>
+              <h2 className="text-[32px] font-bold text-[#100F0A]">Resources</h2>
+            </div>
+
+            {/* Mobile dropdown */}
+            <div className="lg:hidden md:hidden dropdown dropdown-end">
+              <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#f5f0e8] text-sm font-bold text-[#6a5a4a]">
+                Categories ▾
+              </button>
+              <ul className="dropdown-content menu bg-[#FEFCF8] rounded-2xl z-10 w-56 p-2 shadow-xl border border-[#e8e0d8] mt-2">
+                {categories.map((cat) => (
+                  <button
+                    key={cat.label}
+                    className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-[#f5f0e8] transition-colors text-left"
+                    onClick={() => setCategory(cat.label as Category)}
+                  >
+                    <span className="text-[#CA5400]">{cat.icon}</span>
+                    <span className="font-bold text-sm text-[#3a3028]">{cat.label}</span>
+                  </button>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Cards Grid */}
+          {visibleOpportunities.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-24 gap-3 text-center">
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-2"
+                style={{ backgroundColor: "#f5f0e8" }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9a8a7a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                </svg>
+              </div>
+              <p className="text-[18px] font-bold text-[#3a3028]">No resources found</p>
+              <p className="text-[13px] text-[#9a8a7a] max-w-xs">
+                No results for <span className="font-semibold text-[#6a5a4a]">"{resourceSearch}"</span>. Try a different keyword or browse by category.
+              </p>
+              <button
+                onClick={() => setResourceSearch("")}
+                className="mt-3 px-5 py-2 rounded-xl text-[13px] font-bold text-white transition-opacity hover:opacity-90"
+                style={{ backgroundColor: "#CA5400" }}
+              >
+                Clear search
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+              {visibleOpportunities.map((item) => {
+                const m = categoryMeta[item.category];
+                return (
+                  <div
+                    key={item.name}
+                    onClick={() => {
+                      setOpportunity(item);
+                      (document.getElementById("opportunity_description")! as HTMLDialogElement).showModal();
+                    }}
+                    className="flex flex-col group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-[#f0ebe3] hover:-translate-y-1"
+                  >
+                    {/* Image */}
+                    <div className="relative aspect-video overflow-hidden bg-[#f5f0e8]">
+                      {item.coverImage && (
+                        <Image
+                          src={item.coverImage}
+                          alt={item.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      )}
+                      <span
+                        className="absolute top-3 left-3 text-[12px] font-bold tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
+                        style={{ backgroundColor: m?.color ?? "#CA5400", color: "white" }}
+                      >
+                        {m?.icon}
+                        {item.category}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4 flex flex-col gap-2 flex-1">
+                      <h3 className="text-base font-bold text-[#100F0A] leading-[.9] group-hover:text-[#CA5400] transition-colors">
+                        {item.name}
+                      </h3>
+                      <p className="text-xs text-[#6a5a4a] line-clamp-3 leading-relaxed flex-1">
+                        {item.description}
+                      </p>
+                      <div className="flex items-center gap-1 mt-1">
+                        <Map size={11} className="text-[#CA5400] shrink-0" />
+                        <p className="text-[12px] text-[#9a8a7a] truncate">{item.contact.address}</p>
+                      </div>
+                    </div>
+
+                    {/* Card footer */}
+                    <div
+                      className="px-4 py-2.5 flex items-center justify-between border-t"
+                      style={{ borderColor: "#f0ebe3" }}
+                    >
+                      <span className="text-[12px] uppercase font-extrabold tracking-wide" style={{ color: m?.color ?? "#CA5400" }}>
+                        View Details
+                      </span>
+                      <span
+                        className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs transition-transform group-hover:translate-x-0.5"
+                        style={{ backgroundColor: m?.color ?? "#CA5400" }}
+                      >
+                        →
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </main>
+
+        {/* ── Pop up ───*/}
+        <dialog id="opportunity_description" className="modal">
+          <div className="modal-box w-11/12 max-w-3xl bg-[#FEFCF8] rounded-3xl p-0 overflow-hidden shadow-2xl border-0">
+
+            {/* Colored header */}
+            <div
+              className="relative w-full h-32 flex items-end p-5"
+              style={{
+                background: meta
+                  ? `linear-gradient(135deg, ${meta.color} 0%, ${meta.color}cc 100%)`
+                  : "linear-gradient(135deg, #FD6900, #CA5400)",
+              }}
+            >
+              {/*Close Button*/}
+              <form method="dialog">
+                <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm flex items-center justify-center text-white text-xs font-black transition-colors">
+                  ✕
+                </button>
+              </form>
+
+              <span className="absolute top-4 left-5 text-[10px] font-medium tracking-widest px-3 py-1 rounded-full bg-white/20 text-white backdrop-blur-sm">
+                {opportunity?.category?.toUpperCase()}
+              </span>
+
+              <div className="absolute -bottom-7 left-5 w-14 h-14 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                {opportunity?.coverImage && (
+                  <Image
+                    src={opportunity.coverImage}
+                    alt={opportunity.name ?? ""}
+                    width={56}
+                    height={56}
+                    className="object-cover w-full h-full" />
+                )}
+              </div>
+            </div>
+
+            {/* Scrollable body */}
+            <div className="px-5 pt-12 pb-4 overflow-y-auto max-h-[68vh] flex flex-col gap-5">
+
+              {/* Title + URL */}
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="font-bold text-[28px] text-[#100F0A] leading-tight">
+                    {opportunity?.name}
+                  </h3>
+                  <p className="text-[14px] text-[#9a8a7a] mt-0.5 flex items-center gap-1">
+                    <Map size={10} className="shrink-0" />
+                    {opportunity?.contact.address}
+                  </p>
+                </div>
+
+                {/* Website Button */}
+                {opportunity?.contact.url && (
                   <a
                     href={opportunity.contact.url}
                     target="_blank"
@@ -995,197 +1181,195 @@ export default function ResourcesPage() {
                     <ExternalLink size={10} />
                     WEBSITE
                   </a>
-                )
-              }
-            </div >
-
-            {/* Description + Map */}
-            < div className="grid grid-cols-1 lg:grid-cols-2 gap-3" >
-              <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
-                  ABOUT
-                </p>
-                <p className="text-[14px] text-[#100F0A] leading-[1.2]">
-                  {opportunity?.description}
-                </p>
+                )}
               </div>
-              <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
-                  LOCATION
-                </p>
-                <div className="overflow-hidden rounded-xl">
-                  <iframe
-                    src={opportunity?.mapSrc}
-                    width="100%"
-                    height="300"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade" />
+
+              {/* Description + Map */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-[#f5f0e8] rounded-2xl p-4">
+                  <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
+                    ABOUT
+                  </p>
+                  <p className="text-[14px] text-[#100F0A] leading-[1.2]">
+                    {opportunity?.description}
+                  </p>
+                </div>
+                <div className="bg-[#f5f0e8] rounded-2xl p-4">
+                  <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
+                    LOCATION
+                  </p>
+                  <div className="overflow-hidden rounded-xl">
+                    <iframe
+                      src={opportunity?.mapSrc}
+                      width="100%"
+                      height="300"
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade" />
+                  </div>
                 </div>
               </div>
-            </div >
 
-            {/* Contact */}
-            < div className="bg-[#f5f0e8] rounded-2xl p-4" >
-              <p className="text-[14px] font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
-                CONTACT
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {opportunity?.contact.phone && (
-                  <a
-                    href={`tel:${opportunity.contact.phone}`}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
-                  >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
-                      <Phone size={12} style={{ color: meta?.color ?? "#CA5400" }} />
-                    </div>
-                    <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
-                      {opportunity.contact.phone}
-                    </span>
-                  </a>
-                )}
-                {opportunity?.contact.email && (
-                  <a
-                    href={`mailto:${opportunity.contact.email}`}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
-                  >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
-                      <Mail size={12} style={{ color: meta?.color ?? "#CA5400" }} />
-                    </div>
-                    <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
-                      {opportunity.contact.email}
-                    </span>
-                  </a>
-                )}
-                {opportunity?.contact.socials?.instagram && (
-                  <a
-                    href={opportunity.contact.socials.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
-                  >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
-                      <SiInstagram size={12} style={{ color: meta?.color ?? "#CA5400" }} />
-                    </div>
-                    <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
-                      Instagram
-                    </span>
-                  </a>
-                )}
-                {opportunity?.contact.socials?.linkedin && (
-                  <a
-                    href={opportunity.contact.socials.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
-                  >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
-                      <Linkedin size={12} style={{ color: meta?.color ?? "#CA5400" }} />
-                    </div>
-                    <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
-                      LinkedIn
-                    </span>
-                  </a>
-                )}
-                {opportunity?.contact.socials?.facebook && (
-                  <a
-                    href={opportunity.contact.socials.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
-                  >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
-                      <SiFacebook size={12} style={{ color: meta?.color ?? "#CA5400" }} />
-                    </div>
-                    <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
-                      Facebook
-                    </span>
-                  </a>
-                )}
-                {opportunity?.contact.socials?.x && (
-                  <a
-                    href={opportunity.contact.socials.x}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
-                  >
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
-                      <SiX size={12} style={{ color: meta?.color ?? "#CA5400" }} />
-                    </div>
-                    <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
-                      X / Twitter
-                    </span>
-                  </a>
-                )}
+              {/* Contact */}
+              <div className="bg-[#f5f0e8] rounded-2xl p-4">
+                <p className="text-[14px] font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+                  CONTACT
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {opportunity?.contact.phone && (
+                    <a
+                      href={`tel:${opportunity.contact.phone}`}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
+                    >
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
+                        <Phone size={12} style={{ color: meta?.color ?? "#CA5400" }} />
+                      </div>
+                      <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
+                        {opportunity.contact.phone}
+                      </span>
+                    </a>
+                  )}
+                  {opportunity?.contact.email && (
+                    <a
+                      href={`mailto:${opportunity.contact.email}`}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
+                    >
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
+                        <Mail size={12} style={{ color: meta?.color ?? "#CA5400" }} />
+                      </div>
+                      <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
+                        {opportunity.contact.email}
+                      </span>
+                    </a>
+                  )}
+                  {opportunity?.contact.socials?.instagram && (
+                    <a
+                      href={opportunity.contact.socials.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
+                    >
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
+                        <SiInstagram size={12} style={{ color: meta?.color ?? "#CA5400" }} />
+                      </div>
+                      <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
+                        Instagram
+                      </span>
+                    </a>
+                  )}
+                  {opportunity?.contact.socials?.linkedin && (
+                    <a
+                      href={opportunity.contact.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
+                    >
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
+                        <Linkedin size={12} style={{ color: meta?.color ?? "#CA5400" }} />
+                      </div>
+                      <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
+                        LinkedIn
+                      </span>
+                    </a>
+                  )}
+                  {opportunity?.contact.socials?.facebook && (
+                    <a
+                      href={opportunity.contact.socials.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
+                    >
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
+                        <SiFacebook size={12} style={{ color: meta?.color ?? "#CA5400" }} />
+                      </div>
+                      <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
+                        Facebook
+                      </span>
+                    </a>
+                  )}
+                  {opportunity?.contact.socials?.x && (
+                    <a
+                      href={opportunity.contact.socials.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white transition-all duration-200 group"
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = meta?.color ?? "#CA5400")}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "white")}
+                    >
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: (meta?.color ?? "#CA5400") + "22" }}>
+                        <SiX size={12} style={{ color: meta?.color ?? "#CA5400" }} />
+                      </div>
+                      <span className="text-xs font-semibold text-[#3a3028] group-hover:text-white transition-colors truncate">
+                        X / Twitter
+                      </span>
+                    </a>
+                  )}
+                </div>
               </div>
-            </div >
 
-            {/* Gallery */}
-            {opportunity?.additionalImages && opportunity.additionalImages.length > 0 && (
-            <div className="mt-2">
-              <p className="text-[14px] ml-4 font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
-                GALLERY
-              </p>
-              <Carousel
-                responsive={{
-                  desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
-                  tablet: { breakpoint: { max: 1024, min: 640 }, items: 2, slidesToSlide: 1 },
-                  mobile: { breakpoint: { max: 640, min: 0 }, items: 1, slidesToSlide: 1 },
-                }}
-                keyBoardControl
-                transitionDuration={400}
-                containerClass="pb-4"
-                itemClass="px-2"
-                customLeftArrow={
-                  <button className="absolute left-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                  </button>
-                }
-                customRightArrow={
-                  <button className="absolute right-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
-                  </button>
-                }
-              >
-                {opportunity.additionalImages.map((link, i) => (
-                  <div
-                    key={i}
-                    className="overflow-hidden rounded-2xl aspect-4/3 border border-[#e8e0d8] shadow-sm"
+              {/* Gallery */}
+              {opportunity?.additionalImages && opportunity.additionalImages.length > 0 && (
+                <div className="mt-2">
+                  <p className="text-[14px] ml-4 font-extrabold tracking-widest mb-3" style={{ color: meta?.color ?? "#CA5400" }}>
+                    GALLERY
+                  </p>
+                  <Carousel
+                    responsive={{
+                      desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3, slidesToSlide: 1 },
+                      tablet: { breakpoint: { max: 1024, min: 640 }, items: 2, slidesToSlide: 1 },
+                      mobile: { breakpoint: { max: 640, min: 0 }, items: 1, slidesToSlide: 1 },
+                    }}
+                    keyBoardControl
+                    transitionDuration={400}
+                    containerClass="pb-4"
+                    itemClass="px-2"
+                    customLeftArrow={
+                      <button className="absolute left-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                      </button>
+                    }
+                    customRightArrow={
+                      <button className="absolute right-0 z-10 bg-white/90 hover:bg-white shadow-md rounded-full w-9 h-9 flex items-center justify-center transition-all duration-200 border border-[#e8e0d8]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6a5a4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </button>
+                    }
                   >
-                    <Image
-                      src={link}
-                      width={600}
-                      height={450}
-                      alt={`${opportunity.name} image ${i + 1}`}
-                      className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                ))}
-              </Carousel>
+                    {opportunity.additionalImages.map((link, i) => (
+                      <div
+                        key={i}
+                        className="overflow-hidden rounded-2xl aspect-4/3 border border-[#e8e0d8] shadow-sm"
+                      >
+                        <Image
+                          src={link}
+                          width={600}
+                          height={450}
+                          alt={`${opportunity.name} image ${i + 1}`}
+                          className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    ))}
+                  </Carousel>
+                </div>
+              )}
             </div>
-          )}
           </div>
-        </div>
-      </dialog>
+        </dialog>
 
-    {/* Footer */}
-    </div>
+      </div>
       <Footer />
     </>
   );
