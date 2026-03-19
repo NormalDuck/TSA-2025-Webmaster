@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -18,16 +18,14 @@ function NavLink({
   label,
   href,
   isActive,
-  scrolled,
   onClick,
 }: {
   label: string;
   href: string;
   isActive: boolean;
-  scrolled: boolean;
   onClick?: () => void;
 }) {
-  const baseColor = isActive ? ORANGE : scrolled ? "#ffffff" : "#404040";
+  const baseColor = isActive ? ORANGE : "#404040";
 
   return (
     <Link
@@ -48,24 +46,7 @@ function NavLink({
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const container = document.querySelector<HTMLElement>(
-      "[data-scroll-container]"
-    );
-
-    const onScroll = () => {
-      const scrollY = container ? container.scrollTop : window.scrollY;
-      setScrolled(scrollY > 60);
-    };
-
-    const target: EventTarget = container ?? window;
-    target.addEventListener("scroll", onScroll, { passive: true });
-    return () => target.removeEventListener("scroll", onScroll);
-  }, []);
-
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
@@ -78,19 +59,12 @@ export default function Navbar() {
         />
       )}
 
-      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+      <nav className="fixed top-0 left-0 right-0 z-50">
         <div
-          className="flex items-center justify-between px-6 sm:px-8 lg:px-30 py-2 transition-all duration-500"
+          className="flex items-center justify-between px-6 sm:px-8 lg:px-30 py-2"
           style={{
-            margin: scrolled ? "12px 16px 0" : "0",
-            borderRadius: scrolled ? "14px" : "0px",
-            background: scrolled
-              ? "rgba(20, 20, 20, 0.25)"
-              : "rgba(245, 243, 238, 0.97)",
-            backdropFilter: scrolled ? "blur(12px)" : "none",
-            WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-            border: scrolled ? "1.5px solid rgba(255,255,255,0.15)" : "none",
-            boxShadow: scrolled ? "none" : "0 2px 12px rgba(0,0,0,0.08)",
+            background: "rgba(245, 243, 238, 0.97)",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
           }}
         >
           {/* Logo */}
@@ -100,17 +74,10 @@ export default function Navbar() {
               alt="WAsHub Logo"
               width={50}
               height={50}
-              className="transition-all duration-500 rounded-full m-1"
-              />
-            <span
-              className="text-[20px] font-extrabold tracking-tight"
-            >
-              <span
-                className="transition-colors duration-500"
-                style={{ color: scrolled ? "#ffffff" : "#1a1a1a" }}
-              >
-                WAs
-              </span>
+              className="rounded-full m-1"
+            />
+            <span className="text-[20px] font-extrabold tracking-tight">
+              <span style={{ color: "#1a1a1a" }}>WAs</span>
               <span style={{ color: ORANGE }}>Hub</span>
             </span>
           </Link>
@@ -123,33 +90,29 @@ export default function Navbar() {
                 label={label}
                 href={href}
                 isActive={pathname === href}
-                scrolled={scrolled}
               />
             ))}
           </div>
 
-          {/* Find Nearby Button */}
+          {/* Donate Button */}
           <div className="flex items-center gap-3">
             <Link
               href="/donate"
               className="hidden md:inline-flex px-5 py-1.75 rounded-2xl text-[14px] font-bold transition-all duration-300 hover:opacity-75 active:scale-95"
               style={{
-                background: scrolled ? "rgba(255,255,255,0.15)" : "#111",
+                background: "#111",
                 color: "#fff",
                 letterSpacing: "0.06em",
-                border: scrolled
-                  ? "1.5px solid rgba(255,255,255,0.5)"
-                  : "1.5px solid transparent",
-                boxShadow: scrolled ? "none" : "0 2px 8px rgba(0,0,0,0.25)",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
               }}
             >
               DONATE
             </Link>
-            
+
             {/* Hamburger Menu for Mobile */}
             <button
               className="md:hidden p-2 rounded-lg transition-colors"
-              style={{ color: scrolled ? "#fff" : "#1a1a1a" }}
+              style={{ color: "#1a1a1a" }}
               onClick={() => setMenuOpen((prev) => !prev)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
