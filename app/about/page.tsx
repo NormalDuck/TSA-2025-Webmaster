@@ -243,15 +243,110 @@ export default function AboutPage() {
         
         {/* Section 7 — Join Us */}
         <section
-          className="snap-section relative bg-[#E8E0D4] flex flex-col justify-between overflow-hidden"
+          id="volunteersection"
+          ref={(el) => { sectionRefs.current.volunteer = el as HTMLDivElement; }}
+          className="relative min-h-screen overflow-hidden bg-[#404040] flex flex-col justify-center snap-section"
         >
-          <div className="p-50 mt-5 max-w-full">
-            <p className="text-[50px] font-bold leading-[1.2]" style={{ fontFamily: "'Syne', sans-serif" }}>
-              Get Involved.
-            </p>
-            <p className="text-lg text-gray-600 mt-4">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.
-            </p>
+          <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-12 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+
+              {/* Left column */}
+              <div>
+                <p className="text-xs font-extrabold tracking-wide mb-6 text-[#FD6900]">GET INVOLVED</p>
+                <h2 className="text-[clamp(32px,5vw,60px)] font-extrabold text-white mb-6 leading-[.9]">
+                  Make a difference<br />in your city.
+                </h2>
+                <p className="text-[clamp(12px,1.5vw,14px)] leading-relaxed mb-6 text-white/70 max-w-xs">
+                  Whether you have two hours or two days a week, there&apos;s a place for you here.
+                  Join over 1,200 volunteers making a real impact across King County.
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Flexible scheduling — weekdays or weekends",
+                    "No experience required for most roles",
+                    "Get matched to the right opportunity",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-white/60">
+                      <span className="text-[#FD6900]">›</span>{item}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Stat strip */}
+                <div className="flex gap-8 mt-10">
+                  {[
+                    { value: "1,200+", label: "Active Volunteers" },
+                    { value: "40+",    label: "Partner Orgs" },
+                    { value: "8k hrs", label: "Served This Year" },
+                  ].map(({ value, label }) => (
+                    <div key={label}>
+                      <p className="text-[clamp(18px,2.5vw,28px)] font-black text-white leading-none">{value}</p>
+                      <p className="text-[11px] text-white/40 mt-1 tracking-wide">{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right column — form */}
+              <div className="pt-0 md:pt-8">
+                {[
+                  { label: "YOUR NAME",     type: "text",  placeholder: "Full Name" },
+                  { label: "EMAIL ADDRESS", type: "email", placeholder: "you@example.com" },
+                  { label: "PHONE NUMBER",  type: "tel",   placeholder: "Optional — for scheduling" },
+                ].map(({ label, type, placeholder }) => (
+                  <div key={label} className="mb-5">
+                    <label className="block text-xs font-bold tracking-widest mb-1 text-white/60">{label}</label>
+                    <input
+                      type={type}
+                      placeholder={placeholder}
+                      className="w-full bg-transparent pb-2 text-sm outline-none text-white placeholder:text-white/30"
+                      style={{ borderBottom: "1px solid #ffffff30" }}
+                    />
+                  </div>
+                ))}
+
+                {/* Role picker */}
+                <div className="mb-6">
+                  <label className="block text-xs font-bold tracking-widest mb-3 text-white/60">AREAS OF INTEREST</label>
+                  <div className="flex flex-wrap gap-3">
+                    {["Food Access", "Housing", "Youth", "Health", "Outreach", "Admin"].map((role) => (
+                      <label key={role} className="flex items-center gap-1.5 cursor-pointer text-sm text-white/60 hover:text-white transition-colors">
+                        <input type="checkbox" className="w-3 h-3 accent-[#FD6900]" />
+                        {role}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Availability */}
+                <div className="mb-8">
+                  <label className="block text-xs font-bold tracking-widest mb-3 text-white/60">AVAILABILITY</label>
+                  <div className="flex flex-wrap gap-3">
+                    {["Weekday Mornings", "Weekday Evenings", "Weekends"].map((slot) => (
+                      <label key={slot} className="flex items-center gap-1.5 cursor-pointer text-sm text-white/60 hover:text-white transition-colors">
+                        <input type="checkbox" className="w-3 h-3 accent-[#FD6900]" />
+                        {slot}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <button className="flex items-center gap-3 px-6 py-3 rounded-full text-xs font-bold tracking-widest text-white border border-white/20 bg-transparent transition-all hover:gap-5 hover:border-[#FD6900] hover:text-[#FD6900]">
+                  SIGN ME UP →
+                </button>
+                <p className="text-[12px] mt-3 text-white/30">
+                  We&apos;ll reach out within 48 hours to get you started.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Watermark */}
+          <div
+            className="absolute bottom-0 left-0 right-0 text-center font-extrabold text-[#2a2a2a] leading-[0.65] select-none pointer-events-none"
+            style={{ fontSize: "clamp(60px, 18vw, 220px)" }}
+          >
+            Volunteer
           </div>
         </section>
 
@@ -307,7 +402,8 @@ function TimelineSection({ item, index, refCallback }: TimelineSectionProps) {
       <div
         className="bg-blob"
         style={{
-          width: "500px", height: "500px",
+          width: "500px",
+          height: "500px",
           background: "#d4622a",
           top: "10%",
           left: isRight ? "60%" : "10%",
@@ -326,14 +422,16 @@ function TimelineSection({ item, index, refCallback }: TimelineSectionProps) {
           <h2 className="section-title">{item.title}</h2>
           <p className="section-body">{item.body}</p>
 
-          <div style={{
-            marginTop: "0.5rem",
-            height: "2px",
-            width: visible ? "60px" : "0px",
-            background: "#d4622a",
-            transition: "width 0.8s ease 0.7s",
-            borderRadius: "2px",
-          }} />
+          <div
+            style={{
+              marginTop: "0.5rem",
+              height: "2px",
+              width: visible ? "60px" : "0px",
+              background: "#d4622a",
+              transition: "width 0.8s ease 0.7s",
+              borderRadius: "2px",
+            }}
+          />
         </div>
 
         <div className="image-box">
@@ -343,11 +441,18 @@ function TimelineSection({ item, index, refCallback }: TimelineSectionProps) {
             fill
             style={{ objectFit: "cover" }}
           />
-          <div style={{
-            position: "absolute", bottom: "1.2rem", right: "1.2rem",
-            fontFamily: "'Syne', sans-serif", fontWeight: 600, fontSize: "0.8rem",
-            color: "#8b6f4e", opacity: 0.6,
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "1.2rem",
+              right: "1.2rem",
+              fontFamily: "'Syne', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.8rem",
+              color: "#8b6f4e",
+              opacity: 0.6,
+            }}
+          >
             {item.year}
           </div>
         </div>
