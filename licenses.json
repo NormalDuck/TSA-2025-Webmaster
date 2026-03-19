@@ -541,6 +541,14 @@
     "publisher": "bdehamer@github.com",
     "path": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\npm\\node_modules\\sigstore\\node_modules\\@sigstore\\verify"
   },
+  "@stripe/stripe-js@8.11.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stripe/stripe-js",
+    "publisher": "Stripe",
+    "url": "https://www.stripe.com",
+    "path": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\@stripe\\stripe-js",
+    "licenseFile": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\@stripe\\stripe-js\\LICENSE"
+  },
   "@swc/helpers@0.5.15": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/swc-project/swc",
@@ -4056,6 +4064,15 @@
     "url": "https://sindresorhus.com",
     "path": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\strip-json-comments",
     "licenseFile": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\strip-json-comments\\license"
+  },
+  "stripe@20.4.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stripe/stripe-node",
+    "publisher": "Stripe",
+    "email": "support@stripe.com",
+    "url": "https://stripe.com/",
+    "path": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\stripe",
+    "licenseFile": "C:\\Users\\baren\\OneDrive\\Documents\\GitHub\\TSA-2025-Webmaster\\node_modules\\stripe\\LICENSE"
   },
   "styled-jsx@5.1.6": {
     "licenses": "MIT",
