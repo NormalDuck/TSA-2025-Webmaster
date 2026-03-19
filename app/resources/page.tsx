@@ -31,29 +31,6 @@ export interface Opportunity {
 
 export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
 
-
-// Define the Opportunity type based on the data structure
-type Opportunity = {
-  name: string;
-  category: Category;
-  description: string;
-  coverImage: string;
-  additionalImages?: string[];
-  mapSrc: string;
-  contact: {
-    email?: string;
-    phone?: string;
-    address: string;
-    url: string;
-    socials?: {
-      instagram?: string;
-      linkedin?: string;
-      facebook?: string;
-      x?: string;
-    };
-  };
-};
-
 //Meta information for each category
 const categoryMeta: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
   "Food": { color: "#FD6900", bg: "#FFF3E0", icon: <Apple size={14} /> },

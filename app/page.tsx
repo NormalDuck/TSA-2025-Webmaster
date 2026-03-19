@@ -573,7 +573,7 @@ export default function Home() {
 
               {/* Right — image fills the row height */}
               <div className="relative rounded-xl overflow-hidden bg-[#161410] border border-[#2a2820] min-h-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#CA5400]/8 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-br from-[#CA5400]/8 to-transparent" />
                 <div className="absolute bottom-3 left-3">
                   <span className="text-[#2a2820] text-[9px] font-black tracking-widest uppercase">
                     {featured.category}
