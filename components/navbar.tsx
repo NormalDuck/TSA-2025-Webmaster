@@ -9,7 +9,6 @@ import Image from "next/image";
 const navLinks = [
   { label: "RESOURCES", href: "/resources" },
   { label: "EVENTS", href: "/events" },
-  { label: "DONATE", href: "/donate" },
   { label: "ABOUT US", href: "/about" },
 ];
 
@@ -132,7 +131,7 @@ export default function Navbar() {
           {/* Find Nearby Button */}
           <div className="flex items-center gap-3">
             <Link
-              href="/"
+              href="/donate"
               className="hidden md:inline-flex px-5 py-1.75 rounded-2xl text-[14px] font-bold transition-all duration-300 hover:opacity-75 active:scale-95"
               style={{
                 background: scrolled ? "rgba(255,255,255,0.15)" : "#111",
@@ -144,7 +143,7 @@ export default function Navbar() {
                 boxShadow: scrolled ? "none" : "0 2px 8px rgba(0,0,0,0.25)",
               }}
             >
-              FIND NEARBY
+              DONATE
             </Link>
             
             {/* Hamburger Menu for Mobile */}
