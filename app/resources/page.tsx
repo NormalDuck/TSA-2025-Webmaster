@@ -29,7 +29,6 @@ export interface Opportunity {
   };
 }
 
-export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
 import { Category, Resources, resources } from "@/constants/resources";
 
 //Meta information for each category

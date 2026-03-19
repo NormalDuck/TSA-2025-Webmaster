@@ -239,20 +239,6 @@ export default function Home() {
       return () => observers.forEach((o) => o.disconnect());
     }, []);
 
-    const scrollTo = (id: string) =>
-      sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
-
-    const dotColor = dotColors[activeSection] ?? dotColors.hero;
-
-    // Auto-hover carousel cards every 4 seconds, but pause on manual hover
-    useEffect(() => {
-      if (isManualHover) return;
-      const interval = setInterval(() => {
-        setAutoHovered((prev) => (prev % resources.length) + 1);
-      }, 4000);
-      return () => clearInterval(interval);
-    }, [isManualHover]);
-
   const scrollTo = (id: string) =>
     sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
 
