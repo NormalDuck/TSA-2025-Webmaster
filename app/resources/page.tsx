@@ -751,189 +751,192 @@ export default function ResourcesPage() {
   return (
     <>
       <div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
+        
+        {/* -------------------------Add New Resource-----------------------------------------------------------------------*/}
+          <button className="z-50 fixed bottom-6 right-6 bg-[#E0A959] hover:bg-[#C28A39] text-white rounded-full p-4 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110" onClick={() => { (document.getElementById("new_resource")! as HTMLDialogElement).showModal() }}
+          >
+            <Plus></Plus>
+          </button>
 
-        <button className="z-50 fixed bottom-6 right-6 bg-[#E0A959] hover:bg-[#C28A39] text-white rounded-full p-4 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110" onClick={() => { (document.getElementById("new_resource")! as HTMLDialogElement).showModal() }}
-        >
-          <Plus></Plus>
-        </button>
-
-        <dialog id="new_resource" className="modal">
-          <div className="modal-box max-w-2xl">
-            <h3 className="font-bold text-lg mb-6">Add New Resource</h3>
-            
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Name</label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
-                  value={currentResource.name}
-                  onChange={(e) => setCurrentResource({ ...currentResource, name: e.target.value })}
-                  placeholder="Resource name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Category</label>
-                <select
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
-                  value={currentResource.category}
-                  onChange={(e) => setCurrentResource({ ...currentResource, category: e.target.value as Category })}
-                >
-                  <option value="Food">Food</option>
-                  <option value="Social & Family Support">Social & Family Support</option>
-                  <option value="Housing">Housing</option>
-                  <option value="Health & Wellness">Health & Wellness</option>
-                  <option value="Education">Education</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Description</label>
-                <textarea
-                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959] min-h-[100px]"
-                  value={currentResource.description}
-                  onChange={(e) => setCurrentResource({ ...currentResource, description: e.target.value })}
-                  placeholder="Describe this resource..."
-                />
-              </div>
-
-              <div className="grid grid-cols-1 gap-4">
+          <dialog id="new_resource" className="modal">
+            <div className="modal-box max-w-2xl">
+              <h3 className="font-bold text-lg mb-6">Add New Resource</h3>
+              
+              <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Address</label>
+                  <label className="block text-sm font-medium mb-2">Name</label>
                   <input
                     type="text"
                     className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
-                    value={currentResource.contact.address}
-                    onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, address: e.target.value } })}
-                    placeholder="Street address"
+                    value={currentResource.name}
+                    onChange={(e) => setCurrentResource({ ...currentResource, name: e.target.value })}
+                    placeholder="Resource name"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Category</label>
+                  <select
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                    value={currentResource.category}
+                    onChange={(e) => setCurrentResource({ ...currentResource, category: e.target.value as Category })}
+                  >
+                    <option value="Food">Food</option>
+                    <option value="Social & Family Support">Social & Family Support</option>
+                    <option value="Housing">Housing</option>
+                    <option value="Health & Wellness">Health & Wellness</option>
+                    <option value="Education">Education</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Description</label>
+                  <textarea
+                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959] min-h-[100px]"
+                    value={currentResource.description}
+                    onChange={(e) => setCurrentResource({ ...currentResource, description: e.target.value })}
+                    placeholder="Describe this resource..."
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Phone</label>
+                    <label className="block text-sm font-medium mb-2">Address</label>
                     <input
                       type="text"
                       className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
-                      value={currentResource.contact.phone || ""}
-                      onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, phone: e.target.value } })}
-                      placeholder="Phone number"
+                      value={currentResource.contact.address}
+                      onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, address: e.target.value } })}
+                      placeholder="Street address"
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Email</label>
-                    <input
-                      type="email"
-                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
-                      value={currentResource.contact.email || ""}
-                      onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, email: e.target.value } })}
-                      placeholder="Email address"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Website URL</label>
-                  <input
-                    type="url"
-                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
-                    value={currentResource.contact.url || ""}
-                    onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, url: e.target.value } })}
-                    placeholder="https://example.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Main Image</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="file-input file-input-bordered w-full"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0] || null;
-                    setMainImageFile(file);
-                    if (file) {
-                      const reader = new FileReader();
-                      reader.onloadend = () => setMainImage(reader.result as string);
-                      reader.readAsDataURL(file);
-                    }
-                  }}
-                />
-                {mainImage && (
-                  <div className="mt-2 relative w-full h-32 rounded-lg overflow-hidden">
-                    <img src={mainImage} alt="Main preview" className="w-full h-full object-cover" />
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Additional Images (up to 3)</label>
-                <div className="space-y-3">
-                  {[0, 1, 2].map((i) => (
-                    <div key={i} className="flex gap-2 items-center">
-                      <span className="text-sm text-gray-500 w-6">{i + 1}.</span>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Phone</label>
                       <input
-                        type="file"
-                        accept="image/*"
-                        className="file-input file-input-bordered flex-1"
-                        onChange={(e) => {
-                          const newImages = [...additionalImages];
-                          const file = e.target.files?.[0] || null;
-                          newImages[i] = file;
-                          setAdditionalImages(newImages);
-                        }}
+                        type="text"
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                        value={currentResource.contact.phone || ""}
+                        onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, phone: e.target.value } })}
+                        placeholder="Phone number"
                       />
                     </div>
-                  ))}
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Email</label>
+                      <input
+                        type="email"
+                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                        value={currentResource.contact.email || ""}
+                        onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, email: e.target.value } })}
+                        placeholder="Email address"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Website URL</label>
+                    <input
+                      type="url"
+                      className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E0A959]"
+                      value={currentResource.contact.url || ""}
+                      onChange={(e) => setCurrentResource({ ...currentResource, contact: { ...currentResource.contact, url: e.target.value } })}
+                      placeholder="https://example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Main Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="file-input file-input-bordered w-full"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0] || null;
+                      setMainImageFile(file);
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onloadend = () => setMainImage(reader.result as string);
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                  />
+                  {mainImage && (
+                    <div className="mt-2 relative w-full h-32 rounded-lg overflow-hidden">
+                      <img src={mainImage} alt="Main preview" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2">Additional Images (up to 3)</label>
+                  <div className="space-y-3">
+                    {[0, 1, 2].map((i) => (
+                      <div key={i} className="flex gap-2 items-center">
+                        <span className="text-sm text-gray-500 w-6">{i + 1}.</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="file-input file-input-bordered flex-1"
+                          onChange={(e) => {
+                            const newImages = [...additionalImages];
+                            const file = e.target.files?.[0] || null;
+                            newImages[i] = file;
+                            setAdditionalImages(newImages);
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="mt-8 flex justify-end gap-3">
-              <button
-                className="btn btn-ghost"
-                onClick={() => (document.getElementById("new_resource") as HTMLDialogElement)?.close()}
-              >
-                Cancel
-              </button>
-              <button
-                className="btn bg-[#E0A959] hover:bg-[#C28A39] text-white border-none"
-                onClick={async () => {
-                  const processFile = (file: File | null): Promise<string> => {
-                    return new Promise((resolve) => {
-                      if (!file) {
-                        resolve("");
-                        return;
-                      }
-                      const reader = new FileReader();
-                      reader.onloadend = () => resolve(reader.result as string);
-                      reader.readAsDataURL(file);
+              <div className="mt-8 flex justify-end gap-3">
+                <button
+                  className="btn btn-ghost"
+                  onClick={() => (document.getElementById("new_resource") as HTMLDialogElement)?.close()}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn bg-[#E0A959] hover:bg-[#C28A39] text-white border-none"
+                  onClick={async () => {
+                    const processFile = (file: File | null): Promise<string> => {
+                      return new Promise((resolve) => {
+                        if (!file) {
+                          resolve("");
+                          return;
+                        }
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result as string);
+                        reader.readAsDataURL(file);
+                      });
+                    };
+
+                    const [mainImg, ...additionalImgs] = await Promise.all([
+                      processFile(mainImageFile),
+                      ...additionalImages.map(processFile),
+                    ]);
+
+                    customResources.addResource({
+                      ...currentResource,
+                      coverImage: mainImg,
+                      additionalImages: additionalImgs.filter(Boolean) as string[],
+                      mapSrc: "",
                     });
-                  };
 
-                  const [mainImg, ...additionalImgs] = await Promise.all([
-                    processFile(mainImageFile),
-                    ...additionalImages.map(processFile),
-                  ]);
-
-                  customResources.addResource({
-                    ...currentResource,
-                    coverImage: mainImg,
-                    additionalImages: additionalImgs.filter(Boolean) as string[],
-                    mapSrc: "",
-                  });
-
-                  (document.getElementById("new_resource") as HTMLDialogElement)?.close();
-                }}
-              >
-                Publish
-              </button>
+                    (document.getElementById("new_resource") as HTMLDialogElement)?.close();
+                  }}
+                >
+                  Publish
+                </button>
+              </div>
             </div>
-          </div>
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
-          </form>
-        </dialog >
+            <form method="dialog" className="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog >
+        {/*-------------------------------------------------------------------------------------------------------*/} 
+
 
         {/*Sidebar*/}
         <aside className="hidden md:flex flex-col gap-4 md:col-span-4 lg:col-span-3">

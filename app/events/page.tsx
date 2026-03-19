@@ -121,8 +121,8 @@ function SpotBar({ total, left }: { total: number; left: number }) {
   return (
     <div>
       <div className="flex justify-between mb-1">
-        <span className="text-[10px] font-black tracking-widest uppercase text-[#999]">Availability</span>
-        <span className="text-[10px] font-black" style={{ color }}>{left} spots left</span>
+        <span className="text-[12px] font-bold tracking-wide uppercase text-[#999]">Availability</span>
+        <span className="text-[12px] font-bold" style={{ color }}>{left} spots left</span>
       </div>
       <div className="h-1.5 bg-[#f0ede7] rounded-full overflow-hidden">
         <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, background: color }} />
@@ -166,7 +166,7 @@ function EventModal({ ev, onClose, saved, onToggleSave }: {
             <div>
               <span className="inline-block text-[9px] font-black tracking-[0.18em] uppercase px-2.5 py-1 rounded-full mb-2" style={{ background: `${color}18`, color }}>{ev.type}</span>
               <h2 className="font-black text-[22px] text-[#100F0A] leading-tight">{ev.title}</h2>
-              <p className="text-[12px] text-[#888] mt-1">{ev.host}</p>
+              <p className="text-[12px] text-[#888] mt-2">{ev.host}</p>
             </div>
             <button onClick={onClose} className="w-8 h-8 rounded-full bg-[#f0ede7] flex items-center justify-center text-[#555] hover:bg-[#e0ddd7] transition-colors text-sm shrink-0 mt-1">✕</button>
           </div>
@@ -174,19 +174,19 @@ function EventModal({ ev, onClose, saved, onToggleSave }: {
           {/* Date / location tiles */}
           <div className="grid grid-cols-2 gap-3 mb-5">
             <div className="bg-[#f8f5f0] rounded-2xl p-3">
-              <p className="text-[9px] font-black tracking-widest text-[#aaa] uppercase mb-1">Date</p>
+              <p className="text-[9px] font-black tracking-widest text-[#999] uppercase mb-1">Date</p>
+              <p className="text-[11px] font-black text-[#555] mt-0.5">{MONTHS[parseInt(m)-1]}</p>
               <p className="font-black text-[#100F0A] text-[22px] leading-none">{parseInt(d)}</p>
-              <p className="text-[11px] font-bold text-[#555] mt-0.5">{MONTHS[parseInt(m)-1]}</p>
             </div>
             <div className="bg-[#f8f5f0] rounded-2xl p-3">
-              <p className="text-[9px] font-black tracking-widest text-[#aaa] uppercase mb-1">Location</p>
-              <p className="text-[12px] font-bold text-[#100F0A] leading-snug">{ev.location.split(',')[0]}</p>
-              <p className="text-[10px] text-[#888] mt-0.5">{ev.detail.split('·')[1]?.trim()}</p>
+              <p className="text-[9px] font-black tracking-widest text-[#999] uppercase mb-1.5">Location</p>
+              <p className="text-[13px] font-black text-[#100F0A] leading-snug">{ev.location.split(',')[0]}</p>
+              <p className="text-[12px] text-[#999] ">{ev.detail.split('·')[1]?.trim()}</p>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-[13px] text-[#444] leading-relaxed mb-5">{ev.description}</p>
+          <p className="text-[13px]  text-[#100F0A] leading-relaxed mb-5">{ev.description}</p>
 
           {/* Spot bar */}
           <div className="mb-6"><SpotBar total={ev.spots} left={ev.spotsLeft} /></div>
@@ -197,17 +197,17 @@ function EventModal({ ev, onClose, saved, onToggleSave }: {
               href={formatGoogleCalUrl(ev)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-black tracking-widest uppercase text-white transition-all hover:scale-105"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-bold tracking-wide uppercase text-white transition-all hover:scale-105"
               style={{ background: color }}
             >
               📅 Add to Calendar
             </a>
             <button
               onClick={onToggleSave}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all hover:scale-105"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-[12px] font-bold tracking-wide uppercase transition-all hover:scale-105"
               style={{
                 background: saved ? `${color}18` : 'transparent',
-                color: saved ? color : '#888',
+                color: saved ? color : '#999',
                 border: `1.5px solid ${saved ? color : '#ddd'}`,
               }}
             >
@@ -215,7 +215,7 @@ function EventModal({ ev, onClose, saved, onToggleSave }: {
             </button>
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-black tracking-widest uppercase border border-[#ddd] text-[#888] hover:border-[#100F0A] hover:text-[#100F0A] transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-[12px] font-bold tracking-wide uppercase border border-[#ddd] text-[#999] hover:border-[#100F0A] hover:text-[#100F0A] transition-all"
             >
               {copied ? '✓ Copied!' : '↑ Share'}
             </button>
@@ -226,7 +226,6 @@ function EventModal({ ev, onClose, saved, onToggleSave }: {
   );
 }
 
-// ════════════════════════════════════════════════════════════════════════════
 export default function EventsPage() {
   const today    = new Date();
   const todayISO = isoDate(today.getFullYear(), today.getMonth(), today.getDate());
@@ -296,15 +295,11 @@ export default function EventsPage() {
       )}
 
       {/* ── Header ───────────────────────────────────────────────────────── */}
-      <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 pt-24 pb-10 border-b border-[#e0ddd7]">
-        <p className="text-[11px] font-black tracking-[0.25em] text-[#CA5400] uppercase mb-3">Community Resource Hub</p>
+      <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 pt-28 pb-10 border-b border-[#e0ddd7]">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <h1 className="text-[clamp(36px,6vw,72px)] font-black leading-[.82] tracking-tight text-[#100F0A]">
+          <h1 className="text-[clamp(36px,6vw,72px)] font-black leading-[.8] tracking-tight text-[#100F0A]">
             <span className="text-[#FD6900]">Join us</span><br />in person
           </h1>
-          <p className="text-[12px] text-[#555] leading-relaxed sm:max-w-56 sm:text-right">
-            Free workshops, health clinics,<br />community events, and more —<br />open to all residents.
-          </p>
         </div>
       </div>
 
@@ -313,13 +308,13 @@ export default function EventsPage() {
         <div className="flex flex-wrap items-center gap-3">
           {/* Search */}
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#bbb] text-sm">⌕</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9a8a7a] text-sm">⌕</span>
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search events…"
-              className="pl-8 pr-4 py-2 rounded-full text-[11px] font-bold bg-[#f0ede7] text-[#100F0A] placeholder:text-[#bbb] outline-none border border-transparent focus:border-[#FD6900] transition-colors w-44"
+              className="pl-8 pr-4 py-2 rounded-full text-[13px] font-medium bg-[#f0ede7] text-[#100F0A] placeholder:text-[#9a8a7a] outline-none border border-transparent focus:border-[#FD6900] transition-colors w-44"
             />
           </div>
 
@@ -331,7 +326,7 @@ export default function EventsPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className="px-3 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-200"
+                className="px-3 py-1.5 rounded-full text-[12px] font-bold tracking-wide uppercase transition-all duration-200"
                 style={{ background: active ? color : 'transparent', color: active ? '#fff' : '#888', border: `1.5px solid ${active ? color : '#ddd'}` }}
               >
                 {f === 'ALL' ? 'All' : f.charAt(0) + f.slice(1).toLowerCase()}
@@ -342,7 +337,7 @@ export default function EventsPage() {
           {/* Saved */}
           <button
             onClick={() => setShowSavedOnly(v => !v)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-200"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold tracking-wide uppercase transition-all duration-200"
             style={{
               background: showSavedOnly ? '#FD690018' : 'transparent',
               color: showSavedOnly ? '#FD6900' : '#888',
@@ -358,7 +353,7 @@ export default function EventsPage() {
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
-                className="px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase transition-all duration-200"
+                className="px-4 py-2 rounded-full text-[10px] font-bold tracking-wide uppercase transition-all duration-200"
                 style={{ background: viewMode === mode ? '#100F0A' : 'transparent', color: viewMode === mode ? '#FEFCF8' : '#888' }}
               >
                 {mode === 'calendar' ? '⊞ Cal' : '≡ List'}
@@ -375,15 +370,16 @@ export default function EventsPage() {
 
             {/* Left: Calendar grid */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-black text-[20px] text-[#100F0A]">{MONTHS[viewMonth]}</span>
-                <span className="font-black text-[20px] text-[#100F0A]">{viewYear}</span>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-extrabold text-[24px] text-[#100F0A]">{MONTHS[viewMonth]}</span>
+                <span className="font-extrabold text-[24px] text-[#100F0A]">{viewYear}</span>
                 <button onClick={goToPrev} className="w-7 h-7 border border-[#ddd] rounded flex items-center justify-center text-sm hover:border-[#FD6900] hover:text-[#FD6900] transition-colors">‹</button>
                 <button onClick={goToNext} className="w-7 h-7 border border-[#ddd] rounded flex items-center justify-center text-sm hover:border-[#FD6900] hover:text-[#FD6900] transition-colors">›</button>
               </div>
+
               <div className="grid grid-cols-7 mb-1">
                 {DAY_LABELS.map(d => (
-                  <div key={d} className="text-center text-[10px] font-black tracking-widest text-[#bbb] uppercase py-1">{d}</div>
+                  <div key={d} className="text-center text-[10px] font-black tracking-wide text-[#bbb] uppercase py-1">{d}</div>
                 ))}
               </div>
               <div className="grid grid-cols-7 gap-y-0.5">
@@ -401,7 +397,7 @@ export default function EventsPage() {
                       `}
                       onClick={() => hasEvent && setSelectedDate(prev => prev === cell.iso ? null : cell.iso)}
                     >
-                      <span className={`w-8 h-8 flex items-center justify-center rounded-full text-[13px] font-black transition-all duration-150
+                      <span className={`w-15 h-15 flex items-center justify-center rounded-full text-[14px] font-bold transition-all duration-150
                         ${isSelected ? 'bg-[#FD6900] text-white' : ''}
                         ${isToday && !isSelected ? 'bg-[#100F0A] text-[#FEFCF8]' : ''}
                         ${hasEvent && !isSelected && !isToday ? 'hover:bg-[#fff3ea]' : ''}
@@ -409,7 +405,7 @@ export default function EventsPage() {
                       {hasEvent && (
                         <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 flex gap-0.5">
                           {cellEvs.slice(0, 3).map((e, di) => (
-                            <span key={di} className="w-1.5 h-1.5 rounded-full" style={{ background: isSelected || isToday ? '#fff' : TYPE_COLOR[e.type] ?? '#FD6900' }} />
+                            <span key={di} className="w-2 h-2 rounded-full" style={{ background: isSelected || isToday ? '#fff' : TYPE_COLOR[e.type] ?? '#FD6900' }} />
                           ))}
                         </div>
                       )}
@@ -422,7 +418,7 @@ export default function EventsPage() {
                 {Object.entries(TYPE_COLOR).map(([type, color]) => (
                   <div key={type} className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ background: color }} />
-                    <span className="text-[10px] font-black tracking-widest text-[#999] uppercase">{type.charAt(0) + type.slice(1).toLowerCase()}</span>
+                    <span className="text-[11px] font-bold tracking-wide text-[#999] uppercase">{type.charAt(0) + type.slice(1).toLowerCase()}</span>
                   </div>
                 ))}
               </div>
@@ -431,11 +427,12 @@ export default function EventsPage() {
             {/* Right: Event panel */}
             <div>
               <div className="flex items-center justify-between mb-6">
-                <span className="font-black text-[20px] text-[#100F0A]">{panelHeading}</span>
+                <span className="font-black text-[24px] text-[#100F0A]">{panelHeading}</span>
                 {selectedDate && (
-                  <button onClick={() => setSelectedDate(null)} className="text-[10px] font-black tracking-widest uppercase text-[#aaa] hover:text-[#FD6900] transition-colors">Clear ✕</button>
+                  <button onClick={() => setSelectedDate(null)} className="text-[12px] font-bold tracking-wide uppercase text-[#999] hover:text-[#FD6900] transition-colors">Clear ✕</button>
                 )}
               </div>
+
               <div className="divide-y divide-[#e0ddd7]">
                 {panelEvents.length === 0 ? (
                   <p className="py-10 text-sm text-center text-[#bbb]">No events on this day.</p>
@@ -446,19 +443,19 @@ export default function EventsPage() {
                   return (
                     <div key={ev.id} className="flex items-start gap-5 py-4 group cursor-pointer" onClick={() => setModalEvent(ev)}>
                       <div className="min-w-[52px] text-center shrink-0">
-                        <div className="font-black text-[32px] leading-none" style={{ color }}>{parseInt(d)}</div>
-                        <div className="text-[10px] font-black tracking-widest text-[#100F0A] uppercase mt-0.5">{MONTHS[parseInt(m)-1].slice(0,3)}</div>
+                        <div className="font-extrabold text-[30px] leading-none mt-6" style={{ color }}>{parseInt(d)}</div>
+                        <div className="text-[12px] font-black tracking-wide text-[#999] uppercase mt-0.5">{MONTHS[parseInt(m)-1].slice(0,3)}</div>
                       </div>
                       <div className="w-px self-stretch shrink-0 bg-[#e0ddd7]" />
                       <div className="flex-1 min-w-0">
-                        <span className="inline-block text-[9px] font-black tracking-[0.18em] uppercase px-2.5 py-1 rounded-full mb-1.5" style={{ background: `${color}18`, color }}>{ev.type}</span>
-                        <div className="font-black text-[#100F0A] text-[15px] leading-snug group-hover:text-[#FD6900] transition-colors duration-150">{ev.title}</div>
-                        <div className="text-[11px] text-[#888] mt-1">{ev.detail}</div>
+                        <span className="inline-block text-[10px] font-black tracking-[0.18em] uppercase px-2.5 py-1 rounded-full mb-1.5" style={{ background: `${color}18`, color }}>{ev.type}</span>
+                        <div className="font-extrabold text-[#100F0A] text-[15px] tracking-wide leading-none group-hover:text-[#FD6900] transition-colors duration-150">{ev.title}</div>
+                        <div className="text-[12px] text-[#999] mt-1">{ev.detail}</div>
                         {ev.spotsLeft <= 5 && <div className="mt-1.5 text-[10px] font-black text-[#e05252] tracking-wide">⚠ Only {ev.spotsLeft} spots left</div>}
                       </div>
-                      <div className="flex flex-col items-center gap-2 shrink-0 self-center">
-                        <button onClick={e => { e.stopPropagation(); toggleSave(ev.id); }} className="text-[15px] transition-all" style={{ color: saved ? '#FD6900' : '#ddd' }}>{saved ? '★' : '☆'}</button>
-                        <span className="text-[#ddd] group-hover:text-[#FD6900] transition-colors text-lg">→</span>
+                      <div className="flex flex-col items-center shrink-0 self-center">
+                        <button onClick={e => { e.stopPropagation(); toggleSave(ev.id); }} className="text-[25px] transition-all" style={{ color: saved ? '#FD6900' : '#999' }}>{saved ? '★' : '☆'}</button>
+                        <span className="text-[#999] group-hover:text-[#FD6900] transition-colors text-lg">→</span>
                       </div>
                     </div>
                   );
@@ -490,26 +487,26 @@ export default function EventsPage() {
                     style={{ animationDelay: `${i * 40}ms` }}
                     onClick={() => setModalEvent(ev)}
                   >
-                    <div className="min-w-[48px] text-center shrink-0">
+                    <div className="min-w-20 text-center shrink-0">
                       <div className="font-black text-[28px] leading-none" style={{ color }}>{parseInt(d)}</div>
-                      <div className="text-[9px] font-black tracking-widest text-[#aaa] uppercase">{MONTHS[parseInt(m)-1].slice(0,3)}</div>
+                      <div className="text-[12px] font-black tracking-widest text-[#aaa] uppercase">{MONTHS[parseInt(m)-1].slice(0,3)}</div>
                     </div>
                     <div className="w-px h-10 shrink-0 bg-[#e0ddd7]" />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="text-[9px] font-black tracking-[0.18em] uppercase px-2 py-0.5 rounded-full" style={{ background: `${color}18`, color }}>{ev.type}</span>
-                        {ev.spotsLeft <= 5 && <span className="text-[9px] font-black text-[#e05252]">⚠ {ev.spotsLeft} spots left</span>}
+                        {ev.spotsLeft <= 5 && <span className="text-[12px] font-bold text-[#e05252]">⚠ {ev.spotsLeft} spots left</span>}
                       </div>
-                      <div className="font-black text-[#100F0A] text-[15px] leading-snug group-hover:text-[#FD6900] transition-colors duration-150">{ev.title}</div>
-                      <div className="text-[11px] text-[#888] mt-0.5">{ev.detail}</div>
+                      <div className="font-extrabold text-[#100F0A] text-[15px] leading-snug group-hover:text-[#FD6900] transition-colors duration-150">{ev.title}</div>
+                      <div className="text-[12px] text-[#999] mt-0.5">{ev.detail}</div>
                     </div>
-                    <div className="hidden sm:block w-28 shrink-0">
-                      <SpotBar total={ev.spots} left={ev.spotsLeft} />
-                    </div>
-                    <div className="flex items-center gap-3 shrink-0">
-                      <button onClick={e => { e.stopPropagation(); toggleSave(ev.id); }} className="text-[16px] transition-all" style={{ color: saved ? '#FD6900' : '#ddd' }}>{saved ? '★' : '☆'}</button>
-                      <span className="text-[#ddd] group-hover:text-[#FD6900] text-lg transition-colors">→</span>
-                    </div>
+                      <div className="flex items-center gap-8 shrink-0">
+                        <div className="hidden sm:block w-24 md:w-30 lg:w-70 shrink-0">
+                          <SpotBar total={ev.spots} left={ev.spotsLeft} />
+                        </div>
+                        <button onClick={e => { e.stopPropagation(); toggleSave(ev.id); }} className="text-[25px] transition-all" style={{ color: saved ? '#FD6900' : '#999' }}>{saved ? '★' : '☆'}</button>
+                        <span className="text-[#999] group-hover:text-[#FD6900] text-lg transition-colors">→</span>
+                      </div>
                   </div>
                 );
               })}
@@ -518,21 +515,17 @@ export default function EventsPage() {
         </div>
       )}
 
-      {/* ── CTA row ──────────────────────────────────────────────────────── */}
+      {/* ── bottom bar ──────────────────────────────────────────────────────── */}
       <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 pb-20">
         <div className="w-full h-px bg-[#e0ddd7] mb-8" />
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-sm text-[#100F0A] font-bold">
-            Want to host an event?{' '}
-            <span className="text-[#CA5400] cursor-pointer hover:underline">Get in touch →</span>
-          </p>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-end gap-4">
           <div className="flex gap-2">
             <Link href="/">
-              <button className="flex items-center gap-2 px-5 py-3 rounded-full text-[11px] font-black tracking-widest border border-[#ddd] text-[#555] hover:border-[#100F0A] hover:text-[#100F0A] transition-all w-fit">
+              <button className="flex items-center gap-2 px-5 py-3 rounded-full text-[11px] font-black tracking-widest border border-[#999] text-[#555] hover:border-[#100F0A] hover:text-[#100F0A] transition-all w-fit">
                 ← Back Home
               </button>
             </Link>
-            <button className="flex items-center gap-2 px-5 py-3 rounded-full text-[11px] font-black tracking-widest bg-[#100F0A] text-white hover:scale-105 transition-all w-fit">
+            <button className="flex items-center gap-2 px-5 py-3 rounded-full text-[12px] font-bold tracking-wide bg-[#100F0A] text-white hover:scale-105 transition-all w-fit">
               <span className="w-5 h-5 rounded-full bg-[#2a2a24] flex items-center justify-center">📅</span>
               Add All to Calendar
             </button>
