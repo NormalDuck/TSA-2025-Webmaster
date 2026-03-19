@@ -70,13 +70,13 @@ function ScrollColumn({
 const topThreeResources = [
   {
     id: 1,
-    tag: "FOOD ACCESS",
+    tag: "FOOD",
     title: "Rainier Valley Food Bank",
     description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     icon: "🥦",
     color: "#FD6900",
     span: "col-span-2 row-span-2",
-    image: "/topresources/landing_page_news_1.jpg",
+    image: "/resources/rainierfoodbank/rainier_foodbank_1.png",
   },
   {
     id: 2,
@@ -86,17 +86,17 @@ const topThreeResources = [
     icon: "🏠",
     color: "#52AD6A",
     span: "col-span-1 row-span-1",
-    image: "/topresources/landing_page_news_2.jpg",
+    image: "/resources/marysplace/marys_place_3.png",
   },
   {
     id: 3,
     tag: "HEALTH",
-    title: "THIRA Health",
-    description: "Adult residential treatment program for individuals aged 18+ struggling with anxiety, depression, and trauma, offering paths toward mental wellness.",
+    title: "Lahai Health",
+    description: "Lahai Health is a free and charitable health clinic committed to providing quality and compassionate care to individuals and families who face barriers to accessing healthcare in King and Snohomish Counties.",
     icon: "🩺",
     color: "#ff3333",
     span: "col-span-1 row-span-1",
-    image: "/topresources/landing_page_news_3.jpg",
+    image: "/resources/lahai/lahai_1.jpg",
   },
 ];
 
