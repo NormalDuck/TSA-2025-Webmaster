@@ -6,26 +6,28 @@ import Footer from "@/components/footer";
 
 // Polaroid images for section 1
 const IMAGES_COL_1 = [
-  { src: "/resources/familyworks/family_works_logo.png", rotate: "-rotate-1",  },
-  { src: "/resources/farestart/fare_start_logo.jpg", rotate: "rotate-2", },
-  { src: "/resources/seattlecommitte/seattle_food_committee.png", rotate: "-rotate-2",  },
-  { src: "/resources/seattlerecreative/seattle_recreative.png", rotate: "rotate-1", },
-  { src: "/resources/neighborhoodhouse/neighborhood_house_logo.png", rotate: "-rotate-1", },
+  { src: "/resources/familyworks/family_works_logo.png", rotate: "-rotate-1", title: "Family Works Seattle" },
+  { src: "/resources/farestart/fare_start_logo.jpg", rotate: "rotate-2", title: "FareStart" },
+  { src: "/resources/seattlecommitte/seattle_food_committee.png", rotate: "-rotate-2", title: "Seattle Food Committee" },
+  { src: "/resources/seattlerecreative/seattle_recreative.png", rotate: "rotate-1", title: "Seattle ReCreative" },
+  { src: "/resources/neighborhoodhouse/neighborhood_house_logo.png", rotate: "-rotate-1", title: "Neighborhood House" },
 ];
 
 const IMAGES_COL_2 = [
-  { src: "/resources/northwestharvest/nw_harvest_logo.jpg",  rotate: "rotate-2",  },
-  { src: "/resources/perscholas/per_scholas_logo.png",  rotate: "-rotate-1",  },
-  { src: "/resources/pikefoodbank/pike_foodbank_logo.jpg",  rotate: "rotate-1",  },
-  { src: "/resources/thirahealth/thira_health.png",  rotate: "-rotate-2",  },
-  { src: "/resources/universityfoodbank/udfb_logo.jpg", rotate: "rotate-1",  },
+  { src: "/resources/northwestharvest/nw_harvest_logo.jpg", rotate: "rotate-2", title: "Northwest Harvest" },
+  { src: "/resources/perscholas/per_scholas_logo.png", rotate: "-rotate-1", title: "Per Scholas" },
+  { src: "/resources/pikefoodbank/pike_foodbank_logo.jpg", rotate: "rotate-1", title: "Pike Market Senior Center & Food Bank" },
+  { src: "/resources/thirahealth/thira_health.png", rotate: "-rotate-2", title: "THIRA Health" },
+  { src: "/resources/universityfoodbank/udfb_logo.jpg", rotate: "rotate-1", title: "University District Food Bank" },
 ];
 
-function PolaroidCard({ src, rotate }: { src: string; rotate: string  }) {
+
+function PolaroidCard({ src, rotate, title }: { src: string; rotate: string, title: string }) {
   return (
-    <div className={`bg-white p-3 pb-10 shadow-lg ${rotate} shrink-0 w-full`}>
+    <Link href={`/resources?resource=${encodeURIComponent(title)}`} className={`bg-white p-3 pb-10 shadow-lg ${rotate} shrink-0 w-full`}>
+      {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img src={src} alt="" className="w-full h-full aspect-4/3 object-cover" />
-    </div>
+    </Link>
   );
 }
 
@@ -34,7 +36,7 @@ function ScrollColumn({
   direction = "up",
   duration = "26s",
 }: {
-  images: { src: string; rotate: string }[];
+  images: { src: string; rotate: string, title: string }[];
   direction?: "up" | "down";
   duration?: string;
 }) {
@@ -54,16 +56,18 @@ function ScrollColumn({
           animation: `${direction === "up" ? "scrollUp" : "scrollDown"} ${duration} linear infinite`,
         }}
       >
-        {doubled.map((img, i) => (
-          <PolaroidCard  key={i} src={img.src} rotate={img.rotate} />
-        ))}
+        {doubled.map((img, i) => {
+          return (
+            <PolaroidCard key={i} src={img.src} rotate={img.rotate} title={img.title} />
+          )
+        })}
       </div>
     </div>
   );
 }
 
 // Data for Top Resources section
-const resources = [
+const topThreeResources = [
   {
     id: 1,
     tag: "FOOD ACCESS",
@@ -71,7 +75,7 @@ const resources = [
     description: "RVFB is the primary emergency food resource for Seattle’s most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     icon: "🥦",
     color: "#FD6900",
-    span: "col-span-2 row-span-2",  
+    span: "col-span-2 row-span-2",
     image: "/topresources/landing_page_news_1.jpg",
   },
   {
@@ -136,19 +140,19 @@ type Topic = (typeof topicKeys)[number];
 
 
 const sections = [
-  { id: "hero",       label: "Home" },
-  { id: "resources",  label: "Resources" },
-  { id: "news",       label: "News" },
-  { id: "events",     label: "Events" },
+  { id: "hero", label: "Home" },
+  { id: "resources", label: "Resources" },
+  { id: "news", label: "News" },
+  { id: "events", label: "Events" },
   { id: "newsletter", label: "Newsletter" },
 ];
 
 // Dot colors per section background
 const dotColors: Record<string, { active: string; inactive: string }> = {
-  hero:       { active: "#FD6900", inactive: "#1a1a1a40" },
-  resources:  { active: "#FD6900", inactive: "#1a1a1a40" },
-  news:       { active: "#FD6900", inactive: "#ffffff40" },
-  events:     { active: "#FD6900", inactive: "#1a1a1a40" },
+  hero: { active: "#FD6900", inactive: "#1a1a1a40" },
+  resources: { active: "#FD6900", inactive: "#1a1a1a40" },
+  news: { active: "#FD6900", inactive: "#ffffff40" },
+  events: { active: "#FD6900", inactive: "#1a1a1a40" },
   newsletter: { active: "#ffffff", inactive: "#ffffff40" },
 };
 
@@ -249,6 +253,20 @@ export default function Home() {
       return () => clearInterval(interval);
     }, [isManualHover]);
 
+  const scrollTo = (id: string) =>
+    sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
+
+  const dotColor = dotColors[activeSection] ?? dotColors.hero;
+
+  // Auto-hover carousel cards every 4 seconds, but pause on manual hover
+  useEffect(() => {
+    if (isManualHover) return;
+    const interval = setInterval(() => {
+      setAutoHovered((prev) => (prev % topThreeResources.length) + 1);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isManualHover]);
+
   return (
     <>
       {/* ── Dot Navigation ─────── */}
@@ -300,51 +318,51 @@ export default function Home() {
 
         {/* Part 1: HomePage */}
         <section
-            id="hero"
-            ref={(el) => { sectionRefs.current.hero = el; }}
-            className="min-h-screen bg-[#FEFCF8] px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 flex items-center"
-            style={{ scrollSnapAlign: "start" }}
-          >
-            {/* ── Left: text content ── */}
-            <div className="flex flex-col justify-center flex-1 py-20">
-              <div className="inline-flex items-center gap-2 border border-[#52AD6A] rounded-full px-4 py-1.5 mb-6 w-fit">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52AD6A] opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#52AD6A]" />
-                </span>
-                <span className="text-[10px] font-bold tracking-widest uppercase text-[#52AD6A]">
-                  Serving Our Community Since 2012
-                </span>
-              </div>
-
-              <h1 className="text-[clamp(36px,7vw,70px)] font-black leading-[.8] tracking-tight mb-6">
-                <span className="block text-black">Your</span>
-                <span className="block relative">
-                  <span className="text-[#FD6900]">community,</span>
-                  <span className="absolute left-0 bottom-0 h-0.5 w-[72%] bg-[#CA641B] translate-y-1 opacity-40" />
-                </span>
-                <span className="block text-black">your</span>
-                <span className="block text-black">resources</span>
-              </h1>
-
-              <p className="max-w-sm text-[clamp(12px,1.5vw,14px)] text-[#000000] leading-relaxed mb-6">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur
-                adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien
-                vitae pellentesque.
-              </p>
-
-              <Link href="/resources">
-                <button className="bg-[#E0A959] text-white text-[12px] font-bold rounded-xl uppercase px-4 py-2 hover:bg-[#ffad69] transition-colors duration-200 w-fit">
-                  Find Resources
-                </button>
-              </Link>
+          id="hero"
+          ref={(el) => { sectionRefs.current.hero = el; }}
+          className="min-h-screen bg-[#FEFCF8] px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 flex items-center"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          {/* ── Left: text content ── */}
+          <div className="flex flex-col justify-center flex-1 py-20">
+            <div className="inline-flex items-center gap-2 border border-[#52AD6A] rounded-full px-4 py-1.5 mb-6 w-fit">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52AD6A] opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#52AD6A]" />
+              </span>
+              <span className="text-[10px] font-bold tracking-widest uppercase text-[#52AD6A]">
+                Serving Our Community Since 2012
+              </span>
             </div>
 
-            {/* ── Right: polaroid scroll columns ── */}
-            <div className="hidden flex-1 lg:flex gap-8 w-105 xl:w-125 shrink-0 h-screen py-10 overflow-hidden">
-              <ScrollColumn images={IMAGES_COL_1} direction="up"   duration="20s" />
-              <ScrollColumn images={IMAGES_COL_2} direction="down" duration="26s" />
-            </div>
+            <h1 className="text-[clamp(36px,7vw,70px)] font-black leading-[.8] tracking-tight mb-6">
+              <span className="block text-black">Your</span>
+              <span className="block relative">
+                <span className="text-[#FD6900]">community,</span>
+                <span className="absolute left-0 bottom-0 h-0.5 w-[72%] bg-[#CA641B] translate-y-1 opacity-40" />
+              </span>
+              <span className="block text-black">your</span>
+              <span className="block text-black">resources</span>
+            </h1>
+
+            <p className="max-w-sm text-[clamp(12px,1.5vw,14px)] text-[#000000] leading-relaxed mb-6">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur
+              adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien
+              vitae pellentesque.
+            </p>
+
+            <Link href="/resources">
+              <button className="bg-[#E0A959] text-white text-[12px] font-bold rounded-xl uppercase px-4 py-2 hover:bg-[#ffad69] transition-colors duration-200 w-fit">
+                Find Resources
+              </button>
+            </Link>
+          </div>
+
+          {/* ── Right: polaroid scroll columns ── */}
+          <div className="hidden flex-1 lg:flex gap-8 w-105 xl:w-125 shrink-0 h-screen py-10 overflow-hidden">
+            <ScrollColumn images={IMAGES_COL_1} direction="up" duration="20s" />
+            <ScrollColumn images={IMAGES_COL_2} direction="down" duration="26s" />
+          </div>
         </section>
 
         {/* Part 2: Top Resources */}
@@ -382,103 +400,103 @@ export default function Home() {
               className="grid grid-cols-3 gap-2 flex-1 min-h-0"
               style={{ gridTemplateRows: "280px 280px" }}
             >
-              {resources.map((r) => (
-              <div
-                key={r.id}
-                className={`${r.span} rounded-2xl cursor-pointer transition-all duration-500 relative overflow-hidden group`}
-                style={{
-                  boxShadow: (isManualHover ? hovered : autoHovered) === r.id
-                    ? `0 20px 60px ${r.color}50`
-                    : "0 4px 20px rgba(0,0,0,0.10)",
-                  transform: (isManualHover ? hovered : autoHovered) === r.id
-                    ? "translateY(-3px)"
-                    : "translateY(0)",
-                }}
-                onMouseEnter={() => {
-                  setIsManualHover(true);
-                  setHovered(r.id);
-                }}
-                onMouseLeave={() => {
-                  setIsManualHover(false);
-                  setHovered(null);
-                }}
-              >
-                {/* Background image */}
-                <img
-                  src={r.image}
-                  alt={r.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-
-                {/* Permanent dark gradient */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent" />
-
-                {/* Accent color overlay */}
+              {topThreeResources.map((r) => (
                 <div
-                  className="absolute inset-0 transition-opacity duration-500"
+                  key={r.id}
+                  className={`${r.span} rounded-2xl cursor-pointer transition-all duration-500 relative overflow-hidden group`}
                   style={{
-                    background: `linear-gradient(to top, ${r.color}dd 0%, ${r.color}55 50%, transparent 100%)`,
-                    opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
+                    boxShadow: (isManualHover ? hovered : autoHovered) === r.id
+                      ? `0 20px 60px ${r.color}50`
+                      : "0 4px 20px rgba(0,0,0,0.10)",
+                    transform: (isManualHover ? hovered : autoHovered) === r.id
+                      ? "translateY(-3px)"
+                      : "translateY(0)",
                   }}
-                />
+                  onMouseEnter={() => {
+                    setIsManualHover(true);
+                    setHovered(r.id);
+                  }}
+                  onMouseLeave={() => {
+                    setIsManualHover(false);
+                    setHovered(null);
+                  }}
+                >
+                  {/* Background image */}
+                  <img
+                    src={r.image}
+                    alt={r.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
 
-                {/* TOP: tag + icon */}
-                <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
-                  <span
-                    className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full"
-                    style={{ backgroundColor: `${r.color}dd`, color: "white" }}
-                  >
-                    {r.tag}
-                  </span>
-                  <span
-                    className="text-base w-8 h-8 flex items-center justify-center rounded-full"
-                    style={{ backgroundColor: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
-                  >
-                    {r.icon}
-                  </span>
-                </div>
+                  {/* Permanent dark gradient */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/20 to-transparent" />
 
-                {/* BOTTOM: text content */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-                  <h3
-                    className="font-black text-white leading-tight drop-shadow-lg"
-                    style={{
-                      fontSize: r.id === 1 ? "clamp(18px, 2vw, 26px)" : "clamp(12px, 1.2vw, 15px)",
-                    }}
-                  >
-                    {r.title}
-                  </h3>
-
+                  {/* Accent color overlay */}
                   <div
-                    className="overflow-hidden transition-all duration-300"
+                    className="absolute inset-0 transition-opacity duration-500"
                     style={{
-                      maxHeight: (isManualHover ? hovered : autoHovered) === r.id ? "60px" : "0px",
+                      background: `linear-gradient(to top, ${r.color}dd 0%, ${r.color}55 50%, transparent 100%)`,
                       opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
                     }}
-                  >
-                    <p
-                      className="leading-snug mt-1.5 text-white/90"
-                      style={{ fontSize: r.id === 1 ? "12px" : "10px" }}
+                  />
+
+                  {/* TOP: tag + icon */}
+                  <div className="absolute top-0 left-0 right-0 p-3 flex items-center justify-between z-10">
+                    <span
+                      className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full"
+                      style={{ backgroundColor: `${r.color}dd`, color: "white" }}
                     >
-                      {r.description}
-                    </p>
+                      {r.tag}
+                    </span>
+                    <span
+                      className="text-base w-8 h-8 flex items-center justify-center rounded-full"
+                      style={{ backgroundColor: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+                    >
+                      {r.icon}
+                    </span>
                   </div>
 
-                  <div
-                    className="flex items-center gap-2 mt-2 transition-all duration-300"
-                    style={{
-                      opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
-                    }}
-                  >
-                    <Link href={`/resources?resource=${encodeURIComponent(r.title)}`}>
-                    <span className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full text-white border border-white/40 hover:bg-white/20 transition-colors">
-                      LEARN MORE →
-                    </span>
-                    </Link>
+                  {/* BOTTOM: text content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+                    <h3
+                      className="font-black text-white leading-tight drop-shadow-lg"
+                      style={{
+                        fontSize: r.id === 1 ? "clamp(18px, 2vw, 26px)" : "clamp(12px, 1.2vw, 15px)",
+                      }}
+                    >
+                      {r.title}
+                    </h3>
+
+                    <div
+                      className="overflow-hidden transition-all duration-300"
+                      style={{
+                        maxHeight: (isManualHover ? hovered : autoHovered) === r.id ? "60px" : "0px",
+                        opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
+                      }}
+                    >
+                      <p
+                        className="leading-snug mt-1.5 text-white/90"
+                        style={{ fontSize: r.id === 1 ? "12px" : "10px" }}
+                      >
+                        {r.description}
+                      </p>
+                    </div>
+
+                    <div
+                      className="flex items-center gap-2 mt-2 transition-all duration-300"
+                      style={{
+                        opacity: (isManualHover ? hovered : autoHovered) === r.id ? 1 : 0,
+                      }}
+                    >
+                      <Link href={`/resources?resource=${encodeURIComponent(r.title)}`}>
+                        <span className="text-[9px] font-black tracking-widest px-2.5 py-1 rounded-full text-white border border-white/40 hover:bg-white/20 transition-colors">
+                          LEARN MORE →
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
             </div>
 
             {/* Footer row */}
