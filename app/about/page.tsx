@@ -126,7 +126,7 @@ export default function AboutPage() {
                 className="text-white/60 mt-6 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-137.5 text-sm sm:text-base leading-relaxed"
                 style={{ fontFamily: "'Syne', sans-serif" }}
               >
-                  We are a non-profit community resource hub focused on sharing accessible resources based in Washington. Founded in 2012, we have a rich history stemming from Seattle and allow open submission for resources at anytime.
+                We are a non-profit community resource hub focused on sharing accessible resources based in Washington. Founded in 2012, we have a rich history stemming from Seattle and allow open submission for resources at anytime.
               </p>
             </div>
 
