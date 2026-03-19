@@ -244,7 +244,7 @@ export default function AboutPage() {
         {/* Section 7 — Join Us */}
         <section
           id="volunteersection"
-          ref={(el) => { sectionRefs.current.volunteer = el as HTMLDivElement; }}
+          ref={(el) => { sectionRefs.current[4] = el as HTMLDivElement; }}
           className="relative min-h-screen overflow-hidden bg-[#404040] flex flex-col justify-center snap-section"
         >
           <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-12 relative z-10">
