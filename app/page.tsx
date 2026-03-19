@@ -105,31 +105,31 @@ const topThreeResources = [
 const newsItems = [
   { 
     id: "01", 
-    category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    category: "SOCIAL & FAMILY SUPPORT", 
+    title: "Local Non-Profit Hosts Winter Clothes Drive for Families",
+    summary: "A local Seattle non-profit is going to be hosting a winter clothes drive for families on January 12 at 12pm. With more supporters than ever, they have partnered with elementary schools and foster programs to provide kids with the warm clothes they need this winter. If you’re interested in donating or getting involved, keep reading! ",
+    image: "/news/news_family_image.jpg",
   },
   { 
     id: "02", 
-    category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    category: "HEALTH & WELLNESS", 
+    title: "Mobile Clinics: What are they?",
+    summary: "Since the pandemic, many health institutions have been participating in mobile clinics. We seem to them often at schools and community centers, but many still aren’t familiar with them despite their great benefits, especially for underserved communities. In this article, we’ll be discussing what mobile clinics are and how they’ve expanded over the years. ",
+    image: "/news/news_health_image.jpg",
   },
   { 
     id: "03", 
-    category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    category: "HOUSING", 
+    title: "Habitat for Humanity Open New Building in Capitol Hill",
+    summary: "Habitat for Humanity in a non-profit organization aimed at helping create affordable housing. For the past year they have been working on a new building down in Capitol Hill that just opened last Friday. Many Seattle citizens are anticipating great changes and opportunities to arise from this!",
+    image: "/news/news_housing.jpg",
   },
   { 
     id: "04", 
     category: "FOOD ACCESS", 
-    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
-    image: null,
+    title: "High School Partners with Rainier Valley Foodbank for a Food Drive",
+    summary: "At a high school in the Seattle Public School district, their school Key Club has partnered with Rainier Valley Foodbank for a food drive. Students at the school donate food items at the Key Club donation bin, and they send those off to RVFB for others to receive. When asked why they chose to host a food drive with RVFB, a student said, “Rainier Valley Foodbank is open to everyone, and though many who receive those goods aren’t student here, they’re still a part of our community.”",
+    image: "/news/news_food.jpg",
   },
 ];
 //Progress bar time
@@ -576,13 +576,15 @@ export default function Home() {
               </div>
 
               {/* Right — image fills the row height */}
-              <div className="relative rounded-xl overflow-hidden bg-[#161410] border border-[#2a2820] min-h-0">
+              <div className="relative rounded-xl overflow-hidden bg-[#161410] border border-[#2a2820] min-h-0 mb-8">
+                {featured.image && (
+                <img
+                  src={featured.image}
+                  alt={featured.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
                 <div className="absolute inset-0 bg-linear-to-br from-[#CA5400]/8 to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <span className="text-[#2a2820] text-[9px] font-black tracking-widest uppercase">
-                    {featured.category}
-                  </span>
-                </div>
               </div>
             </div>
 
