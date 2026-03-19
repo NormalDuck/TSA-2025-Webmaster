@@ -330,9 +330,7 @@ export default function Home() {
             </h1>
 
             <p className="max-w-sm text-[clamp(12px,1.5vw,14px)] text-[#000000] leading-relaxed mb-6">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur
-              adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien
-              vitae pellentesque.
+              WAsHub has been supporting families and communities within Washington for over 10 years, giving local non-profits a digital space to share their resources with others.
             </p>
 
             <Link href="/resources">

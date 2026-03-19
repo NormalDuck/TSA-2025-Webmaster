@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 
-/* ─── Design tokens ────────────────────────────────────────────────────────
-   --nav-h   : height of the fixed Navbar (update if your nav changes size)
-   --orange  : brand accent
-   --green   : brand green
-   --cream   : page background
-   --ink     : primary text
-   ────────────────────────────────────────────────────────────────────────── */
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
 :root {
   --nav-h:  70px;
   --orange: #FD6900;
@@ -15,9 +9,7 @@
   --ink:    #100F0A;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-snap-type: y mandatory;
@@ -25,19 +17,17 @@ html {
 }
 
 /* ─── Snap sections ─────────────────────────────────────────────────────── */
-
 .snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   min-height: 100vh;
 }
 
-/* Footer only needs to be as tall as its content */
 .snap-section.footer-snap {
   min-height: unset;
 }
 
-/* ─── Fixed timeline line ──────────────────────────────────────────────*/
+/* ─── Fixed timeline line ───────────────────────────────────────────────── */
 .timeline-wrapper-fixed {
   position: fixed;
   left: 3rem;
@@ -50,9 +40,7 @@ html {
   transition: opacity 0.4s ease;
 }
 
-.timeline-wrapper-fixed.visible {
-  opacity: 1;
-}
+.timeline-wrapper-fixed.visible { opacity: 1; }
 
 .timeline-line {
   position: absolute;
@@ -68,14 +56,8 @@ html {
 }
 
 @keyframes linePulse {
-  0%, 100% {
-    opacity: 0.3;
-    box-shadow: 0 0 0 var(--orange);
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 12px 3px rgba(212, 98, 42, 0.6);
-  }
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; box-shadow: 0 0 12px 3px rgba(212,98,42,0.6); }
 }
 
 .timeline-dot {
@@ -92,25 +74,19 @@ html {
 }
 
 @keyframes dotPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 3px var(--orange), 0 0 8px rgba(212, 98, 42, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 0 5px var(--orange), 0 0 24px rgba(212, 98, 42, 0.7);
-  }
+  0%, 100% { box-shadow: 0 0 0 3px var(--orange), 0 0 8px rgba(212,98,42,0.3); }
+  50%       { box-shadow: 0 0 0 5px var(--orange), 0 0 24px rgba(212,98,42,0.7); }
 }
 
-/* ─── "OUR STORY" caption (below navbar, only during timeline) ─────────── */
-
+/* ─── "OUR STORY" label ─────────────────────────────────────────────────── */
 .story-label {
   position: fixed;
-  margin-bottom: 10px;
   top: calc(var(--nav-h) + 14px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 40;
   font-family: 'Syne', sans-serif;
-  font-size: 75px;
+  font-size: clamp(28px, 8vw, 75px);
   font-weight: 800;
   color: #54825A;
   white-space: nowrap;
@@ -119,12 +95,9 @@ html {
   transition: opacity 0.4s ease;
 }
 
-.story-label.visible {
-  opacity: 1;
-}
+.story-label.visible { opacity: 1; }
 
 /* ─── Year sidebar ──────────────────────────────────────────────────────── */
-
 .year-sidebar {
   position: fixed;
   right: 2rem;
@@ -153,9 +126,7 @@ html {
   transition: all 0.3s ease;
 }
 
-.year-pip.active {
-  opacity: 1;
-}
+.year-pip.active { opacity: 1; }
 
 .pip-dot {
   width: 6px;
@@ -183,19 +154,15 @@ html {
   transition: opacity 0.3s ease;
 }
 
-.year-pip.active .pip-label {
-  opacity: 1;
-}
+.year-pip.active .pip-label { opacity: 1; }
 
-/* ─── Timeline section cards ────────────────────────────────────────────
-   top padding clears the navbar; left padding clears the timeline line  */
-
+/* ─── Timeline section cards ────────────────────────────────────────────── */
 .section-full {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--nav-h) + 32px) 4rem 4rem 7rem;
+  padding: calc(var(--nav-h) + 2rem) 4rem calc(var(--nav-h) + 2rem) 6rem;
   position: relative;
   overflow: hidden;
   background: var(--cream);
@@ -203,11 +170,12 @@ html {
   scroll-snap-stop: always;
 }
 
+/* ─── section-inner ─────────────────────────────────────────────────────── */
 .section-inner {
   max-width: 1200px;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  display: flex;
+  flex-direction: row;
   gap: 5rem;
   align-items: center;
   opacity: 0;
@@ -221,21 +189,19 @@ html {
 }
 
 .section-inner.right {
-  direction: rtl;
+  flex-direction: row-reverse;
 }
 
-.section-inner.right > * {
-  direction: ltr;
-}
-
+/* ─── Content block ─────────────────────────────────────────────────────── */
 .content-block {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* ─── Year tag ─────────────────────────────────────────────────────────── */
-
+/* ─── Year tag ──────────────────────────────────────────────────────────── */
 .year-tag {
   font-family: 'Syne', sans-serif;
   font-weight: 500;
@@ -254,7 +220,6 @@ html {
 }
 
 /* ─── Step number badge ─────────────────────────────────────────────────── */
-
 .step-number {
   width: 44px;
   height: 44px;
@@ -271,10 +236,9 @@ html {
 }
 
 /* ─── Section title ─────────────────────────────────────────────────────── */
-
 .section-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2rem, 4vw, 3.8rem);
   font-weight: 700;
   line-height: 1.1;
   color: var(--ink);
@@ -289,9 +253,8 @@ html {
 }
 
 /* ─── Section body ──────────────────────────────────────────────────────── */
-
 .section-body {
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
   line-height: 1.8;
   color: #3a3530;
   font-weight: 400;
@@ -306,75 +269,102 @@ html {
   transform: translateY(0);
 }
 
-/* ─── Illustration card ─────────────────────────────────────────────────── */
-
+/* ─── Image box ─────────────────────────────────────────────────────────── */
 .image-box {
+  flex: 1.4;
+  min-width: 0;
   aspect-ratio: 5 / 4;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
   background: #e8e0d5;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15), 0 6px 20px rgba(0,0,0,0.1);
   transform: scale(0.9) rotate(-2deg);
   opacity: 0;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
-              opacity 0.8s ease 0.2s;
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+    opacity   0.8s ease 0.2s;
 }
 
-.section-inner.right .image-box {
-  transform: scale(0.9) rotate(2deg);
-}
-
-.section-inner.visible .image-box {
-  transform: scale(1) rotate(-1deg);
-  opacity: 1;
-}
-
-.section-inner.right.visible .image-box {
-  transform: scale(1) rotate(1deg);
-}
+.section-inner.right .image-box      { transform: scale(0.9) rotate(2deg); }
+.section-inner.visible .image-box    { transform: scale(1) rotate(-1deg); opacity: 1; }
+.section-inner.right.visible .image-box { transform: scale(1) rotate(1deg); }
 
 .image-box:hover {
   transform: scale(1.02) rotate(0deg) !important;
   transition: transform 0.4s ease !important;
 }
 
-/* ─── Ambient colour blob ───────────────────────────────────────────────── */
-
+/* ─── Ambient blob ──────────────────────────────────────────────────────── */
 .bg-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   animation: blobFloat 8s ease-in-out infinite;
 }
 
 @keyframes blobFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(20px, -20px) scale(1.05); }
-  66%       { transform: translate(-15px, 15px) scale(0.95); }
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%       { transform: translate(20px,-20px) scale(1.05); }
+  66%       { transform: translate(-15px,15px) scale(0.95); }
 }
 
-/* ─── Mission section — top padding clears the navbar ──────────────────── */
+/* ─── Mission section ───────────────────────────────────────────────────── */
 .about-mission {
   padding-top: var(--nav-h);
 }
 
-/* ─── Mobile ────────────────────────────────────────────────────────────── */
-
-@media (max-width: 640px) {
+/* ─── Tablet (768px – 1023px) ───────────────────────────────────────────── */
+@media (max-width: 1023px) {
   .section-full {
-    padding-left: 1.5rem;
+    padding: calc(var(--nav-h) + 2rem) 3rem calc(var(--nav-h) + 2rem) 5.5rem;
   }
 
-  .section-inner {
-    grid-template-columns: 1fr;
-  }
+  .section-inner { gap: 3rem; }
+}
 
-  .year-sidebar,
+/* ─── Mobile (≤ 767px) — hide fixed chrome, stack cards ────────────────── */
+@media (max-width: 767px) {
+  /* Hide the fixed timeline decorations — no room on mobile */
   .timeline-wrapper-fixed,
+  .year-sidebar,
   .story-label {
     display: none;
+  }
+
+  .section-full {
+    /* Normal padding — no need to clear the sidebar/line */
+    padding: calc(var(--nav-h) + 1.5rem) 1.5rem 3rem;
+    align-items: flex-start;
+  }
+
+  /* Stack both normal and .right cards vertically */
+  .section-inner,
+  .section-inner.right {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .image-box {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+    flex: unset;
+    /* Reset the slight tilt — looks odd when full-width */
+    transform: scale(0.97) rotate(0deg);
+  }
+
+  .section-inner.visible .image-box,
+  .section-inner.right.visible .image-box {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* ─── Small phone (≤ 479px) ─────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .section-full {
+    padding: calc(var(--nav-h) + 1rem) 1rem 2.5rem;
   }
 }

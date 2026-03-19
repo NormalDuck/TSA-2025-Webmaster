@@ -193,9 +193,6 @@ export default function CheckoutPage() {
                 <RefreshCcw size={10} className="text-[#52AD6A]" /> Cancel anytime
               </span>
               <span className="text-[#e8e0d5]">·</span>
-              <span className="flex items-center gap-1 text-[10px] text-[#9a8a7a] font-semibold">
-                <Leaf size={10} className="text-[#52AD6A]" /> Tax-deductible
-              </span>
             </div>
           </div>
         </div>
