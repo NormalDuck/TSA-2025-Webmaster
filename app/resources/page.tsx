@@ -52,7 +52,7 @@ const opportunities: Opportunity[] = [
       "/resources/rainierfoodbank/rainier_foodbank_2.png",
       "/resources/rainierfoodbank/rainier_foodbank_3.png",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2694.3236218779557!2d-122.27304808782165!3d47.522562171062035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906a7277905cf3%3A0xcf72a6fd7d818510!2sRainier%20Valley%20Food%20Bank!5e0!3m2!1sen!2sus!4v1773889120146!5m2!1sen!2sus",
     contact: {
       email: "info@rvfb.org",
       phone: "1-(206)-723-4105",
@@ -70,10 +70,10 @@ const opportunities: Opportunity[] = [
       "/resources/seattlecommitte/seattle_committe_2.jpg",
       "/resources/seattlecommitte/seattle_committe_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d405.7953087387546!2d-122.33912240534836!3d47.66136351643756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901450d4c55555%3A0xf63a035030d163b7!2sSeattle%20Food%20Committee!5e0!3m2!1sen!2sus!4v1773888914778!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-694-6756",
-      address: "1501 N 45th St, Seattle, WA 98103-6708",
+      address: "1501 N 45th St Floor 2, Seattle, WA 98103",
       url: "https://www.seattlefoodcommittee.org/",
       socials: { instagram: "https://www.instagram.com/seattlefoodcommittee/" }
     }
@@ -88,11 +88,11 @@ const opportunities: Opportunity[] = [
       "/resources/familyworks/familyworks_2.jpg",
       "/resources/familyworks/familyworks_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10747.140552383338!2d-122.33821908412904!3d47.66917028720501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901450d4870cdb%3A0x2b3362f3ef9dbb87!2sFamilyWorks%20-%20Wallingford%20Food%20Bank!5e0!3m2!1sen!2sus!4v1773889265595!5m2!1sen!2sus",
     contact: {
       email: "theteam@familyworksseattle.org",
       phone: "1-(206)-647-1770",
-      address: "85420, Seattle, WA 98145",
+      address: "1501 N 45th St, Seattle, WA 98103",
       url: "https://familyworksseattle.org/"
     }
   },
@@ -106,11 +106,11 @@ const opportunities: Opportunity[] = [
       "/resources/neighborhoodhouse/neighborhood_house_2.jpg",
       "/resources/neighborhoodhouse/neighborhood_house_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85977.17397033336!2d-122.41051272991047!3d47.669140207609686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906abe284bb36f%3A0x515939951fdb212d!2sNeighborhood%20House!5e0!3m2!1sen!2sus!4v1773889383224!5m2!1sen!2sus",
     contact: {
       email: "info@nhwa.org",
       phone: "1-(206)-923-6480",
-      address: "1225 South Weller Street, Suite 510, Seattle, WA 98144",
+      address: "1225 S Weller St #510, Seattle, WA 98144",
       url: "https://nhwa.org/",
       socials: { instagram: "https://www.instagram.com/neighborhoodhousekc/" },
     }
@@ -122,10 +122,10 @@ const opportunities: Opportunity[] = [
     coverImage: "/resources/kcrha/KCRHA.png",
     additionalImages:[
       "/resources/kcrha/KCRHA_1.jpg",
-      "/resources/kcrha/KCRHA_2.jpg",
+      "/resources/kcrha/KCRHA_2.png",
       "/resources/kcrha/KCRHA_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2690.2420378459615!2d-122.33078448781747!3d47.601983171069286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906aba49d1dc51%3A0xc7796d11c38c8fdd!2s400%20Yesler%20Wy%20%23600%2C%20Seattle%2C%20WA%2098104!5e0!3m2!1sen!2sus!4v1773889591491!5m2!1sen!2sus",
     contact: {
       email: "info@kcrha.org",
       phone: "1-(206)-930-8846",
@@ -144,10 +144,10 @@ const opportunities: Opportunity[] = [
       "/resources/marysplace/marys_place_2.jpg",
       "/resources/marysplace/marys_place_3.png",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
-    contact: {
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.465746010114!2d-122.3424010878167!3d47.617077171070676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490154a2ac5c6b3%3A0xdb4d17fe27a0a61a!2s720%20Blanchard%20St%2C%20Seattle%2C%20WA%2098121!5e0!3m2!1sen!2sus!4v1773889963217!5m2!1sen!2sus",
+    contact:{
       phone: "1-(206)-621-8474",
-      address: "PO Box 1711, Seattle, WA 98111",
+      address: "720 Blanchard St, Seattle, WA 98121",
       url: "https://www.marysplaceseattle.org/"
     }
   },
@@ -161,7 +161,7 @@ const opportunities: Opportunity[] = [
       "/resources/seattleroots/seattle_roots_2.jpg",
       "/resources/seattleroots/seattle_roots_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10761.104417151988!2d-122.31487487119468!3d47.601320709604515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906ac20f021829%3A0x8cb8add3d8a172a7!2s2101%20E%20Yesler%20Wy%2C%20Seattle%2C%20WA%2098122!5e0!3m2!1sen!2sus!4v1773893204929!5m2!1sen!2sus",
     contact: {
       phone: "1-(206)-299-1900",
       address: "2101 East Yesler Way, Seattle, WA 98122",
@@ -178,11 +178,11 @@ const opportunities: Opportunity[] = [
       "/resources/thirahealth/thira_health_2.png",
       "/resources/thirahealth/thira_health_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10760.326146655712!2d-122.19769857119168!3d47.60510420856364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906c883df529ad%3A0xb31b3a53fc6aa2f8!2sTHIRA%20Health!5e0!3m2!1sen!2sus!4v1773893272775!5m2!1sen!2sus",
     contact: {
       email: "admissions@thirahealth.com",
       phone: "1-(855)-483-1561",
-      address: "11400 SE 6th St., Ste 200, Bellevue WA 98004",
+      address: "11400 SE 6th St Ste 200, Bellevue, WA 98004",
       url: "https://www.thirahealth.com/"
     }
   },
@@ -232,11 +232,11 @@ const opportunities: Opportunity[] = [
     description: "HOW IT ALL BEGAN. Our James Beard Award-winning model for social change dates back to 1992. It started with an idea that we could help people gain the job and self-empowerment skills needed to move out of poverty while also feeding the community and generating revenue to support our work. Since then, we have run various social enterprise businesses as on-the-job classrooms for our students that also nourish our communities. This innovative, entrepreneurial approach ensures that we address the root causes of poverty and food insecurity to empower brighter futures. Throughout the past three decades, our commitment to transforming lives through food, life skills and job training has remained steadfast. We have served nearly 15,000 youth and adults in our job training programs and provided 19 million meals to local nonprofits, shelters, respite centers, youth and adult daycare centers and schools.",
     coverImage: "/resources/farestart/fare_start_logo.jpg",
     additionalImages:[
-      "resources/farestart/fare_start_1.jpg",
-      "resources/farestart/fare_start_2.jpg",
-      "resources/farestart/fare_start_3.jpg",
+      "/resources/farestart/fare_start_1.jpg",
+      "/resources/farestart/fare_start_2.jpg",
+      "/resources/farestart/fare_start_3.jpg",
     ],
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2692.844106559886!2d-122.31649568736125!3d47.55136277106465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549041e84f94b161%3A0xf64ab011b9276e5c!2sGrover%20Cleveland%20STEM%20High%20School!5e0!3m2!1sen!2sus!4v1773265543184!5m2!1sen!2sus",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.554061573195!2d-122.33999038781683!3d47.61536017107042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490152d828a1fdf%3A0x63e06b5c4302ef82!2sFareStart!5e0!3m2!1sen!2sus!4v1773890568063!5m2!1sen!2sus",
     contact: {
       email: "info@farestart.org",
       phone: "1-(206)-443-1233",
@@ -254,9 +254,8 @@ const opportunities: Opportunity[] = [
       "/resources/universityfoodbank/udfb_2.jpg",
       "/resources/universityfoodbank/udfb_3.jpg",
     ],
-    mapSrc: "",
-    contact: {
-      email: "",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10747.884982921762!2d-122.328075171144!3d47.66555499192537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901461e96af555%3A0x655a593a0e433b7!2sUniversity%20District%20Food%20Bank!5e0!3m2!1sen!2sus!4v1773890631657!5m2!1sen!2sus",
+      contact:{
       phone: "1-(206)-523-7060 ",
       address: "5017 Roosevelt Way NE Seattle, WA 98105",
       url: "https://www.udistrictfoodbank.org/"
@@ -272,11 +271,11 @@ const opportunities: Opportunity[] = [
       "/resources/northwestharvest/nw_havest_2.png",
       "/resources/northwestharvest/nw_havest_3.png",
     ],
-    mapSrc: "",
-    contact: {
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10764.352446633531!2d-122.33986827120708!3d47.58552821394863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906a9db07d9dd5%3A0x74227091ebb2076d!2s1915%204th%20Ave%20S%2C%20Seattle%2C%20WA%2098134!5e0!3m2!1sen!2sus!4v1773890783499!5m2!1sen!2sus",
+    contact:{
       email: "info@northwestharvest.org",
       phone: "1-(800)-722-6924",
-      address: "P.O. Box 12272 Seattle, WA 98102",
+      address: "1915 4th Ave S, Seattle, WA 98134",
       url: "https://www.northwestharvest.org/"
     }
   },
@@ -290,7 +289,7 @@ const opportunities: Opportunity[] = [
       "/resources/pikefoodbank/pike_foodbank_2.jpg",
       "/resources/pikefoodbank/pike_foodbank_3.jpg",
     ],
-    mapSrc: "",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10759.63764619227!2d-122.35095537118903!3d47.60845110764282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906ab258d11f7d%3A0x4bde5e3783afe660!2sPike%20Market%20Senior%20Center!5e0!3m2!1sen!2sus!4v1773890848133!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-(206)-626-6462",
@@ -308,11 +307,11 @@ const opportunities: Opportunity[] = [
       "/resources/jewishfamilyservice/jfs_2.jpg",
       "/resources/jewishfamilyservice/jfs_3.jpg",
     ],
-    mapSrc: "",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d344308.35982325656!2d-122.66962655231384!3d47.608457921400024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906ad223a8ca7f%3A0x761b686c5bb524db!2sJewish%20Family%20Service%20of%20Seattle!5e0!3m2!1sen!2sus!4v1773890895107!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-(206)-461-3240",
-      address: "1601 16th Ave., Seattle, WA 98122",
+      address: "1601 16th Ave, Seattle, WA 98122",
       url: "https://www.jfsseattle.org/what-we-do/food-access/"
     }
   },
@@ -320,12 +319,17 @@ const opportunities: Opportunity[] = [
     name: "Wonderland",
     category: "Social & Family Support",
     description: "Wonderland Child & Family Services is a nonprofit agency dedicated to helping children of all abilities reach their full potential. Founded over five decades ago, Wonderland helps children meet healthy developmental milestones while supporting family members along the way. Our evidence-based services help families flourish through therapy, education, and advocacy. Services include occupational and physical therapy, speech-language pathology, special education, mental health support, educational advocacy, and family resources support. We serve families regardless of income, insurance, or ability to pay. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/wonderland/wonderland_logo.jpg",
+    additionalImages:[
+      "/resources/wonderland/wonderland_1.jpg",
+      "/resources/wonderland/wonderland_2.jpg",
+      "/resources/wonderland/wonderland_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10726.03010740254!2d-122.39936187106025!3d47.77160596270232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549011e549f5cc83%3A0x6dca1179f2da770f!2sWonderland%20Child%20%26%20Family%20Services!5e0!3m2!1sen!2sus!4v1773891028121!5m2!1sen!2sus",
     contact: {
       email: "info@wonderlandkids.org",
       phone: "1-(206)-364-3777",
-      address: "2402 NW 195th Place Shoreline, WA 98177",
+      address: "2402 NW 195th Pl, Shoreline, WA 98177",
       url: "https://wonderlandkids.org/"
     }
   },
@@ -333,12 +337,17 @@ const opportunities: Opportunity[] = [
     name: "Akin",
     category: "Social & Family Support",
     description: "Akin exists to support and strengthen Washington state families. From prenatal to adulthood, prevention to intervention, our programs and services are built upon more than a century of helping create nurturing environments and systemic improvements for families in the state. As we move into the future, we’re holding fast to our dedication to keeping families together. ",
-    coverImage: "",
-    mapSrc: "",
-    contact: {
-      email: "",
+    coverImage: "/resources/akin/akin_logo.jpg",
+    additionalImages:[
+      "/resources/akin/akin_1.jpg",
+      "/resources/akin/akin_2.jpg",
+      "/resources/akin/akin_3.jpg",
+      "/resources/akin/akin_4.jpg",
+    ],
+    mapSrc:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10736.859453683106!2d-122.30511577110177!3d47.71907877718191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54901164a9baa81f%3A0x5d7b6a49e4129468!2s12360%20Lake%20City%20Way%20NE%20%23100%2C%20Seattle%2C%20WA%2098125!5e0!3m2!1sen!2sus!4v1773891774682!5m2!1sen!2sus",
+    contact:{
       phone: "1-(206)-695-3200",
-      address: "12360 Lake City Way NE, Suite 100 Seattle, WA 98125 ",
+      address: "12360 Lake City Way NE #100, Seattle, WA 98125",
       url: "https://akinfamily.org/"
     }
   },
@@ -346,12 +355,17 @@ const opportunities: Opportunity[] = [
     name: "Step By Step",
     category: "Social & Family Support",
     description: "As a Washington State First Steps provider, we offer both Maternity Support Services and Infant Case Management, using a holistic approach that includes home visits from registered nurses, licensed counselors, and registered dietitians. ",
-    coverImage: "",
-    mapSrc: "",
-    contact: {
+    coverImage: "/resources/stepbystep/step_by_step_logo.png",
+    additionalImages:[
+      "/resources/stepbystep/step_by_step_1.jpg",
+      "/resources/stepbystep/step_by_step_2.jpg",
+      "/resources/stepbystep/step_by_step_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10846.384508349316!2d-122.25998057152117!3d47.18534352370835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490f857ba6d6643%3A0xdbaa7a78fbad34dc!2sStep%20By%20Step%20Family%20Organization!5e0!3m2!1sen!2sus!4v1773891343602!5m2!1sen!2sus",
+    contact:{
       email: "ourfamily@stepbystepfamily.org",
       phone: "1-(253)-896-0903",
-      address: "3303 8th Ave SE #A Puyallup, WA 98372",
+      address: "8th Ave SE, Puyallup, WA 98372",
       url: "https://www.stepbystepfamily.org/"
     }
   },
@@ -359,12 +373,17 @@ const opportunities: Opportunity[] = [
     name: "Kent Youth & Family Services",
     category: "Social & Family Support",
     description: "Kent Youth and Family Services promotes the healthy development of children, youth and families in our community by providing professional counseling, education, and support services. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/kyfs/kyfs_logo.png",
+    additionalImages:[
+      "/resources/kyfs/kyfs_1.jpg",
+      "/resources/kyfs/kyfs_2.jpg",
+      "/resources/kyfs/kyfs_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10806.558461686196!2d-122.24480287136872!3d47.37995187040995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549059567b45d057%3A0x519127dffcdcd415!2sKent%20Youth%20and%20Family%20Services!5e0!3m2!1sen!2sus!4v1773891485760!5m2!1sen!2sus",
     contact: {
       email: "info@kyfs.org",
       phone: "1-(253)-859-0300",
-      address: "232 Second Ave. S Kent, WA 98032",
+      address: "232 2nd Ave S #201, Kent, WA 98032",
       url: "https://kyfs.org/"
     }
   },
@@ -372,12 +391,17 @@ const opportunities: Opportunity[] = [
     name: "Kandelia",
     category: "Social & Family Support",
     description: "We are a community organization addressing systemic inequities so immigrant and refugee families and communities can thrive without having to compromise values, heritage or ethnicity. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/kandelia/kandelia_logo.png",
+    additionalImages:[
+      "/resources/kandelia/kandelia_1.jpg",
+      "/resources/kandelia/kandelia_2.jpg",
+      "/resources/kandelia/kandelia_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10769.89551943958!2d-122.29447727122833!3d47.55856762136261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549042016514691f%3A0x42a16ed687a7c880!2sKandelia!5e0!3m2!1sen!2sus!4v1773891663794!5m2!1sen!2sus",
     contact: {
       email: "info@kandelia.org",
       phone: "1-(206)-760-1573",
-      address: "PO Box 28058 Seattle, WA 98118 ",
+      address: "3829B S Edmunds St, Seattle, WA 98118",
       url: "https://www.kandelia.org/"
     }
   },
@@ -385,12 +409,17 @@ const opportunities: Opportunity[] = [
     name: "DESC",
     category: "Housing",
     description: "DESC helps people with the complex needs of homelessness, substance use disorders, and serious mental illness achieve their highest potential for health and well-being through comprehensive services, treatment, and housing. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/desc/desc_logo.jpg",
+    additionalImages:[
+      "/resources/desc/desc_1.jpg",
+      "/resources/desc/desc_2.jpg",
+      "/resources/desc/desc_3.jpg"
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2690.2158545237044!2d-122.33344376635799!3d47.60249233137637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906aba88fe95f5%3A0x263de6921bebe775!2s515%203rd%20Ave%2C%20Seattle%2C%20WA%2098104!5e0!3m2!1sen!2sus!4v1773892125603!5m2!1sen!2sus",
     contact: {
       email: "info@desc.org",
       phone: "1-(206)-464-1570",
-      address: "515 Third Ave, Seattle, WA 98104 ",
+      address: "515 3rd Ave, Seattle, WA 98104",
       url: "https://www.desc.org/"
     }
   },
@@ -398,12 +427,17 @@ const opportunities: Opportunity[] = [
     name: "Habitat for Humanity",
     category: "Housing",
     description: "In King and Kittitas Counties, and around the world, Habitat for Humanity brings people together as volunteers, homeowners, donors, and community members to create strength, stability, and self-reliance through shelter. Habitat International was named by Engage for Good as its “2020 Golden Halo Award” nonprofit winner, the group’s highest honor for causes that engage in activities designed to do well by doing good. In 2021 Habitat was also named “One of America’s 100 Favorite Charities*”. In our community, Habitat for Humanity constructs affordable homes, repairs homes for income-qualified homeowners and seniors, operates discount home improvement stores in Auburn, Southcenter, Bellevue, and Ellensburg, and mobilizes nearly 2,500 volunteers a year. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/habitatforhumanity/habitat_logo.jpg",
+    additionalImages:[
+      "/resources/habitatforhumanity/habitat_1.jpg",
+      "/resources/habitatforhumanity/habitat_2.jpg",
+      "/resources/habitatforhumanity/habitat_3.jpg"
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43147.32498010609!2d-122.27442994150809!3d47.476123053918016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549042ca1f922e51%3A0x769f7e355ea649e4!2sHabitat%20for%20Humanity%20Seattle-King%20County%20Offices!5e0!3m2!1sen!2sus!4v1773892288019!5m2!1sen!2sus",
     contact: {
       email: "info@habitatskc.org",
       phone: "1-(206)-453-2950",
-      address: "King County Office: 500 Naches Avenue SW, Suite 200 Renton, WA 98057 ",
+      address: "King County Office: 500 Naches Ave SW STE 200, Renton, WA 98057",
       url: "https://www.habitatskc.org/"
     }
   },
@@ -411,8 +445,13 @@ const opportunities: Opportunity[] = [
     name: "Plymouth Housing",
     category: "Housing",
     description: "With apartment buildings throughout King County, Plymouth Housing provides adults who experienced homelessness with the stable housing and support they need to thrive. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/plymouth/plymouth_logo.jpg",
+    additionalImages:[
+      "/resources/plymouth/plymouth_1.jpg",
+      "/resources/plymouth/plymouth_2.jpg",
+      "/resources/plymouth/plymouth_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43147.32498010609!2d-122.27442994150809!3d47.476123053918016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549042ca1f922e51%3A0x769f7e355ea649e4!2sHabitat%20for%20Humanity%20Seattle-King%20County%20Offices!5e0!3m2!1sen!2sus!4v1773892421926!5m2!1sen!2sus",
     contact: {
       email: "admin@plymouthhousing.org",
       phone: "1-(206)-374-9409",
@@ -424,8 +463,13 @@ const opportunities: Opportunity[] = [
     name: "Parkview Services",
     category: "Housing",
     description: "Parkview Services began in 1967 with the innovative vision of the Chivers family. Dr. Norman Chivers and his wife Stella were the parents of a child with Intellectual and Developmental Disabilities (IDDs), and they wanted to create a safe, healthy, community-based housing option for their child and others like him. The goal was to create a home where children with IDDs could live and grow together over a lifetime. The Chivers started Parkview Group Home, (named for its proximity to Volunteer Park on Capitol Hill in Seattle) and it has been a home to people with IDDs ever since. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/parkview/parkview_logo.png",
+    additionalImages:[
+      "/resources/parkview/parkview_1.jpg",
+      "/resources/parkview/parkview_2.jpg",
+      "/resources/parkview/parkview_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10716.658511501102!2d-122.30745247102435!3d47.81702715017307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549010ee15d09d67%3A0xde1d0d5f0208b080!2sParkview%20Services!5e0!3m2!1sen!2sus!4v1773892659193!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-(206)-542-6644",
@@ -437,8 +481,13 @@ const opportunities: Opportunity[] = [
     name: "Community Youth Services",
     category: "Housing",
     description: "We can provide you with nutritious food and to-go snacks, help you sign up for shower times, get you clean, warm clothing from our clothing closet, including access to laundry services, and hygiene supplies. We can help with crisis intervention when you’re having a hard time, offer safe shelter, and render first aid and supplies. We arrange drug/alcohol treatment referrals, assist with job search and goal setting, refer to legal support and advocacy, other community referrals…and more! We follow your lead and Case Managers are on-site to support you in reaching any and all of your goals.\n\nOur Outreach Teams are available for off-site appointments and we continue to build recreational, educational, and developmentally appropriate activities throughout the week (subject to COVID restrictions).",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/cys/cys_logo.jpg",
+    additionalImages:[
+      "/resources/cys/cys_1.jpg",
+      '/resources/cys/cys_2.jpg',
+      '/resources/cys/cys_3.jpg',
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2250.525300063392!2d-122.89192640186084!3d47.04345460395453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5491751f953e2c63%3A0x201682d590dfb593!2s520%20Pear%20St%20SE%2C%20Olympia%2C%20WA%2098501!5e0!3m2!1sen!2sus!4v1773892944674!5m2!1sen!2sus",
     contact: {
       email: "liz.snyder@communityyouthservices.org",
       phone: "1-(360)-918-7828",
@@ -450,8 +499,13 @@ const opportunities: Opportunity[] = [
     name: "ASIAN COUNSELING AND REFERRAL SERVICE",
     category: "Health & Wellness",
     description: "ACRS is a social justice organization that promotes the health and well-being of Asians and Native Hawaiians/Pacific Islanders (A&NH/PIs) and other communities by providing and advocating for responsive community-based services.",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/acrs/ACRS_logo.jpg",
+    additionalImages:[
+      "/resources/acrs/ACRS_1.jpg",
+      "/resources/acrs/ACRS_2.jpg",
+      "/resources/acrs/ACRS_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10767.342275835368!2d-122.30767357121852!3d47.57098761794754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906a7ababbd389%3A0xd781cada1b602a05!2sAsian%20Counseling%20and%20Referral%20Service!5e0!3m2!1sen!2sus!4v1773893414877!5m2!1sen!2sus",
     contact: {
       email: "info@acrs.org",
       phone: "1-(206) 695-7600",
@@ -476,8 +530,13 @@ const opportunities: Opportunity[] = [
     name: "Lahai Health",
     category: "Health & Wellness",
     description: "Lahai Health is a free and charitable health clinic committed to providing quality and compassionate care to individuals and families who face barriers to accessing healthcare in King and Snohomish Counties. Our services include integrated and comprehensive medical, dental, and mental health counseling. ",
-    coverImage: "",
-    mapSrc: "",
+    coverImage: "/resources/lahai/lahai_logo.png",
+    additionalImages:[
+      "/resources/lahai/lahai_1.jpg",
+      "/resources/lahai/lahai_2.jpeg",
+      "/resources/lahai/lahai_3.jpg",
+    ],
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d344554.90611666394!2d-122.6263447859742!3d47.5709947177569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549005366c2ab2d5%3A0xb52b4dc0a8f9ca5a!2sLahai%20Health%20Dental%20Clinic!5e0!3m2!1sen!2sus!4v1773893553516!5m2!1sen!2sus",
     contact: {
       email: "",
       phone: "1-(206)-363-4105",
