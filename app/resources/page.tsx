@@ -719,6 +719,17 @@ export default function ResourcesPage() {
 
   const meta = opportunity ? categoryMeta[opportunity.category] : null;
 
+  //Starts at the top of the page
+  useEffect(() => {
+  const container = document.querySelector<HTMLElement>("[data-scroll-container]");
+  if (container) {
+    container.scrollTo(0, 0);
+  } else {
+    window.scrollTo(0, 0);
+  }
+  }, []);
+
+  //Search bar for resources
   const searchParams = useSearchParams();
 
   useEffect(() => {
