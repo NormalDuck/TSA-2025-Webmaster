@@ -1,20 +1,11 @@
 import { createStore } from 'zustand/vanilla'
 import { persist } from 'zustand/middleware'
-import { set, del, get } from 'idb-keyval';
-import { resources, Resources } from '@/constants/resources';
+import { createIndexedDBStorage } from 'zustand-indexeddb';
+import { Resources } from '@/constants/resources';
 
-type CustomResourcesState = { resources: Array<Resources> }
-
-type CustomResourcesActions = {
-  addResource: (nextPosition: Resources) => void
-}
-
-type CustomResourcesStateStore = CustomResourcesState & CustomResourcesActions
-
-const storage = {
-  getItem: async (name: string) => (await get(name)) || null,
-  setItem: async (name: string, value: unknown) => await set(name, value),
-  removeItem: async (name: string) => await del(name),
+type CustomResourcesStateStore = {
+  addResource: (resource: Resources) => void
+  resources: Resources[]
 }
 
 export const customResourcesState = createStore<CustomResourcesStateStore>()(
@@ -27,6 +18,10 @@ export const customResourcesState = createStore<CustomResourcesStateStore>()(
       },
       resources: []
     }),
-    { storage: storage, name: "custom-resources" },
-  ),
+    {
+      name: "user-resources",
+      storage: createIndexedDBStorage('user-resources', 'state'),
+      partialize: (state) => ({ resources: state.resources }),
+    }
+  )
 )
