@@ -40,10 +40,6 @@ const timelineData = [
   },
 ];
 
-
-// NAV_HEIGHT is now defined as --nav-h in about.css (:root { --nav-h: 70px })
-// Update that value there if your navbar height changes.
-
 export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -58,7 +54,6 @@ export default function AboutPage() {
 
       const scrollTop = window.scrollY;
 
-      // Progress only within the timeline block
       const wrapperEl = timelineWrapperRef.current;
       const wrapperTop = wrapperEl.offsetTop;
       const wrapperHeight = wrapperEl.scrollHeight;
@@ -67,11 +62,9 @@ export default function AboutPage() {
       const progress = Math.min(Math.max(relativeScroll / maxScroll, 0), 1);
       setScrollProgress(progress);
 
-      // Show timeline UI only while scrolled inside the timeline block
       const wrapperRect = wrapperEl.getBoundingClientRect();
       setInTimeline(wrapperRect.top <= 0 && wrapperRect.bottom >= window.innerHeight);
 
-      // Which card is centred
       let found = 0;
       sectionRefs.current.forEach((el, i) => {
         if (!el) return;
@@ -92,9 +85,7 @@ export default function AboutPage() {
 
   return (
     <>
-
-      {/* ── Fixed overlays (hidden outside timeline) ── */}
-
+      {/* ── Fixed overlays ── */}
       <div className={`timeline-wrapper-fixed ${inTimeline ? "visible" : ""}`}>
         <div className="timeline-line" />
         <div className="timeline-dot" style={{ top: dotTop }} />
@@ -122,35 +113,32 @@ export default function AboutPage() {
 
         {/* Section 1 — Who We Are */}
         <section className="snap-section">
-          <div className="min-h-screen p-12 bg-[#100F0A] flex flex-col justify-between">
-            <div className="mt-10 px-25">
+          <div className="min-h-screen bg-[#100F0A] flex flex-col justify-between p-6 sm:p-8 md:p-12">
+            <div className=" sm:mt-24 md:mt-32 lg:mt-40 px-2 sm:px-6 md:px-12 lg:px-25">
               <h1
-                className="text-[90px] font-extrabold text-white mt-87.5 leading-[.9]"
-                style={{ fontFamily: "'Syne', sans-serif" }}
+                className="text-[clamp(36px,7vw,110px)] font-extrabold text-white leading-[.9]"
               >
                 Who we<br />
                 <span className="text-transparent" style={{ WebkitTextStroke: "1px white" }}>really</span><br />
                 <span className="text-[#FD6900]">are.</span>
               </h1>
               <p
-                className="text-white/60 mt-6 max-w-137.5 text-[16px] leading-relaxed"
+                className="text-white/60 mt-6 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-137.5 text-sm sm:text-base leading-relaxed"
                 style={{ fontFamily: "'Syne', sans-serif" }}
               >
-                Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet
-                consectetur adipiscing elit quisque faucibus ex. Adipiscing elit
-                quisque faucibus ex sapien vitae pellentesque.
+                  We are a non-profit community resource hub focused on sharing accessible resources based in Washington. Founded in 2012, we have a rich history stemming from Seattle and allow open submission for resources at anytime.
               </p>
             </div>
 
             {/* Stats */}
-            <div className="flex gap-15 ml-auto w-fit">
+            <div className="flex flex-wrap gap-8 sm:gap-12 lg:gap-15 mt-10 sm:ml-auto sm:w-fit">
               {[
                 { value: "2012", label: "Founded" },
                 { value: "12K+", label: "Served Yearly", orange: true },
                 { value: "90",   label: "Volunteers" },
               ].map(({ value, label, orange }) => (
                 <div key={label}>
-                  <p className="text-white text-[40px] font-extrabold leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>
+                  <p className="text-white text-[clamp(28px,4vw,40px)] font-extrabold leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>
                     {orange ? (
                       <>{value.replace("+", "")}<span className="text-[#FD6900]">+</span></>
                     ) : value}
@@ -161,7 +149,7 @@ export default function AboutPage() {
             </div>
 
             {/* Down arrow */}
-            <div className="flex justify-center my-auto">
+            <div className="flex justify-center my-8 sm:my-auto">
               <div className="animate-bounce text-white">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="12" y1="5" x2="12" y2="19" />
@@ -176,23 +164,22 @@ export default function AboutPage() {
         <section
           id='missionstatement'
           className="snap-section relative bg-[#E8E0D4] flex flex-col justify-between overflow-hidden about-mission"
-        > 
+        >
+          {/* Top accent line */}
+          <div className="absolute top-28 sm:top-36 md:top-44 left-6 sm:left-10 md:left-14 w-0.5 h-14 sm:h-16 md:h-20 bg-[#FD6900] opacity-50" />
 
-        {/* Top accent line */}
-        <div className="absolute top-44 left-14 w-0.5 h-20 bg-[#FD6900] opacity-50" />
+          {/* Mission label */}
+          <div className="absolute top-32 sm:top-40 md:top-50 left-10 sm:left-14 md:left-20">
+            <span className="text-sm sm:text-base md:text-[20px] font-bold tracking-[0.18em] text-[#FD6900] uppercase opacity-80">Our Mission</span>
+          </div>
 
-        {/* Mission label */}
-        <div className="absolute top-50 left-20">
-          <span className="text-[20px] font-bold tracking-[0.18em] text-[#FD6900] uppercase opacity-80">Our Mission</span>
-        </div>
-
-        {/* Mission Statement */}
-          <div className="p-50 mt-5 max-w-full">
-            <p 
+          {/* Mission Statement */}
+          <div className="p-6 sm:p-12 md:p-24 lg:p-50 mt-16 sm:mt-10 md:mt-5 max-w-full">
+            <p
               className="font-bold leading-[1.2]"
               style={{
                 fontFamily: "'Syne', sans-serif",
-                fontSize: 'clamp(22px, 4vw, 50px)',
+                fontSize: 'clamp(18px, 4vw, 50px)',
               }}
             >
               WAs<span className="text-[#FD6900]">Hub</span>{" "}
@@ -206,25 +193,27 @@ export default function AboutPage() {
               as they expand this resource hub and host events within local communities.
             </p>
           </div>
-          {/* Est. badge */}
-            <div className="absolute top-50 right-20 flex flex-col items-center gap-0.5 opacity-50">
-              <span className="text-[11px] font-black tracking-[0.2em] text-[#100F0A] uppercase" style={{ fontFamily: "'Syne', sans-serif" }}>Est.</span>
-              <span className="text-[22px] font-black text-[#100F0A] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>2012</span>
-            </div>
-            {/* Dot grid */}
-            <div className="absolute bottom-14 right-12 grid gap-1.5 opacity-20 z-10" style={{ gridTemplateColumns: 'repeat(5, 8px)' }}>
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div key={i} className="w-1 h-1 rounded-full bg-[#100F0A]" />
-              ))}
-            </div>
 
-            {/* MISSION watermark */}
-            <div
-              className="absolute bottom-0 left-0 right-0 text-center font-black text-[#FD6900] opacity-[0.12] leading-[0.75] select-none pointer-events-none overflow-hidden whitespace-nowrap"
-              style={{ fontSize: 'clamp(60px, 18vw, 235px)'}}
-            >
-              MISSION
-            </div>
+          {/* Est. badge */}
+          <div className="absolute top-6 sm:top-10 md:top-50 right-6 sm:right-10 md:right-20 flex flex-col items-center gap-0.5 opacity-50">
+            <span className="text-[10px] sm:text-[11px] font-black tracking-[0.2em] text-[#100F0A] uppercase" style={{ fontFamily: "'Syne', sans-serif" }}>Est.</span>
+            <span className="text-lg sm:text-[22px] font-black text-[#100F0A] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>2012</span>
+          </div>
+
+          {/* Dot grid — hidden on small screens to reduce clutter */}
+          <div className="hidden sm:grid absolute bottom-14 right-12 gap-1.5 opacity-20 z-10" style={{ gridTemplateColumns: 'repeat(5, 8px)' }}>
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div key={i} className="w-1 h-1 rounded-full bg-[#100F0A]" />
+            ))}
+          </div>
+
+          {/* MISSION watermark */}
+          <div
+            className="absolute bottom-0 left-0 right-0 text-center font-black text-[#FD6900] opacity-[0.12] leading-[0.75] select-none pointer-events-none overflow-hidden whitespace-nowrap"
+            style={{ fontSize: 'clamp(40px, 18vw, 235px)' }}
+          >
+            MISSION
+          </div>
         </section>
 
         {/* Sections 3–6 — Our Story timeline */}
@@ -240,25 +229,25 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-        
+
         {/* Section 7 — Join Us */}
         <section
           id="volunteersection"
           ref={(el) => { sectionRefs.current[4] = el as HTMLDivElement; }}
           className="relative min-h-screen overflow-hidden bg-[#404040] flex flex-col justify-center snap-section"
         >
-          <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-12 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+          <div className="w-full px-6 sm:px-10 md:px-16 lg:px-32 xl:px-40 py-12 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
 
               {/* Left column */}
               <div>
-                <p className="text-xs font-extrabold tracking-wide mb-6 text-[#FD6900]">GET INVOLVED</p>
-                <h2 className="text-[clamp(32px,5vw,60px)] font-extrabold text-white mb-6 leading-[.9]">
+                <p className="text-xs font-extrabold tracking-wide mb-4 sm:mb-6 text-[#FD6900]">GET INVOLVED</p>
+                <h2 className="text-[clamp(28px,5vw,60px)] font-extrabold text-white mb-4 sm:mb-6 leading-[.9]">
                   Make a difference<br />in your city.
                 </h2>
-                <p className="text-[clamp(12px,1.5vw,14px)] leading-relaxed mb-6 text-white/70 max-w-xs">
+                <p className="text-sm leading-relaxed mb-4 sm:mb-6 text-white/70 max-w-xs">
                   Whether you have two hours or two days a week, there&apos;s a place for you here.
-                  Join over 1,200 volunteers making a real impact across King County.
+                  Join over 90 volunteers making a real impact across Washington.
                 </p>
                 <ul className="space-y-2">
                   {[
@@ -273,10 +262,10 @@ export default function AboutPage() {
                 </ul>
 
                 {/* Stat strip */}
-                <div className="flex gap-8 mt-10">
+                <div className="flex flex-wrap gap-6 sm:gap-8 mt-8 sm:mt-10">
                   {[
                     { value: "90+", label: "Active Volunteers" },
-                    { value: "35+",    label: "Partner Orgs" },
+                    { value: "35+", label: "Partner Orgs" },
                     { value: "8k hrs", label: "Served This Year" },
                   ].map(({ value, label }) => (
                     <div key={label}>
@@ -344,7 +333,7 @@ export default function AboutPage() {
           {/* Watermark */}
           <div
             className="absolute bottom-0 left-0 right-0 text-center font-extrabold text-[#2a2a2a] leading-[0.65] select-none pointer-events-none"
-            style={{ fontSize: "clamp(60px, 18vw, 220px)" }}
+            style={{ fontSize: "clamp(40px, 18vw, 220px)" }}
           >
             Volunteer
           </div>
@@ -379,6 +368,7 @@ interface TimelineSectionProps {
 function TimelineSection({ item, index, refCallback }: TimelineSectionProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
+  // On mobile always stack vertically; alternate sides only on md+
   const isRight = index % 2 !== 0;
 
   useEffect(() => {
@@ -402,8 +392,8 @@ function TimelineSection({ item, index, refCallback }: TimelineSectionProps) {
       <div
         className="bg-blob"
         style={{
-          width: "500px",
-          height: "500px",
+          width: "clamp(200px, 40vw, 500px)",
+          height: "clamp(200px, 40vw, 500px)",
           background: "#d4622a",
           top: "10%",
           left: isRight ? "60%" : "10%",

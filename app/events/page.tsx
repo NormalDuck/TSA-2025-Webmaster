@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Footer from "@/components/footer";
 
 // ── Events Data ──────────────────────────────────────────────────────────────
 const EVENTS = [
@@ -48,7 +49,7 @@ const EVENTS = [
     title: 'Small Business Basics',
     detail: 'Room B  ·  9am – 12pm  ·  Free',
     location: 'Room B, 123 Community Ave, Seattle WA',
-    description: 'Learn the essentials of starting and running a small business — from business plans and licensing to marketing on a budget. Presented by local entrepreneurs.',
+    description: 'Learn the essentials of starting and running a small business. Presented by local entrepreneurs.',
     spots: 15,
     spotsLeft: 3,
     host: 'Small Business Development Center',
@@ -442,7 +443,7 @@ export default function EventsPage() {
                   const saved    = savedIds.has(ev.id);
                   return (
                     <div key={ev.id} className="flex items-start gap-5 py-4 group cursor-pointer" onClick={() => setModalEvent(ev)}>
-                      <div className="min-w-[52px] text-center shrink-0">
+                      <div className="min-w-13 text-center shrink-0">
                         <div className="font-extrabold text-[30px] leading-none mt-6" style={{ color }}>{parseInt(d)}</div>
                         <div className="text-[12px] font-black tracking-wide text-[#999] uppercase mt-0.5">{MONTHS[parseInt(m)-1].slice(0,3)}</div>
                       </div>
@@ -532,6 +533,13 @@ export default function EventsPage() {
           </div>
         </div>
       </div>
+      <div
+          className="snap-section footer-snap"
+          style={{ background: "#f0ebe3", minHeight: "unset" }}
+        >
+          <Footer />
+        </div>
     </div>
+    
   );
 }

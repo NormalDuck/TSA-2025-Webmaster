@@ -14,11 +14,11 @@ export default function Footer() {
         <div className="flex flex-col gap-4 md:w-1/3">
           <Link href="/" className="flex items-center select-none shrink-0">
             <Image
-              src="/walogo.png"
+              src="/logo_white.png"
               alt="WAsHub Logo"
               width={50}
               height={50}
-              className="rounded-full m-1 bg-white p-1.5"
+              className="m-1 "
             />
             <span className="text-[20px] font-extrabold tracking-tight">
               <span style={{ color: "#FFFFFF" }}>WAs</span>
@@ -27,8 +27,7 @@ export default function Footer() {
           </Link>
 
           <p className="text-[#FFFFFF] text-opacity-80 leading-relaxed text-[14px] max-w-sm">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur
-            adipiscing elit quisque faucibus ex sapien vitae.
+            WAsHub has been supporting families and communities within Washington for over 10 years, giving local non-profits a digital space to share their resources with others.
           </p>
 
           <div className="flex gap-5 text-2xl text-white">
@@ -82,10 +81,9 @@ export default function Footer() {
             <h3 className="font-extrabold text-[#9f9f9d] pb-2 text-[12px] uppercase tracking-wider">
               About Us
             </h3>
-            <Link href="/about#ourstory" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Our Story</Link>
             <Link href="/about#missionstatement" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Mission</Link>
-            <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Team</Link>
-            <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Volunteer</Link>
+            <Link href="/about#ourstory" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Our Story</Link>
+            <Link href="/about#volunteersection" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Volunteer</Link>
           </div>
 
           {/* Contact */}
