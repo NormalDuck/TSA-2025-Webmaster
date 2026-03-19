@@ -114,7 +114,7 @@ export default function AboutPage() {
         {/* Section 1 — Who We Are */}
         <section className="snap-section">
           <div className="min-h-screen bg-[#100F0A] flex flex-col justify-between p-6 sm:p-8 md:p-12">
-            <div className=" sm:mt-24 md:mt-32 lg:mt-40 px-2 sm:px-6 md:px-12 lg:px-25">
+            <div className=" sm:mt-34 md:mt-42 lg:mt-90 px-2 sm:px-6 md:px-12 lg:px-25">
               <h1
                 className="text-[clamp(36px,7vw,110px)] font-extrabold text-white leading-[.9]"
               >
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 <span className="text-[#FD6900]">are.</span>
               </h1>
               <p
-                className="text-white/60 mt-6 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-137.5 text-sm sm:text-base leading-relaxed"
+                className="text-white/60 mt-3 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-137.5 text-sm sm:text-base leading-relaxed"
                 style={{ fontFamily: "'Syne', sans-serif" }}
               >
                 We are a non-profit community resource hub focused on sharing accessible resources based in Washington. Founded in 2012, we have a rich history stemming from Seattle and allow open submission for resources at anytime.
@@ -149,7 +149,7 @@ export default function AboutPage() {
             </div>
 
             {/* Down arrow */}
-            <div className="flex justify-center my-8 sm:my-auto">
+            <div className="flex justify-center my-10 sm:my-auto">
               <div className="animate-bounce text-white">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="12" y1="5" x2="12" y2="19" />
@@ -165,9 +165,6 @@ export default function AboutPage() {
           id='missionstatement'
           className="snap-section relative bg-[#E8E0D4] flex flex-col justify-between overflow-hidden about-mission"
         >
-          {/* Top accent line */}
-          <div className="absolute top-28 sm:top-36 md:top-44 left-6 sm:left-10 md:left-14 w-0.5 h-14 sm:h-16 md:h-20 bg-[#FD6900] opacity-50" />
-
           {/* Mission label */}
           <div className="absolute top-32 sm:top-40 md:top-50 left-10 sm:left-14 md:left-20">
             <span className="text-sm sm:text-base md:text-[20px] font-bold tracking-[0.18em] text-[#FD6900] uppercase opacity-80">Our Mission</span>
