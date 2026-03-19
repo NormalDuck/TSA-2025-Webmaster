@@ -7,6 +7,29 @@ import { useMemo, useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import Footer from "@/components/footer";
 import { useSearchParams } from "next/navigation";
+
+export interface Opportunity {
+  name: string;
+  description: string;
+  category: Category;
+  coverImage: string;
+  additionalImages?: string[];
+  mapSrc: string;
+  contact: {
+    email?: string;
+    phone?: string;
+    address: string;
+    url?: string;
+    socials?: {
+      instagram?: string;
+      facebook?: string;
+      linkedin?: string;
+      x?: string;
+    };
+  };
+}
+
+export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
 import { Category, Resources, resources } from "@/constants/resources";
 
 //Meta information for each category
@@ -20,9 +43,9 @@ const categoryMeta: Record<string, { color: string; bg: string; icon: React.Reac
 
 //Resources Data
 const opportunities: Opportunity[] = [
-  {
-    name: "Rainier Valley Food Bank",
-    category: "Food",
+{
+  name: "Rainier Valley Food Bank",
+  category: "Food",
     description: "RVFB is the primary emergency food resource for Seattle's most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     coverImage: "/resources/rainierfoodbank/rainier_valley_foodbank.png",
     additionalImages:[
@@ -693,7 +716,7 @@ export default function ResourcesPage() {
                 >
                   {isActive && (
                     <span
-                      className="absolute left-0 top-2 bottom-2 w-[3px] rounded-full"
+                      className="absolute left-0 top-2 bottom-2 w-0.75 rounded-full"
                       style={{ backgroundColor: m?.color ?? "#CA5400" }}
                     />
                   )}

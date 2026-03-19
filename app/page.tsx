@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Footer from "@/components/footer";
 
 // Polaroid images for section 1
@@ -103,12 +103,37 @@ const topThreeResources = [
 // ── Data for News page ─────────
 
 const newsItems = [
-  { id: "01", category: "FOOD ACCESS", title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque." },
-  { id: "02", category: "EDUCATION", title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque." },
-  { id: "03", category: "FOOD ACCESS", title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque." },
-  { id: "04", category: "FOOD ACCESS", title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque." },
+  { 
+    id: "01", 
+    category: "FOOD ACCESS", 
+    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    image: null,
+  },
+  { 
+    id: "02", 
+    category: "FOOD ACCESS", 
+    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    image: null,
+  },
+  { 
+    id: "03", 
+    category: "FOOD ACCESS", 
+    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    image: null,
+  },
+  { 
+    id: "04", 
+    category: "FOOD ACCESS", 
+    title: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    summary: "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.",
+    image: null,
+  },
 ];
-
+//Progress bar time
+const CYCLE_INTERVAL = 9000;
 
 const topicKeys = ["Housing", "Food", "Health", "Jobs", "Events"] as const;
 type Topic = (typeof topicKeys)[number];
@@ -133,9 +158,62 @@ const dotColors: Record<string, { active: string; inactive: string }> = {
 
 
 export default function Home() {
+  //News Page
+  const [featuredIdx, setFeaturedIdx] = useState(0);
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [fading, setFading] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const featured = newsItems[featuredIdx];
+
+  //Switching from one card to the next
+  const goTo = useCallback((idx: number) => {
+    setFading(true);
+    setTimeout(() => {
+      setFeaturedIdx(idx);
+      setProgress(0);
+      setFading(false);
+    }, 300);
+  }, []);
+  
+  const advance = useCallback(() => {
+    goTo((featuredIdx + 1) % newsItems.length);
+  }, [featuredIdx, goTo]);
+
+  // Auto-cycle
+  useEffect(() => {
+    intervalRef.current = setInterval(advance, CYCLE_INTERVAL);
+    return () => clearInterval(intervalRef.current!);
+  }, [advance]);
+
+  // Progress bar
+  useEffect(() => {
+    setProgress(0);
+    const step = 100 / (CYCLE_INTERVAL / 50);
+    progressRef.current = setInterval(() => {
+      setProgress((p) => Math.min(p + step, 100));
+    }, 50);
+    return () => clearInterval(progressRef.current!);
+  }, [featuredIdx]);
+
+  //Manually click
+  const handleCardClick = (idx: number) => {
+    setSelectedIdx(idx === selectedIdx ? null : idx);
+    clearInterval(intervalRef.current!);
+    clearInterval(progressRef.current!);
+    goTo(idx);
+    // restart cycle after manual pick
+    intervalRef.current = setInterval(advance, CYCLE_INTERVAL);
+  };
+
+  //Newsletter Buttons
   const [topics, setTopics] = useState<Record<Topic, boolean>>({
     Housing: false, Food: false, Health: false, Jobs: false, Events: false,
   });
+  
+  //Top Resources
   const [hovered, setHovered] = useState<number | null>(null);
   const [activeSection, setActiveSection] = useState("hero");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -146,20 +224,34 @@ export default function Home() {
     setTopics((prev) => ({ ...prev, [topic]: !prev[topic] }));
 
   // Track active section for top resources section
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    sections.forEach(({ id }) => {
-      const el = sectionRefs.current[id];
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { threshold: 0.5 }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
+    useEffect(() => {
+      const observers: IntersectionObserver[] = [];
+      sections.forEach(({ id }) => {
+        const el = sectionRefs.current[id];
+        if (!el) return;
+        const obs = new IntersectionObserver(
+          ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+          { threshold: 0.5 }
+        );
+        obs.observe(el);
+        observers.push(obs);
+      });
+      return () => observers.forEach((o) => o.disconnect());
+    }, []);
+
+    const scrollTo = (id: string) =>
+      sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
+
+    const dotColor = dotColors[activeSection] ?? dotColors.hero;
+
+    // Auto-hover carousel cards every 4 seconds, but pause on manual hover
+    useEffect(() => {
+      if (isManualHover) return;
+      const interval = setInterval(() => {
+        setAutoHovered((prev) => (prev % resources.length) + 1);
+      }, 4000);
+      return () => clearInterval(interval);
+    }, [isManualHover]);
 
   const scrollTo = (id: string) =>
     sectionRefs.current[id]?.scrollIntoView({ behavior: "smooth" });
@@ -430,53 +522,130 @@ export default function Home() {
         {/* Part 3: News */}
         <section
           id="news"
-          ref={(el) => { sectionRefs.current.news = el; }}
-          className="min-h-screen bg-[#100F0A] flex flex-col justify-center overflow-hidden"
+          ref={(el) => { if (sectionRefs) sectionRefs.current.news = el; }}
+          className="h-screen bg-[#100F0A] overflow-hidden"
           style={{ scrollSnapAlign: "start" }}
         >
-          <div className="w-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-12">
-            <h2 className="text-[clamp(36px,5vw,60px)] font-extrabold text-white mb-6 leading-none">
-              What's<br />happening<span className="text-[#989898]">.</span>
-            </h2>
+          <div
+            className="h-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 py-5 pt-30"
+            style={{
+              display: "grid",
+              gridTemplateRows: "auto 1fr auto 180px",
+              gap: "0",
+            }}
+          >
+            {/*  ── Title ── */}
+            <div className="flex items-start justify-between pb-6">
+              <h2 className="text-[clamp(28px,3.5vw,50px)] font-extrabold text-white leading-none">
+                What's<br />happening<span className="text-[#989898]">.</span>
+              </h2>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-[12px] font-black text-[#CA5400]">LATEST · FOOD ACCESS</span>
-                  <div className="flex-1 h-px bg-[#CA5400]" />
+            {/* ──  Hero ── */}
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-0 transition-opacity duration-250 pb-2"
+              style={{ opacity: fading ? 0 : 1 }}
+            >
+              {/* Left — text */}
+              <div className="flex flex-col justify-between min-h-0 pb-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-4 w-0.5 bg-[#CA5400]" />
+                    <span className="text-[11px] font-black tracking-[0.2em] text-[#CA5400]">
+                      LATEST · {featured.category}
+                    </span>
+                  </div>
+                  <h3 className="text-[clamp(16px,2vw,28px)] font-extrabold leading-[1.15] text-white mb-3">
+                    {featured.title}
+                  </h3>
+                  <p className="text-[12px] leading-relaxed text-[#989898] line-clamp-4">
+                    {featured.summary}
+                  </p>
                 </div>
-                <h3 className="text-[clamp(24px,3vw,40px)] font-extrabold mb-4 leading-tight text-white">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit quisque.
-                </h3>
-                <p className="text-[12px] leading-relaxed text-[#D9D9D9]">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing
-                  elit quisque faucibus mc ipsum risus. Ut vulputate adipiscing sem placerat id risus.
-                </p>
+
+                {/* Progress */}
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5 items-center">
+                    {newsItems.map((_, i) => (
+                      <div
+                        key={i}
+                        onClick={() => handleCardClick(i)}
+                        className="cursor-pointer transition-all duration-300"
+                        style={{
+                          width: i === featuredIdx ? "20px" : "6px",
+                          height: "6px",
+                          background: i === featuredIdx ? "#CA5400" : "#2a2820",
+                          borderRadius: i === featuredIdx ? "3px" : "50%",
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex-1 h-px bg-[#2a2820] relative overflow-hidden">
+                    <div
+                      className="absolute left-0 top-0 h-full bg-[#CA5400]"
+                      style={{ width: `${progress}%`, transition: "width 50ms linear" }}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center justify-center">
-                <div className="w-full max-w-sm aspect-video rounded-2xl bg-[#D9D9D9]" />
+
+              {/* Right — image fills the row height */}
+              <div className="relative rounded-xl overflow-hidden bg-[#161410] border border-[#2a2820] min-h-0">
+                <div className="absolute inset-0 bg-linear-to-br from-[#CA5400]/8 to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <span className="text-[#2a2820] text-[9px] font-black tracking-widest uppercase">
+                    {featured.category}
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="w-full h-px mb-6 bg-[#A8A8A8]" />
+            {/* ── Row 3: Divider ── */}
+            <div className="w-full h-px bg-[#2a2820] " />
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
-              {newsItems.map((item, idx) => (
-                <div
-                  key={item.id}
-                  className="px-4 py-4 cursor-pointer group transition-all"
-                  style={{ borderLeft: idx !== 0 ? "2px solid #A8A8A8" : "none" }}
-                >
-                  <span className="text-2xl md:text-3xl font-black block mb-1 text-[#D9D9D9] opacity-40">{item.id}</span>
-                  <div className="flex items-center gap-1 mb-2">
-                    <span className="text-[11px] font-black text-[#CA5400]">{item.category}</span>
-                    <div className="w-4 h-px bg-[#c0392b]" />
+            {/* ── Row 4: Card strip — fixed 180px ── */}
+            <div className="grid grid-cols-2 md:grid-cols-4 h-full mt-2">
+              {newsItems.map((item, idx) => {
+                const isActive = idx === featuredIdx;
+                const isSelected = idx === selectedIdx;
+
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleCardClick(idx)}
+                    className="px-4 cursor-pointer transition-all duration-200 flex flex-col justify-center h-full"
+                    style={{
+                      borderLeft: idx !== 0 ? "1px solid #2a2820" : "none",
+                      borderTop: isActive ? "2px solid #CA5400" : "2px solid transparent",
+                      background: isActive ? "rgba(202,84,0,0.05)" : "transparent",
+                    }}
+                  >
+                    <span
+                      className="text-lg font-black block mb-1 transition-colors duration-200"
+                      style={{ color: isActive ? "#CA5400" : "#D9D9D9", opacity: isActive ? 1 : 0.25 }}
+                    >
+                      {item.id}
+                    </span>
+
+                    <div className="flex items-center gap-1.5 mb-1.5">
+                      <span className="text-[10px] font-black tracking-[0.15em] text-[#CA5400]">
+                        {item.category}
+                      </span>
+                      <div
+                        className="h-px bg-[#CA5400] transition-all duration-300"
+                        style={{ width: isActive ? "20px" : "8px", opacity: isActive ? 1 : 0.5 }}
+                      />
+                    </div>
+
+                    <p
+                      className="text-[11px] font-semibold leading-snug transition-colors duration-200 line-clamp-2"
+                      style={{ color: isActive || isSelected ? "#FD6900" : "#D9D9D9" }}
+                    >
+                      {item.title}
+                    </p>
                   </div>
-                  <p className="text-xs font-bold leading-relaxed text-white group-hover:text-[#FD6900] transition-colors">
-                    {item.title}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
