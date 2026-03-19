@@ -490,12 +490,14 @@ export default function Home() {
                   We'll guide you.
                 </span>
               </p>
-              <button className="flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold tracking-widest bg-[#1a1a18] text-white transition-all hover:scale-105 w-fit">
-                <span className="flex items-center justify-center w-6 h-5 rounded-full bg-[#3a3a34]">
-                  📞
-                </span>
-                CALL NOW
-              </button>
+              <a href="tel:+19832226211">
+                <button className="flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold tracking-widest bg-[#1a1a18] text-white transition-all hover:scale-105 w-fit">
+                  <span className="flex items-center justify-center w-6 h-5 rounded-full bg-[#3a3a34]">
+                    📞
+                  </span>
+                  CALL NOW
+                </button>
+              </a>
             </div>
 
           </div>
@@ -699,7 +701,7 @@ export default function Home() {
 
           {/*WAshHub Watermark - stay connected page */}
           <div className="absolute bottom-0 left-0 right-0 text-center font-extrabold text-[#5C8963] leading-[0.65] select-none pointer-events-none"
-            style={{ fontSize: "clamp(60px, 18vw, 260px)" }}>
+            style={{ fontSize: "clamp(60px, 18vw, 240px)" }}>
             WAsHub
           </div>
         </section>
