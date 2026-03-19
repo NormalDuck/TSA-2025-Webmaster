@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
+import Image from "next/image";
 
 export default function Footer() {
     return(
@@ -10,7 +11,19 @@ export default function Footer() {
 
              <div className="flex flex-col">
                <div>
-                 <h2 className="text-4xl font-bold tracking-tight text-white mb-2">WAs<span style ={{ color: "#FD6900" }}>Hub</span></h2>
+                 <Link href="/" className="flex items-center select-none shrink-0">
+                    <Image
+                      src="/walogo.png"
+                      alt="WAsHub Logo"
+                      width={50}
+                      height={50}
+                      className="rounded-full m-1 bg-white p-1.5"
+                    />
+                    <span className="text-[20px] font-extrabold tracking-tight">
+                      <span style={{ color: "#FFFFFF"}}>WAs</span>
+                      <span style={{ color: "#FD6900" }}>Hub</span>
+                    </span>
+                  </Link>
                  <p className="text-[#FFFFFF] text-opacity-80 leading-relaxed max-w-sm text-[14px]">
                    Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id.
                  </p>
@@ -31,23 +44,23 @@ export default function Footer() {
                  <h3 className="font-extrabold text-[#9f9f9d] pb-2  text-[12px]">QUICK LINKS</h3>
                  <Link href="/resources" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Resources</Link>
                  <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">About</Link>
-                 <Link href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Donate</Link>
+                 <Link href="/donate" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Donate</Link>
                  <Link href="/references" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">References</Link>
                </div>
 
 
                <div className="flex flex-col gap-3">
                  <h3 className="font-extrabold text-[#9f9f9d] pb-2  text-[12px]">RESOURCES</h3>
-                 <a href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Popular Resources</a>
-                 <a href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Resources Library</a>
-                 <a href="#" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Search</a>
+                 <a href="#topresources" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Popular Resources</a>
+                 <a href="/resources" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Resources Library</a>
+                 <a href="/resources" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Search</a>
                </div>
 
 
                <div className="flex flex-col gap-3">
                  <h3 className="font-extrabold text-[#9f9f9d] pb-2 text-[12px]">ABOUT US</h3>
-                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Our Story</Link>
-                 <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Mission</Link>
+                 <Link href="/about#ourstory" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Our Story</Link>
+                 <Link href="/about#missionstatement" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Mission</Link>
                  <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Team</Link>
                  <Link href="/about" className="text-[#9F9F9F] hover:text-white transition-colors text-[14px]">Volunteer</Link>
                </div>

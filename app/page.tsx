@@ -351,7 +351,7 @@ export default function Home() {
 
         {/* Part 2: Top Resources */}
         <section
-          id="resources"
+          id="topresources"
           ref={(el) => { sectionRefs.current.resources = el; }}
           className="min-h-screen bg-[#ede8e0] flex flex-col justify-center overflow-hidden"
           style={{ scrollSnapAlign: "start" }}

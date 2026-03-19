@@ -35,11 +35,11 @@ import { customResourcesState } from "@/state/user-resources";
 
 //Meta information for each category
 const categoryMeta: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
-  "Food": { color: "#FD6900", bg: "#FFF3E0", icon: <Apple size={14} /> },
-  "Social & Family Support": { color: "#52AD6A", bg: "#E8F5E9", icon: <UsersRound size={14} /> },
-  "Housing": { color: "#4a7c59", bg: "#E8F5E9", icon: <House size={14} /> },
-  "Health & Wellness": { color: "#e05c5c", bg: "#FFEBEE", icon: <Plus size={14} /> },
-  "Education": { color: "#CA5400", bg: "#FBE9E7", icon: <GraduationCap size={14} /> },
+  "Food":                    { color: "#CA5400", bg: "#FBE9E7", icon: <Apple size={14} /> },
+  "Social & Family Support": { color: "#4A8C6F", bg: "#E4F2EB", icon: <UsersRound size={14} /> },
+  "Housing":                 { color: "#6B7FA3", bg: "#EAF0F8", icon: <House size={14} /> },
+  "Health & Wellness":       { color: "#C25B5B", bg: "#FAECEC", icon: <Plus size={14} /> },
+  "Education":               { color: "#8B6BAE", bg: "#F2EEF8", icon: <GraduationCap size={14} /> },
 };
 
 //Resources Data
@@ -721,12 +721,12 @@ export default function ResourcesPage() {
 
   //Starts at the top of the page
   useEffect(() => {
-  const container = document.querySelector<HTMLElement>("[data-scroll-container]");
-  if (container) {
-    container.scrollTo(0, 0);
-  } else {
-    window.scrollTo(0, 0);
-  }
+    const container = document.querySelector<HTMLElement>("[data-scroll-container]");
+    if (container) {
+      container.scrollTo(0, 0);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   //Search bar for resources
@@ -750,7 +750,7 @@ export default function ResourcesPage() {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] min-h-screen">
+      <div className="grid grid-cols-12 gap-6 p-4 mt-16 md:p-8 bg-[#FEFCF8] pb-20">
         
         {/* -------------------------Add New Resource-----------------------------------------------------------------------*/}
           <button className="z-50 fixed bottom-6 right-6 bg-[#E0A959] hover:bg-[#C28A39] text-white rounded-full p-4 shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110" onClick={() => { (document.getElementById("new_resource")! as HTMLDialogElement).showModal() }}
@@ -862,7 +862,7 @@ export default function ResourcesPage() {
                   />
                   {mainImage && (
                     <div className="mt-2 relative w-full h-32 rounded-lg overflow-hidden">
-                      <img src={mainImage} alt="Main preview" className="w-full h-full object-cover" />
+                      <img src={mainImage} alt="Main preview" className="w-full h-full object-contain" />
                     </div>
                   )}
                 </div>
@@ -1123,7 +1123,7 @@ export default function ResourcesPage() {
                           src={item.coverImage}
                           alt={item.name}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                          className="object-contain transition-transform duration-500 group-hover:scale-105" />
                       )}
                       <span
                         className="absolute top-3 left-3 text-[12px] font-bold tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1"
@@ -1153,11 +1153,11 @@ export default function ResourcesPage() {
                       className="px-4 py-2.5 flex items-center justify-between border-t"
                       style={{ borderColor: "#f0ebe3" }}
                     >
-                      <span className="text-[12px] uppercase font-extrabold tracking-wide" style={{ color: m?.color ?? "#CA5400" }}>
+                      <span className="text-[12px] uppercase font-bold tracking-wide">
                         View Details
                       </span>
                       <span
-                        className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs transition-transform group-hover:translate-x-0.5"
+                        className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs transition-transform group-hover:translate-x-0.5"
                         style={{ backgroundColor: m?.color ?? "#CA5400" }}
                       >
                         →
@@ -1239,7 +1239,7 @@ export default function ResourcesPage() {
               {/* Description + Map */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                  <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
+                  <p className="text-[14px] font-extrabold mb-2" style={{ color: meta?.color ?? "#CA5400" }}>
                     ABOUT
                   </p>
                   <p className="text-[14px] text-[#100F0A] leading-[1.2]">
@@ -1247,7 +1247,7 @@ export default function ResourcesPage() {
                   </p>
                 </div>
                 <div className="bg-[#f5f0e8] rounded-2xl p-4">
-                  <p className="text-[14px] font-extrabold mb-2 text-[#CA5400]">
+                  <p className="text-[14px] font-extrabold mb-2" style={{ color: meta?.color ?? "#CA5400" }}>
                     LOCATION
                   </p>
                   <div className="overflow-hidden rounded-xl">
@@ -1403,7 +1403,8 @@ export default function ResourcesPage() {
                     {opportunity.additionalImages.map((link, i) => (
                       <div
                         key={i}
-                        className="overflow-hidden rounded-2xl aspect-4/3 border border-[#e8e0d8] shadow-sm"
+                        className="overflow-hidden rounded-2xl aspect-4/3 border border-[#e8e0d8]"
+                        style={{ boxShadow: `0 8px 24px ${meta?.color ?? "#CA5400"}33` }}
                       >
                         <Image
                           src={link}
@@ -1422,6 +1423,7 @@ export default function ResourcesPage() {
         </dialog>
 
       </div>
+      
       <Footer />
     </>
   );

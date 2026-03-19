@@ -174,14 +174,31 @@ export default function AboutPage() {
 
         {/* Section 2 — Mission */}
         <section
+          id='missionstatement'
           className="snap-section relative bg-[#E8E0D4] flex flex-col justify-between overflow-hidden about-mission"
-        >
+        > 
+
+        {/* Top accent line */}
+        <div className="absolute top-44 left-14 w-0.5 h-20 bg-[#FD6900] opacity-50" />
+
+        {/* Mission label */}
+        <div className="absolute top-50 left-20">
+          <span className="text-[20px] font-bold tracking-[0.18em] text-[#FD6900] uppercase opacity-80">Our Mission</span>
+        </div>
+
+        {/* Mission Statement */}
           <div className="p-50 mt-5 max-w-full">
-            <p className="text-[50px] font-bold leading-[1.2]" style={{ fontFamily: "'Syne', sans-serif" }}>
-              <span className="text-[#FD6900]">WAsHub</span>{" "}
+            <p 
+              className="font-bold leading-[1.2]"
+              style={{
+                fontFamily: "'Syne', sans-serif",
+                fontSize: 'clamp(22px, 4vw, 50px)',
+              }}
+            >
+              WAs<span className="text-[#FD6900]">Hub</span>{" "}
               is committed to creating a safe space for Washington residents to share
               resources within the community. Founded in 2012,{" "}
-              <span className="text-[#FD6900]">WAsHub</span>{" "}
+              WAs<span className="text-[#FD6900]">Hub</span>{" "}
               continues to follow their philosophy of{" "}
               <span className="text-[#4A7C52]">community</span>,{" "}
               <span className="text-[#4A7C52]">compassion</span>, and{" "}
@@ -189,26 +206,40 @@ export default function AboutPage() {
               as they expand this resource hub and host events within local communities.
             </p>
           </div>
+          {/* Est. badge */}
+            <div className="absolute top-50 right-20 flex flex-col items-center gap-0.5 opacity-50">
+              <span className="text-[11px] font-black tracking-[0.2em] text-[#100F0A] uppercase" style={{ fontFamily: "'Syne', sans-serif" }}>Est.</span>
+              <span className="text-[22px] font-black text-[#100F0A] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}>2012</span>
+            </div>
+            {/* Dot grid */}
+            <div className="absolute bottom-14 right-12 grid gap-1.5 opacity-20 z-10" style={{ gridTemplateColumns: 'repeat(5, 8px)' }}>
+              {Array.from({ length: 20 }).map((_, i) => (
+                <div key={i} className="w-1 h-1 rounded-full bg-[#100F0A]" />
+              ))}
+            </div>
 
-          <div
-            className="absolute bottom-0 left-0 right-0 text-center font-extrabold text-[#FD6900] opacity-20 leading-[0.69] select-none pointer-events-none"
-            style={{ fontSize: "clamp(60px, 18vw, 260px)", fontFamily: "'Syne', sans-serif" }}
-          >
-            MISSION
-          </div>
+            {/* MISSION watermark */}
+            <div
+              className="absolute bottom-0 left-0 right-0 text-center font-black text-[#FD6900] opacity-[0.12] leading-[0.75] select-none pointer-events-none overflow-hidden whitespace-nowrap"
+              style={{ fontSize: 'clamp(60px, 18vw, 235px)'}}
+            >
+              MISSION
+            </div>
         </section>
 
         {/* Sections 3–6 — Our Story timeline */}
-        <div ref={timelineWrapperRef}>
-          {timelineData.map((item, i) => (
-            <TimelineSection
-              key={i}
-              item={item}
-              index={i}
-              refCallback={(el: HTMLDivElement | null) => (sectionRefs.current[i] = el)}
-            />
-          ))}
-        </div>
+        <section id="ourstory">
+          <div ref={timelineWrapperRef}>
+            {timelineData.map((item, i) => (
+              <TimelineSection
+                key={i}
+                item={item}
+                index={i}
+                refCallback={(el: HTMLDivElement | null) => (sectionRefs.current[i] = el)}
+              />
+            ))}
+          </div>
+        </section>
         
         {/* Section 7 — Join Us */}
         <section
