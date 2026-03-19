@@ -62,7 +62,7 @@ export default function ReferencesPage() {
       <div className="w-full lg:w-1/3 h-full bg-white rounded-xl shadow-lg p-4">
         <h2 className="text-lime-700 text-2xl font-semibold text-center mb-4">Work Log</h2>
         <iframe
-          src="/worklog.pdf"
+          src="/Final_Webmaster_Worklog.pdf"
           className="w-full h-[calc(100%-3rem)] rounded-lg border border-gray-300"
           title="Work Log"
         />
