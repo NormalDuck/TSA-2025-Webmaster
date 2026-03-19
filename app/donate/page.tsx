@@ -4,11 +4,25 @@
 
 // app/checkout/page.tsx
 
-import { createCheckoutRedirect } from "@/lib/checkout-stripe";
+import { createCheckoutRedirectProduct, createCheckoutRedirectSubscription } from "@/lib/checkout-stripe";
 import { Heart, Leaf, Users, Home, Apple, GraduationCap, ArrowRight, Shield, RefreshCcw } from "lucide-react";
 import { useState } from "react";
 
 const PRESET_AMOUNTS = [10, 25, 50, 100];
+
+const PRICE_PURCHASE = {
+  10: "price_1TCZtsPfrJiRgO05bKuv6p2u",
+  25: "price_1TCjKfPfrJiRgO05KH4GBR11",
+  50: "price_1TCjKxPfrJiRgO05e84Vc1pR",
+  100: "price_1TCjL9PfrJiRgO05b19VKw88"
+}
+
+const SUBSCRIPTION_PURCHASE = {
+  10: "price_1TCjvAPfrJiRgO058Tc4jiTc",
+  25: "price_1TCjvhPfrJiRgO05a31BJChW",
+  50: "price_1TCjw6PfrJiRgO053wq3tj7i",
+  100: "price_1TCjwXPfrJiRgO05CbpZ1dwO"
+}
 
 const IMPACT = [
   { icon: <Apple size={16} />, color: "#FD6900", bg: "#FFF3E0", amount: 10, label: "Feeds a family for a week through our food bank partners." },
@@ -18,7 +32,7 @@ const IMPACT = [
 ];
 
 export default function CheckoutPage() {
-  const [selected, setSelected] = useState<number>(25);
+  const [selected, setSelected] = useState<10 | 25 | 50 | 100>(25);
   const [custom, setCustom] = useState("");
   const [isRecurring, setIsRecurring] = useState(false);
 
@@ -90,7 +104,7 @@ export default function CheckoutPage() {
                   return (
                     <button
                       key={amt}
-                      onClick={() => { setSelected(amt); setCustom(""); }}
+                      onClick={() => { setSelected(amt as never); setCustom(""); }}
                       className="py-3 rounded-xl text-[14px] font-bold transition-all duration-200"
                       style={{
                         background: active ? "#CA5400" : "#faf7f2",
@@ -150,7 +164,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Submit */}
-            <form action={createCheckoutRedirect}>
+            <form action={() => isRecurring ? createCheckoutRedirectSubscription(SUBSCRIPTION_PURCHASE[selected]) : createCheckoutRedirectProduct(PRICE_PURCHASE[selected])}>
               <input type="hidden" name="amount" value={displayAmount} />
               <input type="hidden" name="recurring" value={String(isRecurring)} />
               <button
