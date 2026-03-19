@@ -122,7 +122,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Custom amount */}
-            <div>
+            {!isRecurring && <div>
               <p className="text-[11px] font-extrabold tracking-wide text-[#9a8a7a] mb-2 uppercase">Or enter custom</p>
               <div className="relative">
                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#CA5400] font-bold text-sm">$</span>
@@ -142,7 +142,7 @@ export default function CheckoutPage() {
                   onBlur={(e) => { if (!custom) e.currentTarget.style.border = "2px solid transparent"; }}
                 />
               </div>
-            </div>
+            </div>}
 
             {/* Impact callout */}
             <div
@@ -164,7 +164,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Submit */}
-            <form action={() => isRecurring ? createCheckoutRedirectSubscription(SUBSCRIPTION_PURCHASE[selected]) : createCheckoutRedirectProduct(PRICE_PURCHASE[selected])}>
+            <form action={() => isRecurring ? createCheckoutRedirectSubscription(SUBSCRIPTION_PURCHASE[selected]) : custom === "" ? createCheckoutRedirectProduct(PRICE_PURCHASE[selected]) : createCheckoutRedirectProduct("price_1TClrUPfrJiRgO05SpkXpeyc")}>
               <input type="hidden" name="amount" value={displayAmount} />
               <input type="hidden" name="recurring" value={String(isRecurring)} />
               <button
