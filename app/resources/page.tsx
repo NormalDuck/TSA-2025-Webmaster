@@ -32,6 +32,28 @@ export interface Opportunity {
 export type Category = "Food" | "Social & Family Support" | "Housing" | "Health & Wellness" | "Education" | "All";
 
 
+// Define the Opportunity type based on the data structure
+type Opportunity = {
+  name: string;
+  category: Category;
+  description: string;
+  coverImage: string;
+  additionalImages?: string[];
+  mapSrc: string;
+  contact: {
+    email?: string;
+    phone?: string;
+    address: string;
+    url: string;
+    socials?: {
+      instagram?: string;
+      linkedin?: string;
+      facebook?: string;
+      x?: string;
+    };
+  };
+};
+
 //Meta information for each category
 const categoryMeta: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
   "Food": { color: "#FD6900", bg: "#FFF3E0", icon: <Apple size={14} /> },
@@ -43,9 +65,9 @@ const categoryMeta: Record<string, { color: string; bg: string; icon: React.Reac
 
 //Resources Data
 const opportunities: Opportunity[] = [
-  {
-    name: "Rainier Valley Food Bank",
-    category: "Food",
+{
+  name: "Rainier Valley Food Bank",
+  category: "Food" as Category,
     description: "RVFB is the primary emergency food resource for Seattle's most racially, ethnically, and economically diverse neighborhood. It serves as a critical resource for people of color, immigrants, and refugees facing systemic obstacles.",
     coverImage: "/resources/rainierfoodbank/rainier_valley_foodbank.png",
     additionalImages: [
